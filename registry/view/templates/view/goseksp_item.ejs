@@ -1,0 +1,673 @@
+<%
+  form.ids = {
+    attr: 'a_' + form.namespace + '_' + form.className,
+    formBtn: 'fa_' + form.namespace + '_' + form.className + '_',
+    listBtn: 'la_' + form.namespace + '_' + form.className + '_',
+    refBtn: 'ra_' + form.namespace + '_' + form.className + '_',
+    colBtn: 'ca_' + form.namespace + '_' + form.className + '_'
+  };
+
+  var options = {
+    locale,
+    log,
+    id: item.getItemId(),
+    title: item.toString(null, utils.dateCallback),
+    itemClass: item.getClassName(),
+    selectionListTriggers,
+    node,
+    url: {
+      node: `${module}/${node}/`,
+      item: `${module}/${node}/view/${item.getClassName()}`,
+      signData: `${module}/digisign/${item.getClassName()}/:id/data`,
+      sign: `${module}/digisign/${item.getClassName()}/:id/sign`,
+      history: `${module}/api/${item.getClassName()}/${encodeURIComponent(item.getItemId())}/history`,
+      selectionLists: `${module}/api/${item.getClassName()}/${item.getItemId() ? encodeURIComponent(item.getItemId()) + '/' : ''}selection-lists`,
+      workflowState: item.getItemId() ? `${module}/api/${item.getClassName()}/${item.getItemId() ? encodeURIComponent(item.getItemId()) + '/' : ''}workflow-state`: '',
+      concurencyState: item.getItemId() ? `${module}/api/${item.getClassName()}/${item.getItemId() ? encodeURIComponent(item.getItemId()) + '/' : ''}concurency-state`: '',
+      share: `${module}/api/share/:fileId`
+    },
+    globalReadonly,
+    shortView,
+    condensedView,
+    concurencyState,
+    refShortViewDelay
+  };
+
+  if (master.item) {
+    if (!options.id) {
+      if (typeof forceMaster !== 'undefined' && forceMaster) {
+        options.master = {id: master.id, backRef: master.backRef};
+      }
+      if (typeof containerProperty !== 'undefined' && containerProperty) {
+        if (containerProperty.type === PropertyTypes.REFERENCE) {
+          locals.preTitle = `Создание объекта по ссылке "${containerProperty.caption}"
+        объекта "${master.item.toString(null, utils.dateCallback())}"`;
+        } else if (containerProperty.type === PropertyTypes.COLLECTION) {
+          locals.preTitle = `Создание объекта в коллекции "${containerProperty.caption}"
+        объекта "${master.item.toString(null, utils.dateCallback())}"`;
+        }
+      }
+    }
+  }
+%>
+
+<% if(typeof validateBy !== 'undefined' && validateBy !== null) {
+    options.validateBy = validateBy;
+} %>
+
+<% layout('../../../../../../modules/registry/view/default/templates/imodal/content') %>
+
+<% stylesheet(module + '/node_modules/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css') -%>
+<% stylesheet(module + '/node_modules/jquery-ui/themes/base/tabs.css') -%>
+
+<% script(module + '/js/ajax-uploader-new.js') -%>
+<% script(module + '/node_modules/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js') -%>
+<% script(module + '/node_modules/bootstrap3-wysihtml5-bower/dist/locales/bootstrap-wysihtml5.ru-RU.js') -%>
+
+<% block('scripts', `<script>
+  userActionHistory.addObject({
+    url: location.pathname +'?'+ location.search,
+    title: '${options.title}'
+  });
+</script>`) -%>
+
+<% script(module + '/goseksp/js/wsdl-checker.js') -%>
+<style>
+  #wsdl_check_success, #wsdl_check_fail ,#wsdl_check_loading {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    position: relative;
+    top: 4px;
+  }
+
+  #wsdl_check_success > i, #wsdl_check_fail > i ,#wsdl_check_loading > i { font-size: 24px; }
+  #wsdl_check_success > i { color: green; }
+  #wsdl_check_fail > i { color: red; }
+  #wsdl_check_loading > i { color: grey; }
+</style>
+
+<script src="<%= module %>/js/cryptopro.js"></script>
+<script>
+  var DATE_FORMAT = '<%=locale.dateFormat%>';
+  var DATETIME_FORMAT = '<%=locale.dateTimeFormat%>';
+</script>
+
+<% if (!condensedView) { %>
+<div id="cert-dlg" class="cert-dlg" style="display:none;">
+  <div class="form-group">
+    <label class="control-label bold mb10">Выберите сертификат для подписи:</label>
+    <select class="no-select2 form-control" name="cert"></select>
+  </div>
+  <div class="text-right">
+    <a href="#" id="cert_info_view" style="display:none">Просмотреть информацию о сертификате</a>&nbsp;
+    <button id="cert_select_cancel" class="btn btn-primary">Отменить</button>
+    <button id="cert_select_confirm" class="btn btn-primary">Выбрать</button>
+  </div>
+</div>
+<div id="cert-info" class="cert-dlg panel form-horizontal" style="display:none;">
+  <div class="panel-body">
+    <div class="form-group">
+      <label class="col-md-3 col-sm-3 control-label" for="cert_subject">Субьект</label>
+      <div class="col-md-9 col-sm-9">
+        <input id="cert_subject" type="text" class="form-control attr-value" readonly="true" value="">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-3 col-sm-3 control-label" for="cert_provider">Постащик</label>
+      <div class="col-md-9 col-sm-9">
+        <input id="cert_provider" type="text" class="form-control attr-value" readonly="true" value="">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-3 col-sm-3 control-label" for="cert_valid_since">Действителен с</label>
+      <div class="col-md-6 col-sm-6">
+        <input id="cert_valid_since" type="text" class="form-control attr-value" readonly="true" value="">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-3 col-sm-3 control-label" for="cert_valid_till">Действителен по</label>
+      <div class="col-md-6 col-sm-6">
+        <input id="cert_valid_till" type="text" class="form-control attr-value" readonly="true" value="">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-3 col-sm-3 control-label" for="cert_serial">Серийный номер</label>
+      <div class="col-md-7 col-sm-7">
+        <input id="cert_serial" type="text" class="form-control attr-value" readonly="true" value="">
+      </div>
+    </div>
+  </div>
+  <div class="text-right">
+    <button class="btn btn-primary">Закрыть</button>
+  </div>
+</div>
+<% for (var cmd of form.commands) {
+    if (cmd.signBefore || cmd.signAfter) { %>
+<% script(module + '/js/cades/cadesplugin_api.js') -%>
+<% break;
+  }}} %>
+
+<div class="panel panel-default <%- globalReadonly ? 'global-readonly' : ''%> <%- condensedView ? 'condensed-view' : ''%>">
+
+  <div class="object-loader overlay" style="display: none;"><i class="fa fa-refresh fa-spin"></i></div>
+
+  <% if (!condensedView) { %>
+  <% if (options.id) { %>
+  <%- partial('../../../../../../modules/registry/view/default/templates/view/_history') %>
+  <% } %>
+
+  <div class="panel-heading">
+    <div class="workflow panel-workflow"></div>
+    <% if (!globalReadonly) { %>
+    <% for (var cmd of form.commands) { %>
+      <% if ((cmd.id === 'SAVE' || cmd.id === 'SAVEANDCLOSE') && !permissions.write) continue; %>
+      <% if (cmd.id === 'DELETE' && !permissions.delete) continue; %>
+      <button id="<%=`${form.ids.formBtn}${cmd.id.toLowerCase()}`%>" type="button"
+              data-id="<%- cmd.id %>"
+              data-sign-before="<%- cmd.signBefore %>"
+              data-sign-after="<%- cmd.signAfter %>"
+              class="btn command btn-default object-control <%- cmd.id %>">
+        <%- cmd.caption %>
+      </button>
+    <% }} %>
+    <button id="<%=`${form.ids.formBtn}close`%>" type="button" class="closer btn btn-default object-control" data-id="CLOSE">
+      Закрыть
+    </button>
+    <button id="<%=`${form.ids.formBtn}reload`%>" type="button" class="reload btn btn-default object-control" data-id="RELOAD" title="Обновить">
+      <span class="fa fa-refresh"></span>
+    </button>
+    <% if (options.id && item.getMetaClass().isJournaling()) { %>
+      <button id="<%=`${form.ids.formBtn}history`%>" type="button" class="history btn btn-default object-control" data-id="HISTORY" title="Журнал изменений">
+        <span class="fa fa-history"></span>
+      </button>
+    <% } %>
+    <div id="wsdl_check_success" style="display: none;">
+      <i class="fa fa-check-circle"></i>
+    </div>
+    <div id="wsdl_check_fail" style="display: none;">
+      <i class="fa fa-times-circle"></i>
+    </div>
+    <div id="wsdl_check_loading" style="display: none;">
+      <i class="fa fa-signal"></i>
+    </div>
+<%
+if (item.getItemId() && !item.permissions.write) {
+  globalReadonly = true;
+  options.globalReadonly = true;
+}
+%>
+    <% if (typeof exporters !== 'undefined' && Array.isArray(exporters) && exporters.length) {%>
+    <%-partial('../../../../../../modules/registry/view/default/templates/view/_export', {buttonPrefix: form.ids.formBtn})%>
+    <%}%>
+
+  </div>
+
+  <div class="float-tools object-float-tools">
+    <% for (var cmd of form.commands) { %>
+      <button id="<%=`f${form.ids.formBtn}${cmd.id.toLowerCase()}`%>"
+              data-cmd="<%- cmd.id %>"
+              style="display:none;" type="button" class="btn <%- cmd.id %>" title="<%- cmd.caption %>">
+        <span class="glyphicon glyphicon-new-window"></span>
+        <span class="glyphicon glyphicon-save"></span>
+        <span class="glyphicon glyphicon-trash"></span>
+      </button>
+    <% } %>
+    <button id="<%=`f${form.ids.formBtn}close`%>" type="button" class="btn btn-default CLOSE" title="Закрыть" data-cmd="CLOSE">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <button id="<%=`f${form.ids.formBtn}reload`%>" type="button" class="btn btn-default" title="Обновить" data-cmd="RELOAD">
+      <span class="fa fa-refresh"></span>
+    </button>
+  </div>
+
+  <% } %>
+
+  <form class="object-manager form form-horizontal" method="post" autocomplete="off"
+        onsubmit="return false;"
+        enctype="multipart/form-data" data-options="<%= JSON.stringify(options) %>">
+    <div class="panel-body">
+      <input type="hidden" name="$action" value="">
+      <div class="tabs">
+        <%- partial('../../../../../../modules/registry/view/default/templates/groups/_tabs', {
+          tabs: form.tabs
+        }) %>
+        <div class="tab-content">
+        <% for (var i = 0; i < form.tabs.length; ++i) { %>
+        <%- partial('../../../../../../modules/registry/view/default/templates/groups/_default', {
+          item,
+          fields: form.tabs[i][shortView ? 'shortFields' : 'fullFields'],
+          title: form.tabs[i].caption,
+          numb: i
+        }) %>
+        <% } %>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="workflow-confirmation" class="modal fade">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Подтвердите ваши действия</h4>
+      </div>
+      <div class="modal-body">
+        <div class="confirm-message"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="confirm btn btn-success">Продолжить</button>
+        <button type="button" class="cancel btn btn-default" data-dismiss="modal">Отменить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%if (item.base.inspection) {%>
+<script>
+  $(function () {
+    <%
+      const inspectionId = item.base.inspection;
+      const inspectionClass = `inspection@${item.classMeta.plain.namespace}`;
+      const refreshUrl = `/goseksp/cloud-dir-struct/${inspectionClass}/${inspectionId}/`;
+    %>
+      const refreshAndExportButtonIds = [
+        'fa_undefined_petitionExpert@khv-gosekspertiza_expertitemtodocx2',
+        'fa_undefined_petitionExpert@khv-gosekspertiza_expertitemtodocx3',
+        'fa_undefined_petitionEstimated@khv-gosekspertiza_expertitemtodocx2',
+        'fa_undefined_petitionEstimated@khv-gosekspertiza_expertitemtodocx3'
+      ];
+      refreshAndExportButtonIds.forEach((buttonId) => {
+        const ogExportButton = document.getElementById(buttonId);
+        if (ogExportButton) {
+          const refreshAndExportButton = ogExportButton.cloneNode(true);
+          refreshAndExportButton.id += '-refresh';
+          ogExportButton.parentElement.appendChild(refreshAndExportButton);
+          $(ogExportButton).hide();
+          const buttonsPanel = ogExportButton.closest('.panel-heading');
+          const loadingPrompt = document.createTextNode('Обновляется структура документации...');
+          $(refreshAndExportButton).on('click', function () {
+            buttonsPanel.appendChild(loadingPrompt);
+            const refreshUrl = '<%= refreshUrl %>';
+            $.ajax({
+              url: refreshUrl,
+              type: 'GET',
+              dataType: 'json',
+              success: function (data) {
+                loadingPrompt.parentNode.removeChild(loadingPrompt);
+                $(ogExportButton).click();
+              },
+              error: function (xhreq, status, error) {
+                console.error('Documentation tree could not be updated.');
+                loadingPrompt.parentNode.removeChild(loadingPrompt);
+                $(ogExportButton).click();
+              }
+            });
+          });
+        }
+      });
+    });
+</script>
+<%}%>
+
+<script>
+  // document.addEventListener('DOMContentLoaded', () => {
+  const importDocsButton = document.querySelector('.import_documents.command.btn');
+  // const item = '<= item >';
+
+  <%
+  let cloudLink;
+  try {
+    if (item.references.petitionExpert)
+      cloudLink = item.references.petitionExpert.base.cloudObj;
+    else if (item.references.petitionEstimated)
+      cloudLink = item.references.petitionEstimated.base.cloudObj;
+  } catch (err) {}
+  %>
+
+  const cloudLink = '<%= cloudLink//.split('/').slice(3).join('/') %>';
+  if (importDocsButton) {
+    importDocsButton.addEventListener('click', () => {
+      const importWindowOpts = {
+        width: 1024,
+        height: 768
+      };
+      // const importWindow = window.open(cloudLink, "Выбор файлов для загрузки", `menubar=no,toolbar=no,location=no,status=no,width=800,height=600,left=${importDocsButton.getBoundingClientRect().left},top=${importDocsButton.getBoundingClientRect().top}`);
+      const importWindow = window.open('', "importWindow", `menubar=no,toolbar=no,location=no,status=no,width=${importWindowOpts.width},height=${importWindowOpts.height},left=${importDocsButton.getBoundingClientRect().left},top=${importDocsButton.getBoundingClientRect().top}`);
+
+      // если окно уже было открыто - очистить контент
+      while (importWindow.document.body.childNodes.length > 0)
+        importWindow.document.body.removeChild(importWindow.document.body.firstChild);
+
+      const importControlEl = importWindow.document.createElement('script');
+      importControlEl.innerHTML = 'console.log("test inner window text");';
+      importControlEl.innerHTML += 'window.addEventListener("click", () => console.log("clicked (inner)"));'
+      // importControlEl.innerHTML += `window.document.location.href = "${cloudLink}"`;
+      const loadingDiv = importWindow.document.createElement('div');
+
+      let dotsNumber = 0;
+      loadingDiv.innerText = 'ЗАГРУЖАЕТСЯ СТРУКТУРА ДОКУМЕНТАЦИИ';
+      const dotsAnimationLoop = setInterval(() => {
+        dotsNumber += 1;
+        if (dotsNumber > 3)
+          dotsNumber = 0;
+        loadingDiv.innerText = `ЗАГРУЖАЕТСЯ СТРУКТУРА ДОКУМЕНТАЦИИ${Array(dotsNumber + 1).join('.')}`;
+      }, 1000);
+
+      importWindow.document.body.appendChild(importControlEl);
+      importWindow.document.body.appendChild(loadingDiv);
+
+      const importBtnContainer = importWindow.document.createElement('div');
+      const mainDiv = importWindow.document.createElement('div');
+
+      const selectedDocuments = {};
+
+      function importAction(docs) {
+        if (docs.length === 0) {
+          importWindow.alert('Не выбран ни один документ.')
+          return false;
+        }
+
+        if (importWindow.confirm(`Импортировать записи?`)) {
+          requestDocumentsImport(docs);
+          return true;
+        }
+
+        return false;
+      }
+
+      async function requestDocumentsImport(docs) {
+        try {
+          const cloudDir = cloudLink.match(/\?dir=\/(.+)&?/)[1];
+          const res = await fetch(`${window.location.href.split('/').slice(0, 3).join('/')}/rest/docsAcceptor`, {
+            method: 'POST',
+            body: JSON.stringify({
+              resultItemId: '<%= item.id %>',
+              crcUrl: `${cloudLink.split('/').slice(0, 3).join('/')}/api/crc/`,
+              dir: cloudDir,
+              docs
+            })
+          });
+          if (res.status === 200) {
+            importWindow.alert(`Новых документов импортировано: ${await res.text()}`);
+            importWindow.close();
+            document.getElementById('<%=`${form.ids.formBtn}reload`%>').dispatchEvent(new Event('click'));
+          } else {
+            importWindow.alert(`${res.status}: ${res.statusText}`);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      fetch(`${window.location.href.split('/').slice(0, 3).join('/')}/rest/cloudProxy/${encodeURIComponent(cloudLink)}`, {
+        method: 'POST',
+        body: '<%= item.id %>'
+      }).then(async res => {
+        const {
+          cloudObjText: docs,
+          importedFiles
+        } = await res.json();
+        clearInterval(dotsAnimationLoop);
+        importWindow.document.body.removeChild(loadingDiv);
+        importWindow.document.body.appendChild(importBtnContainer);
+        mainDiv.innerText = 'Загружено:'
+        mainDiv.innerText += JSON.stringify(docs);
+        importWindow.document.body.appendChild(mainDiv);
+        const importBtn = importWindow.document.createElement('button');
+        importBtn.type = 'button';
+        importBtn.innerText = 'Импортировать';
+        importBtn.addEventListener('click', () => importAction(Object.keys(selectedDocuments)));
+        importBtnContainer.appendChild(importBtn);
+        let docsView = docs;
+        docsView.level = 1;
+        docsView.path = '';
+        showTable(docsView, mainDiv, importedFiles);
+
+      }).catch(err => {
+        console.error(err);
+        importWindow.alert(err);
+        importWindow.close();
+      });
+
+      function showTable(docs, rootEl, importedFiles) {
+        while (rootEl.childNodes.length > 0)
+          rootEl.removeChild(rootEl.firstChild);
+        rootEl.appendChild(constructDocumentList(docs, importedFiles));
+      }
+
+      function constructTableHeaderRow() {
+        const headerRowEl = importWindow.document.createElement('tr');
+        const checkAllContainerEl = importWindow.document.createElement('th');
+        headerRowEl.appendChild(checkAllContainerEl);
+        const checkAllEl = importWindow.document.createElement('input');
+        checkAllEl.type = 'checkbox';
+        checkAllContainerEl.appendChild(checkAllEl);
+        const headerNameContainerEl = importWindow.document.createElement('th');
+        headerRowEl.appendChild(headerNameContainerEl);
+        const headerNameEl = importWindow.document.createElement('div');
+        headerNameEl.innerText = 'НАИМЕНОВАНИЕ';
+        headerNameContainerEl.appendChild(headerNameEl);
+        headerNameEl.style = 'text-align: left;';
+        return {
+          rowElement: headerRowEl,
+          checkAllElement: checkAllEl
+        };
+      }
+
+      function constructTablePreviousLevelRow(previousDocsView, importedFiles) {
+        const previousLevelEl = importWindow.document.createElement('tr');
+        const previousLevelCheckFillerContainerEl = importWindow.document.createElement('td');
+        previousLevelEl.appendChild(previousLevelCheckFillerContainerEl);
+        const previousLevelNameContainerEl = importWindow.document.createElement('td');
+        previousLevelEl.appendChild(previousLevelNameContainerEl);
+        const previousLevelNameEl = importWindow.document.createElement('a');
+        previousLevelNameEl.innerText = '..';
+        previousLevelNameEl.href = 'javascript:void(0)';
+        previousLevelNameContainerEl.appendChild(previousLevelNameEl);
+        previousLevelNameEl.addEventListener('click', () => {
+          showTable(previousDocsView, mainDiv, importedFiles);
+        });
+        return {rowElement: previousLevelEl};
+      }
+
+      function constructDocumentList(docs, importedFiles) {
+        // создание таблицы документов
+        const documentList = importWindow.document.createElement('table');
+        const {rowElement: headerRowEl, checkAllElement} = constructTableHeaderRow();
+        documentList.appendChild(headerRowEl);
+
+        // если не первый уровень - создать элемент для перехода на уровень выше
+        if (docs.level > 1) {
+          const previousLevelEl = constructTablePreviousLevelRow(docs.previousView, importedFiles).rowElement;
+          documentList.appendChild(previousLevelEl);
+        }
+
+        // объект со списками отмеченных и неотмеченных файлов
+        const checksList = {on: [], off: []};
+        for (const entry of docs.dirs.concat(docs.files
+        .filter(file => file.name.slice(file.name.length - 4) !== '.sig'))) {
+          const selectionObject = {};
+          const rowEl = importWindow.document.createElement('tr');
+          const checkContainerEl = importWindow.document.createElement('td');
+          const checkEl = importWindow.document.createElement('input');
+          checkEl.type = 'checkbox';
+          if (selectedDocuments[`${docs.path}${entry.name}`]) {
+            checkEl.checked = true;
+          } else {
+            // если отмечена папка на каком-либо из верхних уровней - отметить элемент
+            let outerPath;
+            for (const outerFolder of docs.path.split('/')) {
+              if (outerPath)
+                outerPath = `${outerPath}/${outerFolder}`;
+              else
+                outerPath = outerFolder;
+              if (selectedDocuments[outerPath]) {
+                checkEl.checked = true;
+                break;
+              }
+            }
+          }
+
+          if (importedFiles.includes(`${docs.path}${entry.name}`)) {
+            checkEl.checked = true;
+            checkEl.disabled = true;
+          }
+
+          if (checkEl.checked)
+            checksList.on.push(selectionObject);
+          else
+            checksList.off.push(selectionObject);
+
+          // событие выбора (отмены выбора) элемента
+          checkEl.addEventListener('change', () => {
+            const entryPath = `${docs.path}${entry.name}`;
+            if (checkEl.checked) {
+              checksList.on.push(selectionObject);
+              checksList.off = checksList.off.filter(selObj => selObj.checkElement !== checkEl);
+              if ((checksList.off.length === 0) && (checksList.on.length > 0)) {
+                if (!checkAllElement.checked)
+                  checkAllElement.checked = true;
+                checkOuterFolder(docs);
+              }
+              selectedDocuments[entryPath] = true;
+            } else { // =unchecked
+              checksList.off.push(selectionObject);
+              if (checkAllElement.checked)
+                checkAllElement.checked = false;
+              checksList.on = checksList.on.filter(selObj => selObj.checkElement !== checkEl);
+              if (checksList.off.length > 0)
+                uncheckOuterFolder(docs);
+              if (selectedDocuments[entryPath])
+                delete selectedDocuments[entryPath];
+
+              if (entry.files || entry.dirs) {
+                // убрать отметки с вложенных файлов
+                Object.keys(selectedDocuments)
+                        .filter(docPath => docPath.slice(0, entryPath.length) === entryPath)
+                        .map(docPath => delete selectedDocuments[docPath]);
+              }
+            }
+          });
+
+          selectionObject.checkElement = checkEl;
+          checkContainerEl.appendChild(checkEl);
+          rowEl.appendChild(checkContainerEl);
+          const nameContainerEl = importWindow.document.createElement('td');
+          let nameEl;
+          if (entry.files || entry.dirs) {
+            nameEl = importWindow.document.createElement('a')
+            nameEl.href = 'javascript:void(0)';
+            nameEl.addEventListener('click', () => {
+              entry.level = docs.level + 1;
+              entry.path = `${docs.path}${entry.name}/`;
+              entry.previousView = docs;
+              showTable(entry, mainDiv, importedFiles);
+            });
+          } else
+            nameEl = importWindow.document.createElement('div');
+          nameEl.innerText = entry.name;
+          selectionObject.title = entry.name;
+          nameContainerEl.appendChild(nameEl);
+          rowEl.appendChild(nameContainerEl);
+          documentList.appendChild(rowEl);
+        }
+        if ((checksList.off.length === 0) && (checksList.on.length > 0))
+          checkAllElement.checked = true;
+
+        // событие на элементе "выбрать все"
+        checkAllElement.addEventListener('change', () => {
+          if (checksList.off.length === 0) {
+            checksList.on.map(selObj => {
+              if (!selObj.checkElement.disabled) {
+                selObj.checkElement.checked = false;
+                selObj.checkElement.dispatchEvent(new Event('change'));
+              }
+            });
+          } else {
+            checksList.off.map(selObj => {
+              selObj.checkElement.checked = true;
+              selObj.checkElement.dispatchEvent(new Event('change'));
+            });
+          }
+          if (checksList.off.length === 0 && checksList.on.length > 0)
+            checkAllElement.checked = true;
+          else if (checksList.off.length > 0)
+            checkAllElement.checked = false;
+        });
+
+        return documentList;
+      }
+
+      function uncheckOuterFolder(docs) {
+        if (!docs.previousView)
+          return false;
+
+        const viewFor = {};
+        viewFor[docs.path] = docs;
+        let docsView = docs;
+        while (docsView.previousView) {
+          docsView = docsView.previousView;
+          viewFor[docsView.path] = docsView;
+        }
+
+        let outerPath;
+        for (const outerFolder of docs.path.split('/')) {
+          if (outerPath)
+            outerPath = `${outerPath}/${outerFolder}`;
+          else
+            outerPath = outerFolder;
+          if (selectedDocuments[outerPath]) {
+            delete selectedDocuments[outerPath];
+            docsView = viewFor[`${outerPath}/`];
+            if (docsView) {
+              for (const previousViewEntry of docsView.dirs.concat(docsView.files)) {
+                let entryPath;
+                if (docsView.path.length > 0)
+                  entryPath = `${docsView.path}${previousViewEntry.name}`;
+                else
+                  entryPath = previousViewEntry.name;
+
+                selectedDocuments[entryPath] = true;
+              }
+            }
+          }
+        }
+      }
+
+      function checkOuterFolder(docs) {
+        if (!docs.previousView)
+          return false;
+
+        for (const entry of docs.dirs.concat(docs.files)) {
+          let entryPath;
+          if (docs.path.length > 0)
+            entryPath = `${docs.path}${entry.name}`;
+          else
+            entryPath = entry.name;
+
+          if (selectedDocuments[entryPath])
+            delete selectedDocuments[entryPath];
+
+          selectedDocuments[`${docs.previousView.path}${docs.name}`] = true;
+
+          // если все элементы во внешней папке отмечены - рекурсивно вызываем эту функцию
+          let doRecurse = true;
+          for (const entry of docs.previousView.dirs.concat(docs.previousView.files)) {
+            if (!selectedDocuments[`${docs.previousView.path}${entry.name}`]) {
+              doRecurse = false;
+              break;
+            }
+          }
+
+          if (doRecurse)
+            return checkOuterFolder(docs.previousView);
+        }
+      }
+
+    });
+  }
+</script>

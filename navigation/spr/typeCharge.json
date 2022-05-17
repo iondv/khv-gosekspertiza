@@ -1,0 +1,15 @@
+{
+  "code": "typeCharge",
+  "orderNumber": 30,
+  "type": 1,
+  "title": "",
+  "caption": "Типы поручений",
+  "classname": "typeCharge",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

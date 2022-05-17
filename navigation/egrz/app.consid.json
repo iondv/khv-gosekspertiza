@@ -1,0 +1,15 @@
+{
+  "code": "app.wait",
+  "orderNumber": 3,
+  "type": 1,
+  "title": "",
+  "caption": "На рассмотрении",
+  "classname": "expertiseResult",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

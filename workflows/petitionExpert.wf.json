@@ -1,0 +1,367 @@
+{
+  "name": "petitionExpert",
+  "caption": "Заявление о проведении государственной экспертизы",
+  "wfClass": "petitionExpert",
+  "startState": "docSubmit",
+  "states": [
+    {
+      "name": "docSubmit",
+      "caption": "Документы поданы на рассмотрение",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "docsTaken",
+      "caption": "Документы приняты",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "refusAcceptDocs",
+      "caption": "Отказ в принятии документации",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "withoutConsid",
+      "caption": "Оставление без рассмотрения",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "signContract",
+      "caption": "Подписание договора",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "resultsAccount",
+      "caption": "Выдача счета",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "statExclude",
+      "caption": "Заявление исключено",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "prepDraft",
+      "caption": "Подготовка проекта договора",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "proj",
+      "caption": "Согласованная стоимость договора",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [
+    {
+      "name": "acceptDocs",
+      "caption": "Принять",
+      "startState": "docSubmit",
+      "finishState": "docsTaken",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПринять заявление\u003c/h2\u003e",      
+      "assignments": [
+        {
+          "key": "status",
+          "value": "28"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "status",
+          "operation": 0,
+          "value": [
+            "24"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "cloudObjtrue",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "acceptDocs",
+      "caption": "Принять",
+      "startState": "refusAcceptDocs",
+      "finishState": "docsTaken",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПринять заявление\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "status",
+          "value": "28"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "status",
+          "operation": 0,
+          "value": [
+            "24"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "cloudObjtrue",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "excludeStat_docSubmit",
+      "caption": "Исключить заявление",
+      "startState": "docSubmit",
+      "finishState": "statExclude",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "status",
+          "operation": 0,
+          "value": [
+            "23"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "cloudObjtrue",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "excludeStat_refusAcceptDocs",
+      "caption": "Исключить заявление",
+      "startState": "refusAcceptDocs",
+      "finishState": "statExclude",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "status",
+          "operation": 0,
+          "value": [
+            "26"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "cloudObjtrue",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "excludeStat_signContract",
+      "caption": "Исключить заявление",
+      "startState": "signContract",
+      "finishState": "statExclude",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "status",
+          "operation": 0,
+          "value": [
+            "30"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "excludeStat_resultsAccount",
+      "caption": "Исключить заявление",
+      "startState": "resultsAccount",
+      "finishState": "statExclude",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "status",
+          "operation": 0,
+          "value": [
+            "31"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "cost",
+      "caption": "Расчет стоимости",
+      "startState": "docsTaken",
+      "finishState": "proj",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПерейти к расчету стоимости\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "costing.petitionExpert",
+          "value": "$guid"
+        },
+        {
+          "key": "costing.expObject",
+          "value": "$expObject"
+        },
+        {
+          "key": "costing.firstCostExp",
+          "value": "$sumOldEksp"
+        },
+        {
+          "key": "costing.primacy",
+          "value": "$primacy"
+        },
+        {
+          "key": "costing.typeObj",
+          "value": "$typeObj"
+        },
+        {
+          "key": "status",
+          "value": "41"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "status",
+          "operation": 0,
+          "value": [
+            "28"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "prepDraft",
+      "caption": "Подготовка проекта договора",
+      "startState": "proj",
+      "finishState": "prepDraft",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПерейти к подготовке проекта договора\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "status",
+          "value": "29"
+        },
+        {
+          "key": "contract.expObject",
+          "value": "$expObject"
+        },
+        {
+          "key": "contract.petitionExpert",
+          "value": "$guid"
+        },
+        {
+          "key": "contract.sumEksp",
+          "value": "$costing.costExp"
+        },
+        {
+          "key": "contract.nds",
+          "value": "$costing.nds"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "status",
+          "operation": 0,
+          "value": [
+            "41"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "costing.state",
+          "operation": 0,
+          "value": [
+            "fin"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

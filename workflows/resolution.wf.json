@@ -1,0 +1,262 @@
+{
+  "name": "resolution",
+  "caption": "Сводное замечание",
+  "wfClass": "resolution",
+  "startState": "proj",
+  "states": [{
+      "name": "proj",
+      "caption": "Проект",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "needSigExp",
+      "caption": "На подпись экспертов",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "needSigHead",
+      "caption": "На подпись руководителя",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "sigHead",
+      "caption": "Подписано руководителем",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "send",
+      "caption": "Направлено заявителю",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "end",
+      "caption": "Закрыто",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [{
+      "name": "needSigExp",
+      "caption": "На подпись экспертам",
+      "startState": "proj",
+      "finishState": "needSigExp",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПеревести на подпись экспертам\u003c/h2\u003e",
+      "assignments": [{
+        "key": "stateRemPet",
+        "value": "needSig"
+      }],
+      "conditions": [{
+        "property": "stateRemPet",
+        "operation": 0,
+        "value": [
+          "proj"
+        ],
+        "nestedConditions": []
+      }]
+    },
+    {
+      "name": "sigExp",
+      "caption": "Подписано экспертами",
+      "startState": "needSigExp",
+      "finishState": "needSigHead",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [{
+        "key": "stateRemPet",
+        "value": "needSigHead"
+      }],
+      "conditions": [{
+        "property": null,
+        "operation": 2,
+        "value": null,
+        "nestedConditions": [{
+          "property": "sigExpEmployee",
+          "operation": 10,
+          "value": null,
+          "nestedConditions": [{
+            "property": "check",
+            "operation": 1,
+            "value": [
+              "true"
+            ],
+            "nestedConditions": []
+          }]
+        }]
+      }]
+    },
+    {
+      "name": "sigHead",
+      "caption": "Подписать",
+      "startState": "needSigHead",
+      "finishState": "sigHead",
+      "signBefore": true,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [{
+        "key": "stateRemPet",
+        "value": "sigHead"
+      }],
+      "conditions": [{
+        "property": "stateRemPet",
+        "operation": 0,
+        "value": [
+          "needSigHead"
+        ],
+        "nestedConditions": []
+      }]
+    },
+    {
+      "name": "sigCancel",
+      "caption": "Вернуть на доработку",
+      "startState": "needSigHead",
+      "finishState": "proj",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eВернуть на доработку\u003c/h2\u003e",
+      "assignments": [{
+        "key": "stateRemPet",
+        "value": "proj"
+      }],
+      "conditions": [{
+        "property": "stateRemPet",
+        "operation": 0,
+        "value": [
+          "needSigHead"
+        ],
+        "nestedConditions": []
+      }]
+    },
+    {
+      "name": "sign_send",
+      "caption": "Направить",
+      "startState": "sigHead",
+      "finishState": "send",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [{
+          "key": "stateRemPet",
+          "value": "send"
+        },
+        {
+          "key": "date",
+          "value": "now()"
+        },
+        {
+          "key": "inspection.petitionExpert.status",
+          "value": "33"
+        }
+      ],
+      "conditions": [{
+          "property": "stateRemPet",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "remFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "inspection",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sign_send_est",
+      "caption": "Направить",
+      "startState": "sigHead",
+      "finishState": "send",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [{
+          "key": "stateRemPet",
+          "value": "send"
+        },
+        {
+          "key": "date",
+          "value": "now()"
+        },
+        {
+          "key": "inspectionEstimate.petitionEstimated.status",
+          "value": "33"
+        }
+      ],
+      "conditions": [{
+          "property": "stateRemPet",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "remFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "inspectionEstimate",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "response",
+      "caption": "Получен ответ",
+      "startState": "send",
+      "finishState": "end",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [{
+        "key": "stateRemPet",
+        "value": "end"
+      }],
+      "conditions": [{
+        "property": "stateRemPet",
+        "operation": 0,
+        "value": [
+          "resp"
+        ],
+        "nestedConditions": []
+      }]
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

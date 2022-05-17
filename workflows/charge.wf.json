@@ -1,0 +1,213 @@
+{
+  "name": "charge",
+  "caption": "Поручение",
+  "wfClass": "charge",
+  "startState": "new",
+  "states": [
+    {
+      "name": "new",
+      "caption": "Новое",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "assign",
+      "caption": "Назначено",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "work",
+      "caption": "В работе",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "done",
+      "caption": "Выполнено",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "close",
+      "caption": "Закрыто",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [
+    {
+      "name": "assignExpert",
+      "caption": "Назначить",
+      "startState": "new",
+      "finishState": "assign",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eНазначить поручение\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "assign"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "new"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "responsible",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "perform",
+      "caption": "Исполнение",
+      "startState": "assign",
+      "finishState": "work",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПерейти к исполнению поручения\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "work"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "assign"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "complet",
+      "caption": "Завершить",
+      "startState": "work",
+      "finishState": "done",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗавершить исполнение поручения\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "done"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "work"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "result",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            },
+            {
+              "property": "chargeOk",
+              "operation": 0,
+              "value": [
+                "true"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "returnWork",
+      "caption": "Вернуть в работу",
+      "startState": "done",
+      "finishState": "work",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eВернуть поручение в работу\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "work"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "done"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "closeItem",
+      "caption": "Закрыть",
+      "startState": "done",
+      "finishState": "close",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть поручение\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "close"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "done"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

@@ -1,0 +1,91 @@
+{
+  "code": "inspectionEstimate.work",
+  "orderNumber": 70,
+  "type": 1,
+  "title": "",
+  "caption": "В работе",
+  "classname": "inspectionEstimate",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [
+    {
+      "property": null,
+      "operation": 1,
+      "value": null,
+      "nestedConditions": [
+        {
+          "property": "$since",
+          "operation": 2,
+          "value": [],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 0,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "contract.date",
+              "operation": 8,
+              "value": [
+                "$since"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "contract.date",
+              "operation": 5,
+              "value": [
+                "$till"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "property": null,
+      "operation": 1,
+      "value": null,
+      "nestedConditions": [
+        {
+          "property": "petitionEstimated.status",
+          "operation": 0,
+          "value": [
+            "32"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated.status",
+          "operation": 0,
+          "value": [
+            "33"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated.status",
+          "operation": 0,
+          "value": [
+            "34"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated.status",
+          "operation": 0,
+          "value": [
+            "38"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    }
+  ],
+  "sorting": [],
+  "pathChains": []
+}

@@ -1,0 +1,67 @@
+{
+  "code": "petitionEstimated.petExpEGRZResult",
+  "orderNumber": 112,
+  "type": 1,
+  "title": "",
+  "caption": "Заключение подготовлено, подписано, отправлено в ЕГРЗ",
+  "classname": "petitionEstimated",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [
+    {
+      "property": null,
+      "operation": 0,
+      "value": null,
+      "nestedConditions": [
+        {
+          "property": "status",
+          "operation": 0,
+          "value": [
+            "42"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "$since",
+              "operation": 2,
+              "value": [],
+              "nestedConditions": []
+            },
+            {
+              "property": null,
+              "operation": 0,
+              "value": null,
+              "nestedConditions": [
+                {
+                  "property": "inspectionEstimate.result.date",
+                  "operation": 8,
+                  "value": [
+                    "$since"
+                  ],
+                  "nestedConditions": []
+                },
+                {
+                  "property": "inspectionEstimate.result.date",
+                  "operation": 5,
+                  "value": [
+                    "$till"
+                  ],
+                  "nestedConditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sorting": [],
+  "pathChains": []
+}

@@ -1,0 +1,446 @@
+{
+  "name": "gosEkspCancel",
+  "caption": "Отказ по заявлению",
+  "wfClass": "gosEkspCancel",
+  "startState": "proj",
+  "states": [
+    {
+      "name": "proj",
+      "caption": "Проект",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "send",
+      "caption": "Направлен заявителю",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "send_est",
+      "caption": "Направлен заявителю",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "answ",
+      "caption": "Получен ответ",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "onconf",
+      "caption": "На утверждении",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "conf",
+      "caption": "Утвержден",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [
+    {
+      "name": "sendComment",
+      "caption": "Направить замечания",
+      "startState": "conf",
+      "finishState": "send",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "send"
+        },
+        {
+          "key": "pet.status",
+          "value": "26"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "conf"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeCancel",
+          "operation": 0,
+          "value": [
+            "remPet"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "fileSend",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "pet",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sendComment_est",
+      "caption": "Направить замечания",
+      "startState": "conf",
+      "finishState": "send_est",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "send"
+        },
+        {
+          "key": "petEst.status",
+          "value": "26"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "conf"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeCancel",
+          "operation": 0,
+          "value": [
+            "remPet"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "fileSend",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petEst",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sendCancel",
+      "caption": "Направить отказ",
+      "startState": "conf",
+      "finishState": "send",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "send"
+        },
+        {
+          "key": "pet.status",
+          "value": "25"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "conf"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeCancel",
+          "operation": 0,
+          "value": [
+            "stopPet"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "fileSend",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "pet",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sendCancel_est",
+      "caption": "Направить отказ",
+      "startState": "conf",
+      "finishState": "send_est",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "send"
+        },
+        {
+          "key": "petEst.status",
+          "value": "25"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "conf"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeCancel",
+          "operation": 0,
+          "value": [
+            "stopPet"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "fileSend",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petEst",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "excludeStat",
+      "caption": "Направить отказ и исключить заявление",
+      "startState": "conf",
+      "finishState": "send",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "send"
+        },
+        {
+          "key": "pet.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "conf"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeCancel",
+          "operation": 0,
+          "value": [
+            "cancPet"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "fileSend",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "pet",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "excludeStat_est",
+      "caption": "Направить отказ и исключить заявление",
+      "startState": "conf",
+      "finishState": "send_est",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "send"
+        },
+        {
+          "key": "petEst.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "conf"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeCancel",
+          "operation": 0,
+          "value": [
+            "cancPet"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "fileSend",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petEst",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "onconf",
+      "caption": "На утверждение",
+      "startState": "proj",
+      "finishState": "onconf",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "onconf"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "proj"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "fileSend",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "conf",
+      "caption": "К отправке",
+      "startState": "onconf",
+      "finishState": "conf",
+      "signBefore": false,
+      "signAfter": true,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "conf"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "onconf"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "fileSend",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "proj",
+      "caption": "Доработка",
+      "startState": "onconf",
+      "finishState": "proj",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "proj"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "onconf"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "fileSend",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

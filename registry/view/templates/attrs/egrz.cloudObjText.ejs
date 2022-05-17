@@ -1,0 +1,314 @@
+<!-- templates\attrs\inspection\petitionExpert.cloudObjText -->
+<%
+let value = prop.getValue();
+const escapedId = id.replace(/(:|\.|\[|\]|,|=|@)/g, '_');
+%>
+
+<% stylesheet(`${module}/goseksp/css/cloud-data.css`) -%>
+<% script(`${module}/goseksp/js/cloud-data.js`) -%>
+<style type="text/css">
+  .file-upload-status {
+    display: inline-block;
+  }
+
+  .file-upload-status .fa-exclamation-circle {
+    color: red;
+  }
+
+  .file-upload-status .fa-check-circle {
+    color: green;
+  }
+
+  .cloud-item-title {
+    display: inline-block;
+    margin-left: 5px;
+  }
+
+  .cloud-folder.cancel-state > .cloud-item-head > .cloud-item-icon {
+    color: #f54242;
+  }
+</style>
+
+<div class="form-group <%= cssFromTags(field) %>">
+  <label class="col-md-2 col-sm-3 control-label">
+    <% if (item.getItemId()) { %>
+    <p style="display: inline-block;">
+      <button type="button" class="btn btn-primary dir-refresh">
+      <span class="glyphicon glyphicon-refresh" title="Обновить"></span>
+      </button>
+    </p>
+
+    <p style="display: inline-block;">
+      <button type="button" class="btn btn-primary egrz-upload" disabled>
+        <span>ЕГРЗ</span>
+      </button>
+    </p>
+    <% } %>
+    <%= field.caption %>
+  </label>
+  <div class="col-md-10 col-sm-9 cloud-dir-container">
+    <div class="refresh-loader" style="display:none;">
+      <span></span>
+    </div>
+
+    <div id="<%- escapedId %>"
+      class="cloud-tree"
+      data-value="<%= value %>"
+      data-refresh-url="/goseksp/egrz/cloud-dir/<%= prop.item.getClassName() %>/<%= item.getItemId() %>/"
+      data-update-egrz-url="/goseksp/egrz/cloud-dir-update/<%= prop.item.getClassName() %>/<%= item.getItemId() %>/"
+      data-upload-egrz-url="/goseksp/egrz/upload-files/<%= prop.item.getClassName() %>/<%= item.getItemId() %>/start"
+      data-check-egrz-url="/goseksp/egrz/upload-files/<%= prop.item.getClassName() %>/<%= item.getItemId() %>/check"
+      data-files-state-url="/goseksp/egrz/files-state/<%= prop.item.getClassName() %>/<%= item.getItemId() %>/"
+      >
+    </div>
+
+    <div class="col-md-12 clearfix" id="<%- escapedId %>-counters">
+      <p>
+        <span class="glyphicon glyphicon-file"></span> Загружено файлов: <span class="cloudobj-upload-count">-</span>
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-save-file"></span> Загружаемые файлы: <span class="cloudobj-wait-count">-</span>
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-remove-sign"></span> Ошибок при загрузке файлов: <span class="cloudobj-cancel-count">-</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function () {
+
+    function getBranch (data, level) {
+      var content = '';
+      if (data && data.dirs instanceof Array) {
+        for (var i = 0; i < data.dirs.length; ++i) {
+          content += getDir(data.dirs[i], level);
+        }
+      }
+      if (data && data.files instanceof Array) {
+        for (var i = 0; i < data.files.length; ++i) {
+          content += getFile(data.files[i], level);
+        }
+      }
+      return content;
+    }
+
+    function getDir (data, level) {
+      if (!data) {
+        return '';
+      }
+      var head = '<div class="cloud-item-head"><span class="cloud-item-icon glyphicon"></span>'
+        + '<div class="cloud-item-title">' + data.name +'</div></div>';
+      var body = getBranch(data, level + 1);
+      var empty = ' empty-folder';
+      if (body) {
+        body = '<div class="cloud-item-body">'+ body + '</div>';
+        empty = '';
+      }
+      return '<div class="cloud-folder cloud-item level-'+ level + empty +'">'+ head + body + '</div>';
+    }
+
+    function getFile (data, level) {
+      if (!data) {
+        return '';
+      }
+      var signed = data.name.split('.').pop();
+      signed = signed === 'sig' || signed === 'sign' ? ' signed' : '';
+      var head = '<div class="cloud-item-head" data-file="' + data.id + '">'
+        + '<div class="file-upload-status"></div>'
+        + '<span class="cloud-item-icon glyphicon"></span>'
+        + '<div class="cloud-item-title">'
+        + '<a href="'+ data.link +'" target="_blank">' + data.name +'</a>'
+        + '</div>'
+        + '</div>';
+      return '<div class="cloud-file cloud-item level-'
+        + level + signed + '">'+ head +'</div>';
+    }
+
+    function request(url, cb) {
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          cb(null, data);
+        },
+        error: function (xhreq, status, error) {
+          cb(error);
+        }
+      });
+    }
+
+    function fileStateToHtml(status) {
+      switch (status) {
+        case 'cancel':
+          return '<span><i class="fa fa-exclamation-circle"></i></span>';
+        case 'upload':
+          return '<span><i class="fa fa-check-circle" aria-hidden="true"></i></span>';
+        case 'wait':
+          return '<span><i class="fa fa-refresh" aria-hidden="true"></i></span>';
+        default:
+          return '';
+      }
+    }
+
+    function folderState($file, status) {
+      if (status === 'cancel') {
+        $file.parents('.cloud-folder').addClass('cancel-state');
+      }
+    }
+
+    function fileStats(stats, $countersContainer) {
+      stats = stats || {};
+      $countersContainer.find('.cloudobj-upload-count').text(stats.upload || 0);
+      $countersContainer.find('.cloudobj-wait-count').text(stats.wait || 0);
+      $countersContainer.find('.cloudobj-cancel-count').text(stats.cancel || 0);
+    }
+
+    function logFilesUploadStatus(results, $dirContainer) {
+      var i;
+      var $countersContainer = $dirContainer.next('#' + $dirContainer.attr('id') + '-counters');
+      var stats  = {
+        upload: 0,
+        wait: 0,
+        cancel: 0
+      };
+
+      for (i = 0; i < results.length; i++) {
+        if (results[i] && results[i].file && results[i].state) {
+          $dirContainer.find('.cloud-item-head').each(function(){
+            var $this = $(this);
+            if ($this.data('file') === results[i].file) {
+              $this.find('.file-upload-status').html(fileStateToHtml(results[i].state));
+              folderState($this, results[i].state);
+              stats[results[i].state] += 1;
+            }
+          });
+        }
+      }
+      fileStats(stats, $countersContainer);
+    }
+
+    $(document.getElementById('<%- escapedId %>')).each(function () {
+      var $tree = $(this),
+        refreshUrl = $tree.data('refresh-url'),
+        egrzUpdateUrl = $tree.data('update-egrz-url'),
+        egrzUploadUrl = $tree.data('upload-egrz-url'),
+        egrzCheckUrl = $tree.data('check-egrz-url'),
+        egrzValidateUrl = $tree.data('validate-egrz-url'),
+        filesStateUrl = $tree.data('files-state-url'),
+        $container = $tree.closest('.cloud-dir-container'),
+        loader = $container.find('.refresh-loader'),
+        $form = $tree.closest('.form-group'),
+        egrzUploadBtn = $form.find('.egrz-upload'),
+        $egrzAuth = $('#egrz_check_success'),
+        egrzUploadStarted = false,
+        es = null,
+        egrzCheckTimeout = 5000;
+
+      function toggleEgrzUploadButton() {
+        if($egrzAuth.data('auth') && !egrzUploadStarted) {
+          egrzUploadBtn.prop('disabled', false);
+        } else {
+          egrzUploadBtn.prop('disabled', true);
+        }
+      }
+
+      function getFilesState(cb) {
+        request(filesStateUrl, function(err, state) {
+          if (err || !state) {
+            console.log(err || 'no state');
+            cb && cb(err, {});
+          } else {
+            cb && cb(null, state);
+            logFilesUploadStatus(state, $tree);
+          }
+        });
+      }
+
+      function checkUploadStatus(cb) {
+        request(egrzCheckUrl, function(err, msg) {
+          if (err || !msg) {
+            loader.hide();
+            console.log(err || 'no message');
+            cb && cb(err, false);
+          } else {
+            egrzUploadStarted = !!(msg.status);
+            if (egrzUploadStarted) {
+              loader.show().find('span').text('Идет загрузка файлов в ЕГРЗ...');
+            } else {
+              loader.hide();
+            }
+            toggleEgrzUploadButton();
+            cb && cb(null, egrzUploadStarted);
+            logFilesUploadStatus(msg.data, $tree);
+          }
+        });
+      }
+
+      $egrzAuth.on('egrz-login-success', function() {
+        toggleEgrzUploadButton();
+      })
+
+      $tree.on('cloudObj:refresh', function(e, data, fetch) {
+        var content = getBranch(data, 0);
+        $tree.empty();
+        $tree.html(content);
+        if (fetch) {
+          loader.show().find('span').text('Обновляется структура файлов для загрузки в ЕГРЗ...');
+          request(egrzUpdateUrl, function(err, data) {
+            loader.hide();
+            if (err) {
+              console.log(err);
+            }
+          });
+        }
+      });
+
+      $tree.on('click', '.cloud-folder > .cloud-item-head .cloud-item-icon', function () {
+        var $item = $(this).closest('.cloud-folder');
+        if ($item.hasClass('active')) {
+          $item.find('.active').removeClass('active');
+        }
+        $item.toggleClass('active');
+      });
+
+      $form.find('.dir-refresh').on('click', function() {
+        loader.show().find('span').text('Список обновляется...');
+        request(refreshUrl, function(err, data) {
+          loader.hide();
+          if (err) {
+            console.log(err);
+          } else {
+            $tree.trigger('cloudObj:refresh', [data, true]);
+          }
+        });
+      });
+
+      $tree.trigger('cloudObj:refresh', [$tree.data('value')]);
+
+      egrzUploadBtn.on('click', function(){
+        request(egrzUploadUrl, function(err, data) {
+          if (err) {
+            console.log(err);
+          } else {
+            var timerId = setInterval(function() {
+              checkUploadStatus(function(err, state){
+                if (err || state === false) {
+                  clearInterval(timerId);
+                }
+              });
+            }, egrzCheckTimeout);
+          }
+        });
+      });
+
+      getFilesState(function(err, state) {
+        if (!err) {
+          checkUploadStatus();
+        }
+      })
+    });
+  });
+</script>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Для продолжения работы необходимо авторизоваться</title>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <base id="baseUrl" href="<%= baseUrl %>">
+  <link href="<%= module %>/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= module %>/css/base<%= staticsSuffix %>.css" rel="stylesheet" type="text/css">
+  <link href="<%= module %>/css/common<%=staticsSuffix%>.css?v=<%-(new Date).getTime()%>" rel="stylesheet">
+  <script src="<%= module %>/node_modules/jquery/dist/jquery.min.js"></script>
+  <style type="text/css">
+    .btn.btn-egrz-auth {
+      height: unset;
+      white-space: unset;
+      margin-bottom: 10px;
+    }
+
+    #egrz-auth[disabled],
+    .btn.btn-egrz-auth {
+      color: #2e6da4;
+      border-color: #2e6da4;
+      background-color: #fff;
+    }
+
+    #egrz-auth,
+    .btn.btn-egrz-auth.active {
+      color: #fff;
+      background-color: #337ab7;
+      border-color: #2e6da4;
+    }
+
+    .egrz-user {
+      text-align: middle;
+    }
+
+  </style>
+</head>
+<body id="imodal" class="imodal">
+<div class="imodal-box">
+  <div class="imodal-box-header">
+    <h3 class="imodal-box-title"></h3>
+  </div>
+  <div class="imodal-body">
+    <div id="message-callout" class="message-callout alert">
+      <h4 class="message-callout-title"></h4>
+      <p class="message-callout-content"></p>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body" id="egrz-login-form" data-api="<%= authUrl %>">
+        <div class="form-group">
+          <label>Авторизоваться как юридическое лицо</label>
+          <div id="orgs">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="">Кодовое слово</label>
+              <input id="egrz-secret" type="password" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <button id="egrz-auth" class="btn btn-default float-right" disabled>Войти</button>
+
+        <a id="back-url" href="<%= backUrl %>">&larr; Вернуться назад</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="<%=module%>/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    // MESSAGE CALLOUT
+    if (!window.messageCallout) {
+      window.messageCallout = (function () {
+
+        var $callout = $("#message-callout");
+
+        function show (type, message, title) {
+          var $title = $callout.find('.message-callout-title');
+          title ? $title.html(title).show() : $title.hide();
+          $callout.removeClass('alert-info alert-success alert-warning alert-danger').addClass('alert-'+ type);
+          var $content = $callout.find('.message-callout-content');
+          message ? $content.html(Array.isArray(message) ? message.join(';<br>') : message).show() : $content.hide();
+          $callout.show();
+        }
+        return {
+          info: function (message, title) {
+            show("info", message, title);
+          },
+
+          success: function (message, title) {
+            show("success", message, title);
+          },
+
+          warning: function (message, title) {
+            show("warning", message, title);
+          },
+
+          error: function (message, title) {
+            show("danger", message, title);
+          },
+
+          hide: function () {
+            $callout.hide();
+          }
+        };
+      })();
+    }
+  </script>
+  <script type="text/javascript">
+    $(function(){
+
+      var $loginForm = $('#egrz-login-form'),
+        marker = getMarker(),
+        token = decodeMarker(marker).access_token,
+        authUrl = $loginForm.data('api'),
+        $orgs = $('#orgs'),
+        $authBtn = $('#egrz-auth'),
+        $secretInput = $('#egrz-secret'),
+        $backUrl = $('#back-url'),
+        authId = null,
+        role = null,
+        oid = null;
+
+      function getMarker() {
+        var params = getUrlParams(window.location.href);
+        console.log(params);
+        return params.marker;
+      }
+
+      function decodeMarker(marker) {
+        var decoded = decodeURIComponent(marker);
+        var markerString = decodeURIComponent(atob(decoded));
+        var result;
+        try {
+          result = JSON.parse(markerString);
+        } catch (err) {
+          // Do nothing
+        }
+        console.log(result);
+        return result;
+      }
+
+      function getUrlParams(url) {
+        var data = url.split('?')[1];
+        if (!data) {
+          return {};
+        }
+        var result = {};
+        data = data.split('&');
+        for (var i = 0; i < data.length; ++i) {
+          var item = data[i].split('=');
+          if (item.length === 2) {
+            result[item[0]] = item[1];
+          }
+        }
+        return result;
+      }
+
+      function onFail(message, title, err) {
+        messageCallout.error(message, title);
+        if (err) {
+          console.log(err);
+        }
+      }
+
+      function login(id, role, oid) {
+        var loginParams = {
+          marker: marker,
+          id: id,
+          oid: oid,
+          redirectUrl: window.location.origin + '/goseksp/egrz/login/success',
+          apiRedirectUrl: authUrl + 'api/esia'
+        };
+        if (role) {
+          loginParams.role = role;
+        }
+        var loginUrl = authUrl + 'api/esia/org?' + $.param(loginParams);
+        window.location.href = loginUrl;
+      }
+
+      function fetchRoles(cb) {
+        $.ajax({
+          method: 'GET',
+          url: authUrl + 'api/esia/auth',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+          }
+        })
+        .done(function(data) {
+          if (data && (data.user || data.orgs)) {
+            cb(null, data);
+          } else {
+            cb(new Error('Некорректные данные ответа'));
+          }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            cb(errorThrown);
+        });
+      }
+
+      function verify(secret, cb) {
+        $.ajax({
+          method: 'PUT',
+          url: authUrl + 'api/esia/verify',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+          },
+          data: JSON.stringify({password: secret}),
+          contentType: 'application/json'
+        })
+        .done(function(data) {
+          cb(null, data);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+          cb(errorThrown);
+        });
+      }
+
+      $authBtn.on('click', function() {
+        var secret = $secretInput.val();
+        if (!secret) {
+          return onFail('Введите кодовое слово');
+        }
+
+        verify(secret, function(err) {
+          if (err) {
+            return onFail(err.message, 'Ошибка верификации кодового слова', err)
+          }
+          login(authId, role, oid);
+        });
+
+      });
+
+      fetchRoles(function(err, data) {
+        if (err) {
+          return onFail(err.message, 'Ошибка получения списка авторизаций', err)
+        }
+
+        if (data.orgs) {
+          var i, j, org, orgButtonHtml;
+          for (i = 0; i < data.orgs.length; i++) {
+            org = data.orgs[i];
+            if (org) {
+              if (org.roles && org.roles.length) {
+                for (j = 0; j < org.roles.length; j++) {
+                  orgButtonHtml = '<button class="btn btn-egrz-auth btn-default form-control" '+
+                    'data-auth="' + org.id + '" data-role="' + org.roles[j] + '" data-oid="' + org.oid + '">' +
+                    '<span>' + org.fullName + '<br/>Роль: ' + org.roles[j] + '</span></button>';
+                  $(orgButtonHtml).appendTo($orgs);
+                }
+              } else {
+                orgButtonHtml = '<button class="btn btn-egrz-auth btn-default form-control" '+
+                  'data-auth="' + org.id + '" data-oid="' + org.oid + '">' +
+                  '<span>' + org.fullName + '</span></button>';
+                $(orgButtonHtml).appendTo($orgs);
+              }
+            }
+          }
+        }
+
+        if (data.user) {
+          var title = (data.user.lastName || '')
+            + ' '+ (data.user.firstName || '')
+            + ' ' + (data.user.middleName || '');
+          $('h3.imodal-box-title').append(title);
+        }
+        <% /*<%=  */ %>
+
+        var $btns = $('.btn-egrz-auth');
+
+        $btns.on('click', function() {
+          var $this = $(this);
+          authId = $this.data('auth');
+          role = $this.data('role') || null;
+          oid = $this.data('oid');
+
+          $btns.removeClass('active');
+          $this.addClass('active');
+
+          $authBtn.prop('disabled', false);
+        });
+
+      });
+
+    })
+  </script>
+</body>
+</html>

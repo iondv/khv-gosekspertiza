@@ -1,0 +1,15 @@
+{
+  "code": "app.neg",
+  "orderNumber": 5,
+  "type": 1,
+  "title": "",
+  "caption": "Отрицательное решение",
+  "classname": "expertiseResult",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

@@ -1,0 +1,27 @@
+{
+  "code": "sM.listInspectSm",
+  "orderNumber": 19,
+  "type": 1,
+  "title": "",
+  "caption": "Таблица для сметчиков",
+  "classname": "inspectionEstimate",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "eagerLoading": {
+    "exportList": {
+      "inspectionEstimate@khv-gosekspertiza": ["contract",
+        "petitionEstimated.customerOrgObj",
+        "petitionEstimated.expObject",
+        "resolutions",
+        "result",
+        "responsible",
+        "instructions.responsible"
+      ]
+    }
+  },
+  "sorting": [],
+  "pathChains": []
+}

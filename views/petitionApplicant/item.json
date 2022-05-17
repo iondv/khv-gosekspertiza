@@ -1,0 +1,117 @@
+{
+  "tabs": [
+    {
+      "caption": "",
+      "fullFields": [
+        {
+          "caption": "СНИЛС",
+          "type": 1,
+          "property": "snils",
+          "size": 2,
+          "maskName": null,
+          "mask": {
+            "regex": "[0-9]{3}-[0-9]{3}-[0-9]{3} [0-9]{2}"
+          },
+          "mode": null,
+          "fields": [],
+          "hierarchyAttributes": null,
+          "columns": [],
+          "actions": null,
+          "commands": null,
+          "orderNumber": 10,
+          "required": false,
+          "visibility": null,
+          "enablement": null,
+          "obligation": null,
+          "readonly": true,
+          "selectionPaginated": true,
+          "validators": null,
+          "hint": null,
+          "historyDisplayMode": 0,
+          "tags": null
+        },
+        {
+          "caption": "ФИО",
+          "type": 1,
+          "property": "applicantName",
+          "size": 2,
+          "maskName": null,
+          "mask": null,
+          "mode": null,
+          "fields": [],
+          "hierarchyAttributes": null,
+          "columns": [],
+          "actions": null,
+          "commands": null,
+          "orderNumber": 20,
+          "required": true,
+          "visibility": null,
+          "enablement": null,
+          "obligation": null,
+          "readonly": true,
+          "selectionPaginated": true,
+          "validators": null,
+          "hint": null,
+          "historyDisplayMode": 0,
+          "tags": null
+        },
+        {
+          "caption": "Подпись",
+          "type": 2,
+          "property": "signDS",
+          "size": 2,
+          "maskName": null,
+          "mask": null,
+          "mode": 1,
+          "fields": [],
+          "hierarchyAttributes": null,
+          "columns": [],
+          "actions": null,
+          "commands": null,
+          "orderNumber": 30,
+          "required": false,
+          "visibility": null,
+          "enablement": null,
+          "obligation": null,
+          "readonly": true,
+          "selectionPaginated": true,
+          "validators": null,
+          "hint": null,
+          "historyDisplayMode": 0,
+          "tags": null
+        }
+      ],
+      "shortFields": []
+    }
+  ],
+  "actions": null,
+  "siblingFixBy": null,
+  "siblingNavigateBy": null,
+  "historyDisplayMode": 0,
+  "collectionFilters": null,
+  "version": null,
+  "overrideMode": 1,
+  "commands": [
+    {
+      "id": "SAVE",
+      "caption": "Сохранить",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    },
+    {
+      "id": "SAVEANDCLOSE",
+      "caption": "Сохранить и закрыть",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

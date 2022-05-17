@@ -1,0 +1,15 @@
+{
+  "code": "research",
+  "orderNumber": 30,
+  "type": 1,
+  "title": "",
+  "caption": "Виды изысканий",
+  "classname": "research",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

@@ -1,0 +1,189 @@
+{
+  "tabs": [
+    {
+      "caption": "",
+      "fullFields": [
+        {
+          "property": "typeAuthor",
+          "caption": "Автор",
+          "type": 1,
+          "orderNumber": 20,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": null,
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": "",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        },
+        {
+          "property": "authorUL",
+          "caption": "Юридическое лицо",
+          "type": 5,
+          "orderNumber": 30,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": [
+            {
+              "id": "CREATE",
+              "caption": "Создать",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": false,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            },
+            {
+              "id": "EDIT",
+              "caption": "Править",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": true,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            }
+          ],
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": ".typeAuthor \u003d\u003d \u0027UL\u0027",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        },
+        {
+          "property": "authorFL",
+          "caption": "Физическое лицо",
+          "type": 5,
+          "orderNumber": 40,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": [
+            {
+              "id": "CREATE",
+              "caption": "Создать",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": false,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            },
+            {
+              "id": "EDIT",
+              "caption": "Править",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": true,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            }
+          ],
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": ".typeAuthor \u003d\u003d \u0027FL\u0027",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        },
+        {
+          "property": "authorIP",
+          "caption": "Индивидуальный предприниматель",
+          "type": 5,
+          "orderNumber": 40,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": [
+            {
+              "id": "CREATE",
+              "caption": "Создать",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": false,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            },
+            {
+              "id": "EDIT",
+              "caption": "Править",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": true,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            }
+          ],
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": ".typeAuthor \u003d\u003d \u0027IP\u0027",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        }
+      ],
+      "shortFields": []
+    }
+  ],
+  "commands": [
+    {
+      "id": "SAVE",
+      "caption": "Сохранить",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    },
+    {
+      "id": "SAVEANDCLOSE",
+      "caption": "Сохранить и закрыть",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    },
+    {
+      "id": "DELETE",
+      "caption": "Удалить",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    }
+  ]
+}

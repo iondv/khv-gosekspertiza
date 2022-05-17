@@ -1,0 +1,157 @@
+{
+  "tabs": [
+    {
+      "caption": "",
+      "fullFields": [
+        {
+          "property": "typeDev",
+          "caption": "Тип",
+          "type": 5,
+          "orderNumber": 20,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": null,
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": "",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        },
+        {
+          "property": "developOrg",
+          "caption": "Юридическое лицо",
+          "type": 5,
+          "orderNumber": 30,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": [
+            {
+              "id": "CREATE",
+              "caption": "Создать",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": false,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            },
+            {
+              "id": "EDIT",
+              "caption": "Править",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": true,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            },
+            {
+              "id": "REMOVE",
+              "caption": "Убрать",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": true,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            }
+          ],
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": ".typeDev \u003d\u003d \u0027UL\u0027",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        },
+        {
+          "property": "developPers",
+          "caption": "Физическое лицо",
+          "type": 5,
+          "orderNumber": 40,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": [
+            {
+              "id": "CREATE",
+              "caption": "Создать",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": false,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            },
+            {
+              "id": "EDIT",
+              "caption": "Править",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": true,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            },
+            {
+              "id": "REMOVE",
+              "caption": "Убрать",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": true,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            }
+          ],
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": ".typeDev \u003d\u003d \u0027FL\u0027",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        }
+      ],
+      "shortFields": []
+    }
+  ],
+  "commands": [
+    {
+      "id": "SAVE",
+      "caption": "Создать",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    },
+    {
+      "id": "SAVEANDCLOSE",
+      "caption": "Создать и закрыть",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    }
+  ]
+}

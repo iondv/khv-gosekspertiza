@@ -1,0 +1,15 @@
+{
+  "code": "registryEgrz",
+  "orderNumber": 2,
+  "type": 1,
+  "title": "",
+  "caption": "Разделы реестра",
+  "classname": "expertiseResult",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

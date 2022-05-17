@@ -1,0 +1,55 @@
+{
+  "name": "khv-gosekspertiza",
+  "description": "Гос.экспертиза ХК",
+  "version": "5.6.0",
+  "homepage": "http://goseksp.iondv.ru/",
+  "bugs": {
+    "url": "https://git.iondv.ru/ION-METADATA/khv-gosekspertiza/issues"
+  },
+  "engines": {
+    "ion": "3.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.iondv.ru/ION-METADATA/khv-gosekspertiza.git"
+  },
+  "ionModulesDependencies": {
+    "registry": "3.2.0",
+    "report": "2.1.0",
+    "rest": "2.1.0",
+    "soap": "1.1.8",
+    "ionadmin": "3.2.0",
+    "dashboard": "1.2.0"
+  },
+  "ionMetaDependencies": {},
+  "ionPluginDependencies": {
+    "pdf-converter": "*"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "adm-zip": "^0.4.11",
+    "base64-js": "*",
+    "htmlparser2": "^6.1.0",
+    "moment": "^2.22.2",
+    "moment-business-days": "^1.0.6",
+    "sanitize-filename": "latest",
+    "xml": "^1.0.1",
+    "xmldom": "*",
+    "xpath": "*",
+    "@iondv/commons": "iondv/commons#main",
+    "@iondv/commons-contracts": "iondv/commons-contracts#main",
+    "@iondv/meta-model": "iondv/meta-model#main",
+    "@iondv/meta-model-contracts": "iondv/meta-model-contracts#main",
+    "@iondv/accounts": "iondv/accounts#main",
+    "@iondv/acl": "iondv/acl#main",
+    "@iondv/auth": "iondv/auth#main",
+    "@iondv/dashboard": "iondv/dashboard#v2",
+    "@iondv/db": "iondv/db#main",
+    "@iondv/ionadmin": "iondv/ionadmin#v2",
+    "@iondv/registry": "iondv/registry#v2",
+    "@iondv/report": "iondv/report#v2",
+    "@iondv/rest": "iondv/rest#v2",
+    "@iondv/soap": "iondv/soap#v2",
+    "@iondv/web": "iondv/web#main"
+  }
+}

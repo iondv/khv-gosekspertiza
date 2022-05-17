@@ -1,0 +1,81 @@
+{
+  "code": "resPd.fin",
+  "orderNumber": 89,
+  "type": 1,
+  "title": "",
+  "caption": "Подготовлено и отправлено заявителю",
+  "classname": "result",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [
+    {
+      "property": null,
+      "operation": 0,
+      "value": null,
+      "nestedConditions": [
+        {
+          "property": null,
+          "operation": 0,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "petitionExpert",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            },
+            {
+              "property": "state",
+              "operation": 0,
+              "value": [
+                "fin"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "$since",
+              "operation": 2,
+              "value": [],
+              "nestedConditions": []
+            },
+            {
+              "property": null,
+              "operation": 0,
+              "value": null,
+              "nestedConditions": [
+                {
+                  "property": "date",
+                  "operation": 8,
+                  "value": [
+                    "$since"
+                  ],
+                  "nestedConditions": []
+                },
+                {
+                  "property": "date",
+                  "operation": 5,
+                  "value": [
+                    "$till"
+                  ],
+                  "nestedConditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sorting": [],
+  "pathChains": [],
+  "metaVersion": "2.0.7"
+}

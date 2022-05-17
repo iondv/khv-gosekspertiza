@@ -1,0 +1,15 @@
+{
+  "code": "result.documentTypes",
+  "orderNumber": 30,
+  "type": 1,
+  "title": "",
+  "caption": "Виды объекта экспертизы",
+  "classname": "documentTypes",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

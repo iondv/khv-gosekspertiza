@@ -1,0 +1,15 @@
+{
+  "code": "result.docType",
+  "orderNumber": 30,
+  "type": 1,
+  "title": "",
+  "caption": "Коды типа документа",
+  "classname": "docType",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

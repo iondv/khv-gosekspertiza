@@ -1,0 +1,15 @@
+{
+  "code": "inspection",
+  "orderNumber": 100,
+  "type": 0,
+  "title": "",
+  "caption": "Экспертизы",
+  "classname": null,
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

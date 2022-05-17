@@ -1,0 +1,15 @@
+{
+  "code": "app",
+  "orderNumber": 1,
+  "type": 0,
+  "title": "",
+  "caption": "Обращения",
+  "classname": null,
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

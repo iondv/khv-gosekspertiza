@@ -1,0 +1,15 @@
+{
+  "code": "result.objectTypes",
+  "orderNumber": 30,
+  "type": 1,
+  "title": "",
+  "caption": "Типы объекта",
+  "classname": "objectTypes",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

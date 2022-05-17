@@ -1,0 +1,210 @@
+{
+  "name": "sigExpEmployee",
+  "caption": "Подпись Эксперта",
+  "wfClass": "sigExpEmployee",
+  "startState": "needSig",
+  "states": [
+    {
+      "name": "needSig",
+      "caption": "Необходимо подписать",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "expSig",
+      "caption": "Подписано",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "expSigRes",
+      "caption": "Подписано",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "freelance",
+      "caption": "Внештатка",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [
+    {
+      "name": "sign",
+      "caption": "Подписать заключение",
+      "startState": "needSig",
+      "finishState": "expSig",
+      "signBefore": true,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "check",
+          "value": "true"
+        },
+        {
+          "key": "date",
+          "value": "now()"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "check",
+          "operation": 0,
+          "value": [
+            false
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "expEmployee.freelance",
+          "operation": 0,
+          "value": [
+            false
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "result",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sign_res",
+      "caption": "Подписать сводное замечание",
+      "startState": "needSig",
+      "finishState": "expSigRes",
+      "signBefore": true,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "check",
+          "value": "true"
+        },
+        {
+          "key": "date",
+          "value": "now()"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "check",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "resolution",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "resolution.stateRemPet",
+          "operation": 0,
+          "value": [
+            "needSig"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "freelance",
+      "caption": "Внештатный сотрудник",
+      "startState": "needSig",
+      "finishState": "freelance",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [],
+      "conditions": [
+        {
+          "property": "expEmployee.freelance",
+          "operation": 0,
+          "value": [
+            true
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "result",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "freelance_sign",
+      "caption": "Подписано",
+      "startState": "freelance",
+      "finishState": "expSig",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "check",
+          "value": "true"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "check",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "result",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "sig",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "date",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

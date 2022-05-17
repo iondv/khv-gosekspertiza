@@ -1,0 +1,15 @@
+{
+  "code": "expEmployee",
+  "orderNumber": 20,
+  "type": 1,
+  "title": "",
+  "caption": "Справочник сотрудников",
+  "classname": "expEmployee",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

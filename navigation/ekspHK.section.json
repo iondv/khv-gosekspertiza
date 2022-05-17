@@ -1,0 +1,8 @@
+{
+  "caption": "Гос.экспертиза ХК",
+  "name": "ekspHK",
+  "orderNumber": 10,
+  "modules": ["reestr", "report"],
+  "type": "group",
+  "location": "left"
+}

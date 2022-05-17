@@ -1,0 +1,162 @@
+{
+  "tabs": [
+    {
+      "caption": "",
+      "fullFields": [
+        {
+          "caption": "Порядковый номер",
+          "type": 1,
+          "property": "number",
+          "size": 2,
+          "maskName": null,
+          "mask": null,
+          "mode": null,
+          "fields": [],
+          "hierarchyAttributes": null,
+          "columns": [],
+          "actions": null,
+          "commands": null,
+          "orderNumber": 1,
+          "required": false,
+          "visibility": null,
+          "enablement": null,
+          "obligation": null,
+          "readonly": false,
+          "selectionPaginated": true,
+          "validators": null,
+          "hint": null,
+          "historyDisplayMode": 0,
+          "tags": null
+        },
+        {
+          "property": "summary",
+          "caption": "Вывод о несоответствии",
+          "type": 7,
+          "orderNumber": 20,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": null,
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": "",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        },
+        {
+          "property": "part",
+          "caption": "Ссылка на материалы, в отношении которых сделан вывод о несоответствии",
+          "type": 1,
+          "orderNumber": 30,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": null,
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": "",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        },
+        {
+          "property": "link",
+          "caption": "Ссылка на конкретное требование, несоответствие которому было выявлено в ходе экспертизы",
+          "type": 1,
+          "orderNumber": 40,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": null,
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": "",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        },
+        {
+          "property": "activity",
+          "caption": "Направление деятельности, в части которого сформулированы сведения о несоответствии",
+          "type": 5,
+          "orderNumber": 50,
+          "hint": "",
+          "size": null,
+          "maskName": "",
+          "mask": "",
+          "mode": 0,
+          "commands": [
+            {
+              "id": "CREATE",
+              "caption": "Создать",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": false,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            },
+            {
+              "id": "EDIT",
+              "caption": "Править",
+              "visibilityCondition": null,
+              "enableCondition": null,
+              "needSelectedItem": true,
+              "signBefore": false,
+              "signAfter": false,
+              "isBulk": false
+            }
+          ],
+          "required": false,
+          "readonly": false,
+          "sorted": false,
+          "selectionPaginated": false,
+          "visibility": "",
+          "enablement": "",
+          "obligation": "",
+          "historyDisplayMode": 0,
+          "tags": ""
+        }
+      ],
+      "shortFields": []
+    }
+  ],
+  "commands": [
+    {
+      "id": "SAVE",
+      "caption": "Создать",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    },
+    {
+      "id": "SAVEANDCLOSE",
+      "caption": "Создать и закрыть",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    }
+  ]
+}

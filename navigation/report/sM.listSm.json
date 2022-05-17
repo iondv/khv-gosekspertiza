@@ -1,0 +1,98 @@
+{
+  "code": "sM.listSm",
+  "orderNumber": 19,
+  "type": 1,
+  "title": "",
+  "caption": "Реестр договоров",
+  "classname": "petitionEstimated",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [{
+    "property": null,
+    "operation": 0,
+    "value": null,
+    "nestedConditions": [{
+        "property": "status",
+        "operation": 1,
+        "value": [
+          "23"
+        ],
+        "nestedConditions": []
+      },
+      {
+        "property": "status",
+        "operation": 1,
+        "value": [
+          "27"
+        ],
+        "nestedConditions": []
+      },
+      {
+        "property": "status",
+        "operation": 1,
+        "value": [
+          "25"
+        ],
+        "nestedConditions": []
+      },
+      {
+        "property": "status",
+        "operation": 1,
+        "value": [
+          "24"
+        ],
+        "nestedConditions": []
+      },
+      {
+        "property": "status",
+        "operation": 1,
+        "value": [
+          "26"
+        ],
+        "nestedConditions": []
+      },
+      {
+        "property": "status",
+        "operation": 1,
+        "value": [
+          "28"
+        ],
+        "nestedConditions": []
+      },
+      {
+        "property": "status",
+        "operation": 1,
+        "value": [
+          "29"
+        ],
+        "nestedConditions": []
+      },
+      {
+        "property": "status",
+        "operation": 1,
+        "value": [
+          "37"
+        ],
+        "nestedConditions": []
+      }
+    ]
+  }],
+  "eagerLoading": {
+    "exportList": {
+      "petitionEstimated@khv-gosekspertiza": ["expObject",
+        "customerOrgObj",
+        "developOrg",
+        "executorPdA.pdOrgExecutor",
+        "contractEstimated",
+        "contractEstimated.bankAccount",
+        "inspectionEstimate",
+        "inspectionEstimate.responsible",
+        "inspectionEstimate.result"
+      ]
+    }
+  },
+  "sorting": [],
+  "pathChains": []
+}

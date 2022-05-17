@@ -1,0 +1,64 @@
+<%
+let since = sessVar('since');
+%>
+<script>
+  $(function () {
+    var since = <%-(since ? JSON.stringify(since) : 'null')%>;
+
+    var now = moment();
+    var curYear = now.year();
+
+    var year;
+    if (since) {
+      year = moment(since).year();
+    }
+
+    var html = '<div class="top-menu-item more-menu-item dropdown year-selector">' +
+      '<button class="btn" type="button" data-toggle="dropdown">' +
+      '<span class="year">' + (year || 'За все годы') + '</span> <i class="fa fa-angle-down"></i>' +
+      '</button><div class="dropdown-menu more-menu"><ul class="nav nav-list">' +
+      '<li><a href="void();" data-value="">За все годы</a></li>' +
+      (year ? '<li><a href="void();" data-value="' + (year - 1) + '">Предыдущий год</a></li>' : '') +
+      (year ? '<li><a href="void();" data-value="' + (year + 1) + '">Следующий год</a></li>' : '');
+
+    var start = curYear;
+    var stop = curYear - 5;
+    if (year) {
+      start = year + 2;
+      stop = year - 3;
+    }
+
+    for (var y = start; y > stop; y--) {
+      if (y !== year) {
+        html = html + '<li><a href="void();" data-value="' + y + '">' + y + '</a></li>';
+      }
+    }
+    html = html + '</ul></div></div>';
+    $('#top-menu').prepend(html);
+    $(window).resize();
+    $('.year-selector a').on('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var y = $(this).data('value');
+
+      var s = y ? moment({y: y, M: 0, d: 1, h: 0, m: 0, s: 0, ms: 0}).toISOString() : null;
+      var t = y ? moment({y: y + 1, M: 0, d: 1, h: 0, m: 0, s: 0, ms: 0}).toISOString() : null;
+
+      $.ajax({
+        url: '<%=module%>/session',
+        type: 'POST',
+        dataType: 'text',
+        data: {
+          since: s ? {v: s, t: 'date'} : null,
+          till: t ? {v: t, t: 'date'} : null
+        },
+        success: function () {
+          window.location.reload();
+        },
+        error: function (xhreq, status, error) {
+          console.log(status, error);
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,15 @@
+{
+  "code": "egrz.typeTEP",
+  "orderNumber": 40,
+  "type": 1,
+  "title": "",
+  "caption": "Классификатор (ТЭП)",
+  "classname": "typeTEP",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

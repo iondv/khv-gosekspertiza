@@ -1,0 +1,2012 @@
+{
+  "isStruct": false,
+  "key": [
+    "guid"
+  ],
+  "semantic": "Расчет стоимости по Заявлению |petitionExpert| |petitionEstimated",
+  "name": "costing",
+  "version": "31",
+  "caption": "Расчет стоимости",
+  "ancestor": null,
+  "container": null,
+  "creationTracker": "creationTracker",
+  "changeTracker": "changeTracker",
+  "creatorTracker": "creator",
+  "editorTracker": "editor",
+  "history": 0,
+  "journaling": true,
+  "compositeIndexes": null,
+  "properties": [
+    {
+      "orderNumber": 15,
+      "name": "guid",
+      "caption": "Глобальный идентификатор",
+      "type": 12,
+      "size": 24,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": false,
+      "readonly": true,
+      "indexed": false,
+      "unique": true,
+      "autoassigned": true,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 80,
+      "name": "contract",
+      "caption": "Договор",
+      "type": 13,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": false,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "gosEkspContract",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 20,
+      "name": "petitionExpert",
+      "caption": "Заявление Экспетриза",
+      "type": 13,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": false,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "petitionExpert",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 25,
+      "name": "petitionEstimated",
+      "caption": "Заявление Проверка",
+      "type": 13,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": false,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "petitionEstimated",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 80,
+      "name": "expObject",
+      "caption": "Объект экспертизы",
+      "type": 13,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": false,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "expObject",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 86,
+      "name": "priceWorkNotLive",
+      "caption": "Работы по нежилому объекту",
+      "type": 14,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": false,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "priceWorkNotLive",
+      "backRef": "costing",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 150,
+      "name": "pdCheck",
+      "caption": "Проведение гос. экспертизы пд",
+      "type": 10,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": false,
+      "readonly": false,
+      "indexed": false,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": false,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 150,
+      "name": "riiCheck",
+      "caption": "Проведение гос. экспертизы рии",
+      "type": 10,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": false,
+      "readonly": false,
+      "indexed": false,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": false,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 16,
+      "name": "cofN",
+      "caption": "Коэффициент назначения",
+      "type": 0,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": "1",
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": {
+        "type": "SIMPLE",
+        "list": [
+          {
+            "key": "1",
+            "value": "1.00"
+          },
+          {
+            "key": "0.5",
+            "value": "0.50"
+          }
+        ],
+        "matrix": [],
+        "parameters": [],
+        "hq": ""
+      },
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 16,
+      "name": "cofS",
+      "caption": "Коэффициент сложности",
+      "type": 0,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": "1",
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": {
+        "type": "SIMPLE",
+        "list": [
+          {
+            "key": "1",
+            "value": "1.00"
+          },
+          {
+            "key": "1.30",
+            "value": "1.30"
+          },
+          {
+            "key": "1.20",
+            "value": "1.20"
+          },
+          {
+            "key": "1.15",
+            "value": "1.15"
+          }
+        ],
+        "matrix": [],
+        "parameters": [],
+        "hq": ""
+      },
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 20,
+      "name": "sLand",
+      "caption": "Площадь земли",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 20,
+      "name": "sObj",
+      "caption": "Общая площадь объекта",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 20,
+      "name": "confI",
+      "caption": "Коэфициент инфляции (Ki)",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 20,
+      "name": "percSum",
+      "caption": "Процент суммарной стоимости",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 20,
+      "name": "rpig",
+      "caption": "Рпиж",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": {
+        "if": [
+          {
+            "and": [
+              {
+                "eq": [
+                  "$primacy",
+                  "first"
+                ]
+              },
+              {
+                "eq": [
+                  "$typeObj",
+                  "live"
+                ]
+              },
+              {
+                "eq": [
+                  "$riiCheck",
+                  true
+                ]
+              },
+              {
+                "nempty": [
+                  "$petitionExpert"
+                ]
+              }
+            ]
+          },
+          {
+            "round": [
+              {
+                "mul": [
+                  {
+                    "add": [
+                      13000,
+                      {
+                        "mul": [
+                          "$sLand",
+                          5
+                        ]
+                      }
+                    ]
+                  },
+                  "$confI"
+                ]
+              },
+              2
+            ]
+          },
+          ""
+        ]
+      }
+    },
+    {
+      "orderNumber": 20,
+      "name": "bsig",
+      "caption": "Бсиж",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": {
+        "if": [
+          {
+            "and": [
+              {
+                "eq": [
+                  "$primacy",
+                  "first"
+                ]
+              },
+              {
+                "eq": [
+                  "$typeObj",
+                  "live"
+                ]
+              },
+              {
+                "eq": [
+                  "$riiCheck",
+                  true
+                ]
+              },
+              {
+                "nempty": [
+                  "$petitionExpert"
+                ]
+              }
+            ]
+          },
+          {
+            "round": [
+              {
+                "add": [
+                  13000,
+                  {
+                    "mul": [
+                      "$sLand",
+                      5
+                    ]
+                  }
+                ]
+              },
+              2
+            ]
+          },
+          ""
+        ]
+      }
+    },
+    {
+      "orderNumber": 19,
+      "name": "rpg",
+      "caption": "РПж",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": {
+        "if": [
+          {
+            "and": [
+              {
+                "eq": [
+                  "$primacy",
+                  "repeatedly"
+                ]
+              },
+              {
+                "eq": [
+                  "$typeObj",
+                  "live"
+                ]
+              },
+              {
+                "nempty": [
+                  "$petitionExpert"
+                ]
+              }
+            ]
+          },
+          {
+            "round": [
+              {
+                "mul": [
+                  "$firstCostExp",
+                  0.3
+                ]
+              },
+              2
+            ]
+          },
+          {
+            "if": [
+              {
+                "and": [
+                  {
+                    "eq": [
+                      "$primacy",
+                      "first"
+                    ]
+                  },
+                  {
+                    "eq": [
+                      "$typeObj",
+                      "live"
+                    ]
+                  },
+                  {
+                    "eq": [
+                      "$pdCheck",
+                      true
+                    ]
+                  },
+                  {
+                    "eq": [
+                      "$riiCheck",
+                      true
+                    ]
+                  },
+                  {
+                    "nempty": [
+                      "$petitionExpert"
+                    ]
+                  }
+                ]
+              },
+              {
+                "round": [
+                  {
+                    "mul": [
+                      {
+                        "add": [
+                          {
+                            "mul": [
+                              {
+                                "add": [
+                                  13000,
+                                  {
+                                    "mul": [
+                                      "$sLand",
+                                      5
+                                    ]
+                                  }
+                                ]
+                              },
+                              "$confI"
+                            ]
+                          },
+                          {
+                            "mul": [
+                              {
+                                "add": [
+                                  100000,
+                                  {
+                                    "mul": [
+                                      "$sLand",
+                                      35
+                                    ]
+                                  },
+                                  {
+                                    "mul": [
+                                      "$sObj",
+                                      3.5
+                                    ]
+                                  }
+                                ]
+                              },
+                              "$cofN",
+                              "$cofS",
+                              "$confI"
+                            ]
+                          }
+                        ]
+                      },
+                      0.9,
+                      1.20
+                    ]
+                  },
+                  2
+                ]
+              },
+              {
+                "if": [
+                  {
+                    "and": [
+                      {
+                        "eq": [
+                          "$primacy",
+                          "first"
+                        ]
+                      },
+                      {
+                        "eq": [
+                          "$typeObj",
+                          "live"
+                        ]
+                      },
+                      {
+                        "eq": [
+                          "$riiCheck",
+                          true
+                        ]
+                      },
+                      {
+                        "nempty": [
+                          "$petitionExpert"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "round": [
+                      {
+                        "mul": [
+                          {
+                            "add": [
+                              13000,
+                              {
+                                "mul": [
+                                  "$sLand",
+                                  5
+                                ]
+                              }
+                            ]
+                          },
+                          "$confI",
+                          1.20
+                        ]
+                      },
+                      2
+                    ]
+                  },
+                  {
+                    "if": [
+                      {
+                        "and": [
+                          {
+                            "eq": [
+                              "$primacy",
+                              "first"
+                            ]
+                          },
+                          {
+                            "eq": [
+                              "$typeObj",
+                              "live"
+                            ]
+                          },
+                          {
+                            "eq": [
+                              "$pdCheck",
+                              true
+                            ]
+                          },
+                          {
+                            "nempty": [
+                              "$petitionExpert"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "round": [
+                          {
+                            "mul": [
+                              {
+                                "add": [
+                                  100000,
+                                  {
+                                    "mul": [
+                                      "$sLand",
+                                      35
+                                    ]
+                                  },
+                                  {
+                                    "mul": [
+                                      "$sObj",
+                                      3.5
+                                    ]
+                                  }
+                                ]
+                              },
+                              "$cofN",
+                              "$cofS",
+                              "$confI",
+                              1.20
+                            ]
+                          },
+                          2
+                        ]
+                      },
+                      ""
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "orderNumber": 20,
+      "name": "rppdg",
+      "caption": "РПпдж",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": {
+        "if": [
+          {
+            "and": [
+              {
+                "eq": [
+                  "$primacy",
+                  "first"
+                ]
+              },
+              {
+                "eq": [
+                  "$typeObj",
+                  "live"
+                ]
+              },
+              {
+                "eq": [
+                  "$pdCheck",
+                  true
+                ]
+              },
+              {
+                "nempty": [
+                  "$petitionExpert"
+                ]
+              }
+            ]
+          },
+          {
+            "round": [
+              {
+                "mul": [
+                  {
+                    "add": [
+                      100000,
+                      {
+                        "mul": [
+                          "$sLand",
+                          35
+                        ]
+                      },
+                      {
+                        "mul": [
+                          "$sObj",
+                          3.5
+                        ]
+                      }
+                    ]
+                  },
+                  "$cofN",
+                  "$cofS",
+                  "$confI"
+                ]
+              },
+              2
+            ]
+          },
+          ""
+        ]
+      }
+    },
+    {
+      "orderNumber": 20,
+      "name": "bspdg",
+      "caption": "БСпдж",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": {
+        "if": [
+          {
+            "and": [
+              {
+                "eq": [
+                  "$primacy",
+                  "first"
+                ]
+              },
+              {
+                "eq": [
+                  "$typeObj",
+                  "live"
+                ]
+              },
+              {
+                "eq": [
+                  "$pdCheck",
+                  true
+                ]
+              },
+              {
+                "nempty": [
+                  "$petitionExpert"
+                ]
+              }
+            ]
+          },
+          {
+            "round": [
+              {
+                "mul": [
+                  {
+                    "add": [
+                      100000,
+                      {
+                        "mul": [
+                          "$sLand",
+                          35
+                        ]
+                      },
+                      {
+                        "mul": [
+                          "$sObj",
+                          3.5
+                        ]
+                      }
+                    ]
+                  },
+                  "$cofN",
+                  "$cofS"
+                ]
+              },
+              2
+            ]
+          },
+          ""
+        ]
+      }
+    },
+    {
+      "orderNumber": 18,
+      "name": "spd",
+      "caption": "Спд",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": {
+        "if": [
+          {
+            "and": [
+              {
+                "eq": [
+                  "$primacy",
+                  "first"
+                ]
+              },
+              {
+                "eq": [
+                  "$typeObj",
+                  "notLive"
+                ]
+              },
+              {
+                "nempty": [
+                  "$petitionExpert"
+                ]
+              }
+            ]
+          },
+          {
+            "round": [
+              {
+                "sum": [
+                  "$priceWorkNotLive",
+                  "cost2001",
+                  {
+                    "&eq": [
+                      "$typeWork",
+                      "pd"
+                    ]
+                  }
+                ]
+              },
+              2
+            ]
+          },
+          ""
+        ]
+      }
+    },
+    {
+      "orderNumber": 18,
+      "name": "sig",
+      "caption": "Сиж",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": {
+        "if": [
+          {
+            "and": [
+              {
+                "eq": [
+                  "$primacy",
+                  "first"
+                ]
+              },
+              {
+                "eq": [
+                  "$typeObj",
+                  "notLive"
+                ]
+              },
+              {
+                "nempty": [
+                  "$petitionExpert"
+                ]
+              }
+            ]
+          },
+          {
+            "round": [
+              {
+                "sum": [
+                  "$priceWorkNotLive",
+                  "cost2001",
+                  {
+                    "&eq": [
+                      "$typeWork",
+                      "iz"
+                    ]
+                  }
+                ]
+              },
+              2
+            ]
+          },
+          ""
+        ]
+      }
+    },
+    {
+      "orderNumber": 19,
+      "name": "rpng",
+      "caption": "РПнж",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": {
+        "if": [
+          {
+            "and": [
+              {
+                "eq": [
+                  "$primacy",
+                  "first"
+                ]
+              },
+              {
+                "eq": [
+                  "$typeObj",
+                  "notLive"
+                ]
+              },
+              {
+                "nempty": [
+                  "$petitionExpert"
+                ]
+              }
+            ]
+          },
+          {
+            "round": [
+              {
+                "div": [
+                  {
+                    "mul": [
+                      {
+                        "add": [
+                          "$spd",
+                          "$sig"
+                        ]
+                      },
+                      "$percSum",
+                      "$confI",
+                      1.20
+                    ]
+                  },
+                  100
+                ]
+              },
+              2
+            ]
+          },
+          ""
+        ]
+      }
+    },
+    {
+      "orderNumber": 21,
+      "name": "costExp",
+      "caption": "Стоимость экспертизы",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": {
+        "if": [
+          {
+            "eq": [
+              "$primacy",
+              "repeatedly"
+            ]
+          },
+          {
+            "round": [
+              {
+                "mul": [
+                  "$firstCostExp",
+                  0.3
+                ]
+              },
+              2
+            ]
+          },
+          {
+            "if": [
+              {
+                "and": [
+                  {
+                    "eq": [
+                      "$primacy",
+                      "first"
+                    ]
+                  },
+                  {
+                    "eq": [
+                      "$typeObj",
+                      "live"
+                    ]
+                  },
+                  {
+                    "nempty": [
+                      "$petitionExpert"
+                    ]
+                  }
+                ]
+              },
+              "$rpg",
+              {
+                "if": [
+                  {
+                    "and": [
+                      {
+                        "eq": [
+                          "$primacy",
+                          "first"
+                        ]
+                      },
+                      {
+                        "eq": [
+                          "$typeObj",
+                          "notLive"
+                        ]
+                      },
+                      {
+                        "nempty": [
+                          "$petitionExpert"
+                        ]
+                      }
+                    ]
+                  },
+                  "$rpng",
+                  {
+                    "if": [
+                      {
+                        "and": [
+                          {
+                            "eq": [
+                              "$primacy",
+                              "first"
+                            ]
+                          },
+                          {
+                            "or": [
+                              {
+                                "eq": [
+                                  "$target",
+                                  "estmKapRemPd"
+                                ]
+                              },
+                              {
+                                "eq": [
+                                  "$target",
+                                  "estmKapRemKaPd"
+                                ]
+                              },
+                              {
+                                "eq": [
+                                  "$target",
+                                  "estmKapRemOPd"
+                                ]
+                              },
+                              {
+                                "eq": [
+                                  "$target",
+                                  "stroyRekEst"
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "nempty": [
+                              "$petitionEstimated"
+                            ]
+                          }
+                        ]
+                      },
+                      20000.00,
+                      {
+                        "if": [
+                          {
+                            "and": [
+                              {
+                                "eq": [
+                                  "$primacy",
+                                  "first"
+                                ]
+                              },
+                              {
+                                "eq": [
+                                  "$target",
+                                  "estmKapRemKPd"
+                                ]
+                              },
+                              {
+                                "gte": [
+                                  "$estimatedCost",
+                                  10000000.00
+                                ]
+                              },
+                              {
+                                "nempty": [
+                                  "$petitionEstimated"
+                                ]
+                              }
+                            ]
+                          },
+                          20000.00,
+                          {
+                            "if": [
+                              {
+                                "and": [
+                                  {
+                                    "eq": [
+                                      "$primacy",
+                                      "first"
+                                    ]
+                                  },
+                                  {
+                                    "eq": [
+                                      "$target",
+                                      "estmKapRemKPd"
+                                    ]
+                                  },
+                                  {
+                                    "lt": [
+                                      "$estimatedCost",
+                                      10000000.00
+                                    ]
+                                  },
+                                  {
+                                    "nempty": [
+                                      "$petitionEstimated"
+                                    ]
+                                  }
+                                ]
+                              },
+                              10000.00,
+                              {
+                                "if": [
+                                  {
+                                    "and": [
+                                      {
+                                        "eq": [
+                                          "$primacy",
+                                          "first"
+                                        ]
+                                      },
+                                      {
+                                        "eq": [
+                                          "$target",
+                                          "estmKapRemOzPd"
+                                        ]
+                                      },
+                                      {
+                                        "nempty": [
+                                          "$petitionEstimated"
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  10000.00,
+                                  {
+                                    "if": [
+                                      {
+                                        "and": [
+                                          {
+                                            "eq": [
+                                              "$primacy",
+                                              "first"
+                                            ]
+                                          },
+                                          {
+                                            "eq": [
+                                              "$target",
+                                              "kapRemDor"
+                                            ]
+                                          },
+                                          {
+                                            "lt": [
+                                              "$estimatedCost",
+                                              10000000.00
+                                            ]
+                                          },
+                                          {
+                                            "nempty": [
+                                              "$petitionEstimated"
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      10000.00,
+                                      {
+                                        "if": [
+                                          {
+                                            "and": [
+                                              {
+                                                "eq": [
+                                                  "$primacy",
+                                                  "first"
+                                                ]
+                                              },
+                                              {
+                                                "eq": [
+                                                  "$target",
+                                                  "kapRemDor"
+                                                ]
+                                              },
+                                              {
+                                                "gte": [
+                                                  "$estimatedCost",
+                                                  10000000.00
+                                                ]
+                                              },
+                                              {
+                                                "nempty": [
+                                                  "$petitionEstimated"
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          20000.00
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "orderNumber": 23,
+      "name": "nds",
+      "caption": "НДС",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": {
+        "round": [
+          {
+            "div": [
+              {
+                "mul": [
+                  "$costExp",
+                  20
+                ]
+              },
+              120
+            ]
+          },
+          2
+        ]
+      }
+    },
+    {
+      "orderNumber": 20,
+      "name": "firstCostExp",
+      "caption": "Первоначальная стоимость экспертизы",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 16,
+      "name": "state",
+      "caption": "Этап расчета",
+      "type": 0,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": "calc",
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": {
+        "type": "SIMPLE",
+        "list": [
+          {
+            "key": "calc",
+            "value": "Расчет стоимости"
+          },
+          {
+            "key": "prepFin",
+            "value": "Согласование стоимости"
+          },
+          {
+            "key": "fin",
+            "value": "Утвержденная стоимость"
+          }
+        ],
+        "matrix": [],
+        "parameters": [],
+        "hq": ""
+      },
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 105,
+      "name": "primacy",
+      "caption": "Вид экспертизы",
+      "type": 0,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": {
+        "type": "SIMPLE",
+        "list": [
+          {
+            "key": "first",
+            "value": "Первичная"
+          },
+          {
+            "key": "repeatedly",
+            "value": "Повторная"
+          }
+        ],
+        "matrix": [],
+        "parameters": [],
+        "hq": ""
+      },
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 110,
+      "name": "typeObj",
+      "caption": "Тип объекта",
+      "type": 0,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": {
+        "type": "SIMPLE",
+        "list": [
+          {
+            "key": "live",
+            "value": "Жилой"
+          },
+          {
+            "key": "notLive",
+            "value": "Нежилой"
+          }
+        ],
+        "matrix": [],
+        "parameters": [],
+        "hq": ""
+      },
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 110,
+      "name": "target",
+      "caption": "Проверка СМ",
+      "type": 0,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": {
+        "type": "SIMPLE",
+        "list": [
+          {
+            "key": "estmKapRemPd",
+            "value": "Проверка сметной стоимости строительства, реконструкции объектов капитального строительства"
+          },
+          {
+            "key": "estmKapRemKPd",
+            "value": "Проверка сметной стоимости капитального ремонта объектов капитального строительства (за исключением автомобильных дорог общего пользования)"
+          },
+          {
+            "key": "estmKapRemKaPd",
+            "value": "Проверка сметной стоимости капитального ремонта автомобильных дорог общего пользования"
+          },
+          {
+            "key": "estmKapRemOPd",
+            "value": "Проверка сметной стоимости работ  по сохранению объектов культурного наследия, при проведении которых предполагается замена и (или) восстановление несущих строительных конструкций объекта культурного наследия, за исключением замены отдельных элементов таких конструкций на аналогичные или иные улучшающие показатели таких конструкций элементы и (или) восстановления указанных элементов"
+          },
+          {
+            "key": "estmKapRemOzPd",
+            "value": "Проверка сметной стоимости работ  по сохранению объектов культурного наследия, при проведении которых предполагается замена и (или) восстановление строительных конструкций объектов капитального строительства или элементов таких конструкций, за исключением несущих строительных конструкций, замена и (или) восстановление систем инженерно-технического обеспечения и сетей инженерно-технического обеспечения объектов капитального строительства или их элементов, а также замена отдельных элементов несущих строительных конструкций на аналогичные или иные улучшающие показатели таких конструкций элементы и (или) восстановление указанных элементов"
+          },
+          {
+            "key": "stroyRekEst",
+            "value": "Проверка сметной стоимости cтроительства,реконструкции объектов капитального строительства и капитального ремонта автомобильных дорог общего пользования"
+          },
+          {
+            "key": "kapRemDor",
+            "value": "Проверка сметной стоимости капитального ремонта объектов капитального строительства (за исключением автомобильных дорог общего пользования)"
+          }
+        ],
+        "matrix": [],
+        "parameters": [],
+        "hq": ""
+      },
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 800,
+      "name": "estimatedCost",
+      "caption": "Сметная стоимость объекта (руб)",
+      "type": 8,
+      "size": 20,
+      "decimals": 2,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": false,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 80,
+      "name": "creationTracker",
+      "caption": "creationTracker",
+      "type": 9,
+      "mode": 2,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 80,
+      "name": "changeTracker",
+      "caption": "changeTracker",
+      "type": 9,
+      "mode": 2,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 20,
+      "name": "creator",
+      "caption": "creator",
+      "type": 18,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": false,
+      "unique": false,
+      "autoassigned": true,
+      "hint": "",
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 30,
+      "name": "editor",
+      "caption": "editor",
+      "type": 18,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": false,
+      "unique": false,
+      "autoassigned": true,
+      "hint": "",
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    }
+  ]
+}

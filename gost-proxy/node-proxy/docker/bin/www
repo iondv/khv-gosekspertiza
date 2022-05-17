@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+const protocol = process.env.USE_HTTPS ? 'https' : 'http';
+const server = require(protocol);
+const {promisify} = require('util');
+const curl = require('curlrequest');
+const request = promisify(curl.request);
+const {URL} = require('url');
+const textBody = require('body');
+const parseBody = promisify(textBody);
+const parseHeaders = require('parse-headers');
+const port = process.env.PORT || 80;
+
+function getRequestUrl(req) {
+  if (process.env.PROXY_URL) {
+    const {href} = new URL(req.url, process.env.PROXY_URL);
+    return href;
+  }
+  const host = req.headers['x-forwarded-for'] || req.headers.host;
+  const proto = req.headers['x-forwarded-proto'] || protocol;
+  const port = req.headers['x-forwarded-port'] || (proto === 'https' ? 443 : 80);
+
+  const {href} = new URL(req.url, `${proto}://${host}:${port}`);
+  return href;
+}
+
+function parseResponse(rawResponseBuf) {
+  const split = rawResponseBuf.indexOf('\r\n\r\n');
+  const responseHeaders = rawResponseBuf.slice(0, split).toString('utf8');
+  const responseBody = rawResponseBuf.slice(split + 4);
+
+  const headersParts = responseHeaders.split('\r\n');
+  const status = headersParts.shift().split(' ');
+  const headers = headersParts.join('\n');
+  // Get rid of `HTTP/1.1` part
+  status.shift();
+
+  return {
+    body: responseBody,
+    statusCode: status.shift(),
+    statusMessage: status.join(' '),
+    headers: parseHeaders(headers)
+  };
+}
+
+server.createServer(async (req, res) => {
+  try {
+    const body = await parseBody(req);
+    const url = getRequestUrl(req);
+
+    delete req.headers.host;
+    delete req.headers['x-forwarded-for'];
+    delete req.headers['x-forwarded-proto'];
+    delete req.headers['x-forwarded-port'];
+
+    const reqOptions = {
+      url,
+      method: req.method,
+      headers: req.headers,
+      encoding: null,
+      include: true,
+      insecure: true
+    };
+
+    if (body)
+      reqOptions.data = body;
+
+
+    const rawResponse = await request(reqOptions);
+    const response = parseResponse(rawResponse);
+    delete response.headers['content-length'];
+
+    res.writeHead(response.statusCode || 404, response.statusMessage, response.headers);
+    res.write(response.body);
+    res.end();
+  } catch (err) {
+    console.error(err);
+    res.writeHead(500, {'Content-Type': 'text/html'});
+    return res.end('Proxy Request Error');
+  }
+}).listen(port, () => console.log(`Proxy server started at ${port}`));

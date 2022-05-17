@@ -1,0 +1,89 @@
+{
+  "columns": [
+    {
+      "property": "authorUL",
+      "caption": "Автор (юр. лицо)",
+      "type": 2,
+      "orderNumber": 30,
+      "hint": "",
+      "size": null,
+      "maskName": "",
+      "mask": "",
+      "mode": 0,
+      "commands": [],
+      "required": false,
+      "readonly": false,
+      "sorted": false,
+      "selectionPaginated": false,
+      "visibility": "",
+      "enablement": "",
+      "obligation": "",
+      "historyDisplayMode": 0,
+      "tags": ""
+    },
+    {
+      "property": "authorFL",
+      "caption": "Автор (физ.лицо)",
+      "type": 2,
+      "orderNumber": 40,
+      "hint": "",
+      "size": null,
+      "maskName": "",
+      "mask": "",
+      "mode": 0,
+      "commands": [],
+      "required": false,
+      "readonly": false,
+      "sorted": false,
+      "selectionPaginated": false,
+      "visibility": "",
+      "enablement": "",
+      "obligation": "",
+      "historyDisplayMode": 0,
+      "tags": ""
+    },
+    {
+      "property": "authorIP",
+      "caption": "Автор (ИП)",
+      "type": 2,
+      "orderNumber": 40,
+      "hint": "",
+      "size": null,
+      "maskName": "",
+      "mask": "",
+      "mode": 0,
+      "commands": [],
+      "required": false,
+      "readonly": false,
+      "sorted": false,
+      "selectionPaginated": false,
+      "visibility": "",
+      "enablement": "",
+      "obligation": "",
+      "historyDisplayMode": 0,
+      "tags": ""
+    }
+  ],
+  "commands": [
+    {
+      "id": "CREATE",
+      "caption": "Создать",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    },
+    {
+      "id": "EDIT",
+      "caption": "Править",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": true,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    }
+  ]
+}

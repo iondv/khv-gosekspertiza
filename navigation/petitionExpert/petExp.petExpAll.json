@@ -1,0 +1,67 @@
+{
+  "code": "petExp.petExpAll",
+  "orderNumber": 20,
+  "type": 1,
+  "title": "",
+  "caption": "Все",
+  "classname": "petitionExpert",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": "Все заявления (не включая Ожидание документации)",
+  "conditions": [
+    {
+      "property": null,
+      "operation": 0,
+      "value": null,
+      "nestedConditions": [
+        {
+          "property": "status",
+          "operation": 1,
+          "value": [
+            "23"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "$since",
+              "operation": 2,
+              "value": [],
+              "nestedConditions": []
+            },
+            {
+              "property": null,
+              "operation": 0,
+              "value": null,
+              "nestedConditions": [
+                {
+                  "property": "regDateOk",
+                  "operation": 8,
+                  "value": [
+                    "$since"
+                  ],
+                  "nestedConditions": []
+                },
+                {
+                  "property": "regDateOk",
+                  "operation": 5,
+                  "value": [
+                    "$till"
+                  ],
+                  "nestedConditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sorting": [],
+  "pathChains": []
+}

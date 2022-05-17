@@ -1,0 +1,116 @@
+{
+  "name": "costing",
+  "caption": "Расчет стоимости",
+  "wfClass": "costing",
+  "startState": "cost",
+  "states": [
+    {
+      "name": "cost",
+      "caption": "Расчет стоимости",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "prepFin",
+      "caption": "Согласование стоимости",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "fin",
+      "caption": "Утвержденная стоимость",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [
+    {
+      "name": "prepFin",
+      "caption": "Расчитать",
+      "startState": "cost",
+      "finishState": "prepFin",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eРасчитать стоимость\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "prepFin"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "calc"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "fin",
+      "caption": "Согласовать",
+      "startState": "prepFin",
+      "finishState": "fin",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eСогласовать стоимость\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "prepFin"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "cost",
+      "caption": "Вернуть",
+      "startState": "prepFin",
+      "finishState": "cost",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eВернуть на расчет стоимости\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "calc"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "prepFin"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

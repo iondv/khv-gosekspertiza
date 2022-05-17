@@ -1,0 +1,31 @@
+{
+  "code": "sM.listKss",
+  "orderNumber": 20,
+  "type": 1,
+  "title": "",
+  "caption": "Сведения об объектах КСС",
+  "classname": "gosEkspContract",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [{
+    "property": "num",
+    "operation": 4,
+    "value": "КСС",
+    "nestedConditions": []
+  }],
+  "eagerLoading": {
+    "exportList": {
+      "gosEkspContract@khv-gosekspertiza": ["petitionEstimated.expObject",
+        "petitionEstimated.expObject.address",
+        "petitionEstimated.customerOrg",
+        "petitionEstimated.customerOrg.legalAdr",
+        "petitionEstimated"
+      ]
+    }
+  },
+  "sorting": [],
+  "pathChains": [],
+  "metaVersion": "2.0.7"
+}

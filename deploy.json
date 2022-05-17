@@ -1,0 +1,1562 @@
+{
+  "parametrised": true,
+  "namespace": "khv-gosekspertiza",
+  "globals": {
+    "pageTitle": "Госэкспертиза ХК",
+    "moduleTitles": {
+      "registry": {
+        "description": "Госэкспертиза",
+        "order": 10,
+        "skipModules": true
+      },
+      "report": {
+        "description": "Отчеты",
+        "order": 20
+      }
+    },
+    "plugins": {
+      "workflowEvents" : {
+        "module": "applications/khv-gosekspertiza/lib/workflowEvents.js",
+        "initMethod": "init",
+        "initLevel": 1,
+        "options": {
+          "workflows": "ion://workflows",
+          "metaRepo": "ion://metaRepo",
+          "dataRepo": "ion://dataRepo",
+          "log": "ion://sysLog"
+        }
+      },
+      "egrzUploader": {
+        "module": "applications/khv-gosekspertiza/lib/egrzUploader",
+        "initMethod": "init",
+        "options": {
+          "storage": "ion://ownCloud",
+          "dataRepo": "ion://dataRepo",
+          "egrzApi": "ion://egrzApi",
+          "bg": "ion://background",
+          "log": "ion://sysLog",
+          "exclFormats": [
+            "xml", "xml.sig",
+            "xmlx", "xmlx.sig",
+            "gsf", "gsf.sig",
+            "gsfх","gsfx.sig"
+          ]
+        }
+      },
+      "ownCloud": {
+        "module": "core/impl/resource/OwnCloudStorage",
+        "options": {
+          "url": "[[ownCloud.url]]",
+          "login": "[[ownCloud.login]]",
+          "password": "[[ownCloud.pwd]]",
+          "users": [
+            {
+              "name": "user",
+              "permissions": {
+                "share": true,
+                "create": false,
+                "edit": true,
+                "delete": false
+              }
+            }
+          ]
+        }
+      },
+      "egrzApi": {
+        "module": "applications/khv-gosekspertiza/lib/egrz-api",
+        "initMethod": "init",
+        "initLevel": 0,
+        "options": {
+          "debug": false,
+          "verbose": false,
+          "log": "ion://sysLog",
+          "authUrl ": "https://lk.egrz.ru/fws/",
+          "apiUrl": "http://lk.egrz.local/fws/",
+          "fileApiUrl": "http://lk.egrz.local/file/"
+        }
+      },
+      "actualAclProvider": {
+        "module": "core/impl/access/DsAcl",
+        "initMethod": "init",
+        "initLevel": 1,
+        "options": {
+          "dataSource": "ion://Db"
+        }
+      }
+    }
+  },
+  "deployer": "built-in",
+  "modules": {
+    "registry": {
+      "globals": {
+        "eagerLoading": {
+          "*": {
+            "gosEkspContract@khv-gosekspertiza": {
+              "exportList": [
+                "petitionEstimated.expObject.name",
+                "petitionEstimated.expObject.address",
+                "petitionEstimated.customerOrg.fullName",
+                "petitionEstimated.customerOrg.legalAdr"
+              ],
+              "exportItem": [
+                "petitionExpert.semantic",
+                "petitionExpert.customerOrg",
+                "petitionExpert.customerOrg.legalAdr",
+                "petitionExpert.customerOrg.staff",
+                "petitionExpert",
+                "petitionExpert.expObject",
+                "costing",
+                "costing.costExp",
+                "costing.nds",
+                "petitionExpert.customerOrg.bankAccount"
+              ],
+              "item": [
+                "petitionExpert.costing",
+                "petitionEstimated.costing"
+              ]
+            },
+            "petitionExpert@khv-gosekspertiza": {
+              "exportItem": [
+                "customerOrg",
+                "customerOrg.bankAccount",
+                "customerOrg.staff",
+                "customerOrg.legalAdr",
+                "docFormCont",
+                "expObject",
+                "expObject.address",
+                "executorIzA.izOrgExecutor",
+                "executorIzA.izOrgExecutor.legalAdr",
+                "executorPdA.pdOrgExecutor",
+                "executorPdA.pdOrgExecutor.legalAdr",
+                "developOrg",
+                "developOrg.legalAdr",
+                "customerOrgObj",
+                "customerOrgObj.legalAdr",
+                "developOrg",
+                "executorPdA.pdOrgExecutor",
+                "contract",
+                "contract.bankAccount",
+                "inspection",
+                "inspection.expEmployee",
+                "inspection.result",
+                "represent",
+                "financingA"
+              ],
+              "list": [
+                "customerOrg",
+                "customerOrg.staff"
+              ],
+              "item": [
+                "executorIzA",
+                "executorIzA.izOrgExecutor.staff",
+                "executorPdA",
+                "executorPdA.pdOrgExecutor.staff",
+                "executorPdA.gip",
+                "executorIzA.researchA",
+                "executorIzA.researchAnew.name",
+                "costing",
+                "costing.priceWorkNotLive",
+                "results",
+                "results.typeEksResult.name"
+              ],
+              "exportList": [
+                "contract.bankAccount",
+                "expObject",
+                "customerOrgObj",
+                "developOrg",
+                "executorPdA.pdOrgExecutor",
+                "inspection.expEmployee",
+                "inspection.result"
+              ]
+            },
+            "petitionEstimated@khv-gosekspertiza": {
+              "exportItem": [
+                "customerOrg",
+                "customerOrg.bankAccount",
+                "customerOrg.staff",
+                "customerOrg.legalAdr",
+                "docFormCont",
+                "expObject",
+                "expObject.address",
+                "executorIzA.izOrgExecutor",
+                "executorIzA.izOrgExecutor.legalAdr",
+                "executorPdA.pdOrgExecutor",
+                "executorPdA.pdOrgExecutor.legalAdr",
+                "developOrg",
+                "developOrg.legalAdr",
+                "customerOrgObj",
+                "customerOrgObj.legalAdr",
+                "developOrg",
+                "executorPdA.pdOrgExecutor",
+                "contractEstimated",
+                "contractEstimated.bankAccount",
+                "inspectionEstimate",
+                "inspectionEstimate.expEmployee",
+                "inspectionEstimate.result",
+                "represent",
+                "financingA"
+              ],
+              "list": [
+                "customerOrg",
+                "customerOrg.staff"
+              ],
+              "item": [
+                "executorIzA",
+                "executorIzA.izOrgExecutor.staff",
+                "executorPdA",
+                "executorPdA.pdOrgExecutor.staff",
+                "executorPdA.gip",
+                "executorIzA.researchA",
+                "executorIzA.researchAnew.name",
+                "costing"
+              ],
+              "exportList": [
+                "contractEstimated.bankAccount",
+                "expObject",
+                "customerOrgObj",
+                "developOrg",
+                "executorPdA.pdOrgExecutor",
+                "inspectionEstimate.responsible",
+                "inspectionEstimate.result"
+              ]
+            },
+            "inspectionEstimate@khv-gosekspertiza": {
+              "exportList": [
+                "contract",
+                "petitionEstimated.customerOrgObj",
+                "petitionEstimated.expObject",
+                "resolutions",
+                "result",
+                "responsible",
+                "instructions.responsible"
+              ],
+              "item": ["resolutions"]
+            },
+            "sigExpEmployee@khv-gosekspertiza": {
+              "item": [
+                "result",
+                "expEmployee",
+                "resolution"
+              ]
+            },
+            "costing@khv-gosekspertiza": {
+              "item": [
+                "priceWorkNotLive.period",
+                "priceWorkNotLive.cost2001",
+                "petitionExpert.contract",
+                "petitionEstimated.contractEstimated"
+              ],
+              "list": [
+                "petitionExpert.contract",
+                "petitionEstimated.contractEstimated"
+              ]
+            },
+            "result@khv-gosekspertiza": {
+              "item": [
+                "sigExpEmployee",
+                "sigExpEmployee.sig",
+                "sigsExpEmpl",
+                "sigExpEmployee.expEmployee",
+                "files",
+                "buildObjectA.expObject",
+                "buildObjectA.tepA.typeTEP",
+                "petitionExpert.documentationType",
+                "expObject",
+                "petitionExpert.petitionEstimated.inspectionEstimate",
+                "petitionExpert.cloudObj",
+                "tepA.typeTEP.unit.name"
+              ],
+              "exportItem": [
+                "petitionExpert.customerOrgObj",
+                "petitionExpert.developOrg",
+                "petitionExpert",
+                "petitionExpert.expObject",
+                "petitionExpert.expObject.address",
+                "petitionExpert.executorPdA.pdOrgExecutor",
+                "petitionExpert.executorPdA.pdOrgExecutor.legalAdr",
+                "petitionExpert.documentationType.name",
+                "personGosExp",
+                "typeEksResult",
+                "expObject",
+                "expObject.address",
+                "petitionExpert.customerOrg",
+                "petitionExpert.contract",
+                "petitionExpert.customerOrg.legalAdr",
+                "petitionExpert.financingA",
+                "petitionExpert.financingA.budgetLevel"
+              ]
+            },
+            "resolution@khv-gosekspertiza": {
+              "list": [
+                "inspection",
+                "inspection.expObject.name",
+                "inspectionEstimate",
+                "inspectionEstimate.expObject.name"
+              ],
+              "item": [
+                "sigExpEmployee"
+              ]
+            },
+            "charge@khv-gosekspertiza": {
+              "list": [
+                "inspection",
+                "inspection.expObject.name",
+                "inspectionEstimate",
+                "inspectionEstimate.expObject.name"
+              ]
+            },
+            "inspection@khv-gosekspertiza": {
+              "item": [
+                "petitionExpert.cloudObjText",
+                "petitionExpert.documentationType",
+                "resolution"
+              ]
+            },
+            "expertiseResult@khv-gosekspertiza": {
+              "item": [
+                "results.researchAnew.name",
+                "result.petitionExpert.cloudObjText",
+                "result.petitionExpert.cloudObj",
+                "buildObjectA.tepA.typeTEP",
+                "executors.pdOrgExecutor.staff",
+                "seismicAct.name.value",
+                "expert.activityAnew.name",
+                "executors.gip.surname"
+              ]
+            },
+            "priceWorkNotLive@khv-gosekspertiza": {
+              "item": [
+                "period"
+              ],
+              "list": [
+                "period"
+              ]
+            },
+            "buildObject@khv-gosekspertiza": {
+              "item": [
+                "result"
+              ]
+            },
+            "documentsCloud@khv-gosekspertiza": {
+              "item": [
+                "authorRef.authorUL.staff"
+              ]
+            },
+            "engineerSurveys@khv-gosekspertiza": {
+              "item": [
+                "engSurCustom.developOrg.staff",
+                "engSurTeh.developOrg.staff"
+              ]
+            },
+            "docCloudAuthor@khv-gosekspertiza": {
+              "list": [
+                "authorUL.staff"
+              ]
+            }
+          }
+        },
+        "listSearchMinLength": 1,
+        "navigation": {
+          "namespaces": {
+            "khv-gosekspertiza": "Гос.экспертиза ХК"
+          },
+          "menus": {
+            "top": [
+              "khv-gosekspertiza@petitionExpert",
+              "khv-gosekspertiza@cancel",
+              "khv-gosekspertiza@projDoc",
+              "khv-gosekspertiza@contract",
+              "khv-gosekspertiza@verify",
+              "khv-gosekspertiza@charge",
+              "khv-gosekspertiza@result",
+              "khv-gosekspertiza@egrz",
+              "khv-gosekspertiza@report",
+              "khv-gosekspertiza@spr"
+            ]
+          }
+        },
+        "templates": [
+          "applications/khv-gosekspertiza/registry/view/templates"
+        ],
+        "customTemplates": [
+          {
+            "node": "khv-gosekspertiza@petExp.petExpAll",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@petExp.petExpDocs",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@petExp.petExpDocsTakes",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@petExp.cancel.petOverWait",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@petitionEstimated.petitionEstimatedAll",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@petitionEstimated.petitionEstimatedDocs",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@petitionEstimated.petExpDocsTakes",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@petitionEstimated.cancel.petOverWait",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@contractAll",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@contract",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@contractEst.all",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@contractEst.kss",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@contractEstimated",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@inspectionEstimate.all",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@inspectionEstimate.employ",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@resolution",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@inspection.all",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@inspection.employ",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@chargeExp.all",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@chargeExp.owner",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@chargeExp.responsible",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "khv-gosekspertiza@result",
+            "classes": [
+              {
+                "name": "*",
+                "types": {
+                  "item": "view/goseksp_item",
+                  "create": "view/goseksp_item"
+                }
+              }
+            ]
+          },
+          {
+            "node": "*",
+            "classes": [
+              {
+                "name": "expertiseResult@khv-gosekspertiza",
+                "types": {
+                  "item": "view/result_item"
+                }
+              },
+              {
+                "name": "result@khv-gosekspertiza",
+                "types": {
+                  "item": "view/goseksp_item"
+                }
+              }
+            ]
+          }
+        ],
+        "statics": {
+          "goseksp": "applications/khv-gosekspertiza/registry/view/static",
+          "common-static": "applications/khv-gosekspertiza/templates/static"
+        },
+        "logo": "common-static/logo.png",
+        "di": {
+          "wsdlChecker": {
+            "module": "applications/khv-gosekspertiza/lib/controllers/wsdlChecker",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "module": "ion://module",
+              "wsdls": [
+                "[[soap.gosEkspWsdl]]",
+                "[[soap.khvGosEksp]]",
+                "[[soap.khvGosEstimated]]"
+              ]
+            }
+          },
+          "cloudDirStructure": {
+            "module": "applications/khv-gosekspertiza/lib/controllers/cloudDirStructure",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "module": "ion://module"
+            }
+          },
+          "egrzController": {
+            "module": "applications/khv-gosekspertiza/lib/controllers/egrz",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "module": "ion://module",
+              "egrzApi": "ion://egrzApi",
+              "egrzUploader": "ion://egrzUploader"
+            }
+          },
+          "egrzWfListener": {
+            "module": "applications/khv-gosekspertiza/lib/egrzWfListener",
+            "options": {
+              "module": "ion://module",
+              "egrzApi": "ion://egrzApi",
+              "workflows": "ion://workflows",
+              "dataRepo": "ion://dataRepo",
+              "metaRepo": "ion://metaRepo"
+            }
+          },
+          "expertListToExcel1": {
+            "module": "modules/registry/export/listToExcel",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "tplDir": "applications/khv-gosekspertiza/export/list1",
+              "calc": "ion://calculator"
+            }
+          },
+          "expertListToExcel": {
+            "module": "modules/registry/export/listToExcel",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "tplDir": "applications/khv-gosekspertiza/export/list",
+              "calc": "ion://calculator"
+            }
+          },
+          "expertListToExcel2": {
+            "module": "modules/registry/export/listToExcel",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "tplDir": "applications/khv-gosekspertiza/export/list2",
+              "calc": "ion://calculator"
+            }
+          },
+          "expertListToDocx": {
+            "module": "modules/registry/export/listToDocx",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "tplDir": "applications/khv-gosekspertiza/export/list",
+              "calc": "ion://calculator"
+            }
+          },
+          "expertItemToDocx": {
+            "module": "modules/registry/export/itemToDocx",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "tplDir": "applications/khv-gosekspertiza/export/item",
+              "calc": "ion://calculator"
+            }
+          },
+          "dirStructureInjector": {
+            "module": "applications/khv-gosekspertiza/export/injectors/dirStructureInjector",
+            "options": {}
+          },
+          "fileListInjector": {
+            "module": "applications/khv-gosekspertiza/export/injectors/fileListInjector",
+            "options": {}
+          },
+          "cloudDocsInjector": {
+            "module": "applications/khv-gosekspertiza/export/injectors/cloudDocsInjector",
+            "options": {
+              "cloud": {
+                "login": "[[ownCloud.login]]",
+                "password": "[[ownCloud.pwd]]"
+              }
+            }
+          },
+          "crcInjector": {
+            "module": "applications/khv-gosekspertiza/export/injectors/computeCrc",
+            "options": {
+              "cloud": {
+                "login": "[[ownCloud.login]]",
+                "password": "[[ownCloud.pwd]]"
+              }
+            }
+          },
+          "sortInjector": {
+            "module": "applications/khv-gosekspertiza/export/injectors/cloudObjSorter",
+            "options": {}
+          },
+          "jsonCloudObjParserInjector": {
+            "module": "applications/khv-gosekspertiza/export/injectors/cloudObjParser",
+            "options": {}
+          },
+          "expertItemToDocx1": {
+            "module": "modules/registry/export/itemToDocx",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "tplDir": "applications/khv-gosekspertiza/export/item1",
+              "calc": "ion://calculator",
+              "injectors": [
+                "ion://cloudDocsInjector",
+                "ion://crcInjector",
+                "ion://sortInjector"
+              ]
+            }
+          },
+          "expertItemToDocx2": {
+            "module": "modules/registry/export/itemToDocx",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "tplDir": "applications/khv-gosekspertiza/export/item2",
+              "calc": "ion://calculator",
+              "injectors": [
+                "ion://dirStructureInjector",
+                "ion://crcInjector",
+                "ion://sortInjector"
+              ]
+            }
+          },
+          "expertItemToDocx3": {
+            "module": "modules/registry/export/itemToDocx",
+            "initMethod": "init",
+            "initLevel": 0,
+            "options": {
+              "tplDir": "applications/khv-gosekspertiza/export/item3",
+              "calc": "ion://calculator",
+              "injectors": [
+                "ion://jsonCloudObjParserInjector",
+                "ion://crcInjector",
+                "ion://sortInjector",
+                "ion://fileListInjector"
+              ]
+            }
+          },
+          "export": {
+            "options": {
+              "configs": {
+                "petitionEstimated@khv-gosekspertiza": {
+                  "expertListToExcel": {
+                    "type": "list",
+                    "caption": "Реестр по сметам",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "extension": "xlsx",
+                    "preprocessor": "ion://expertListToExcel",
+                    "isBackground": true
+                  },
+                  "expertItemToDocx": {
+                    "type": "item",
+                    "caption": "Заявление",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx"
+                  },
+                  "expertItemToDocx2": {
+                    "type": "item",
+                    "caption": "Приложенная документация (иерархическая)",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx2"
+                  },
+                  "expertItemToDocx3": {
+                    "type": "item",
+                    "caption": "Приложенная документация (линейная)",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx3"
+                  },
+                  "expertItemToDocx1": {
+                    "type": "item",
+                    "caption": "Иерархический перечень документов",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx1",
+                    "fileNameTemplate": "Иерархический перечень документов по заявлению СМ.${item.ouid}",
+                    "isBackground": true
+                  }
+                },
+                "petitionExpert@khv-gosekspertiza": {
+                  "expertListToExcel2": {
+                    "type": "list",
+                    "caption": "Реестр по госэкспертизе",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "extension": "xlsx",
+                    "preprocessor": "ion://expertListToExcel2",
+                    "isBackground": true
+                  },
+                  "expertItemToDocx": {
+                    "type": "item",
+                    "caption": "Заявление",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx"
+                  },
+                  "expertItemToDocx2": {
+                    "type": "item",
+                    "caption": "Приложенная документация (иерархическая)",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx2"
+                  },
+                  "expertItemToDocx3": {
+                    "type": "item",
+                    "caption": "Приложенная документация (линейная)",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx3"
+                  },
+                  "expertItemToDocx1": {
+                    "type": "item",
+                    "caption": "Иерархический перечень документов",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx1",
+                    "fileNameTemplate": "Иерархический перечень документов по заявлению ПД.${item.ouid}",
+                    "isBackground": true
+                  }
+                },
+                "gosEkspContract@khv-gosekspertiza": {
+                  "expertListToDocx": {
+                    "type": "list",
+                    "caption": "(СМ) Сведения об объектах",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertListToDocx",
+                    "isBackground": true
+                  },
+                  "expertItemToDocx": {
+                    "type": "item",
+                    "caption": "Договор (Нежилой, Нелинейный, Повторная)",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx",
+                    "options": {
+                      "conditions": [
+                        {
+                          "property": null,
+                          "operation": 0,
+                          "value": null,
+                          "nestedConditions": [
+                            {
+                              "property": "expObject.typeObjexp",
+                              "operation": 0,
+                              "value": [
+                                "notLine"
+                              ],
+                              "nestedConditions": []
+                            },
+                            {
+                              "property": "petitionExpert.typeObj",
+                              "operation": 0,
+                              "value": [
+                                "notLive"
+                              ],
+                              "nestedConditions": []
+                            },
+                            {
+                              "property": "petitionExpert.primacy",
+                              "operation": 0,
+                              "value": [
+                                "repeatedly"
+                              ],
+                              "nestedConditions": []
+                            },
+                            {
+                              "property": "petitionExpert",
+                              "operation": 3,
+                              "value": null,
+                              "nestedConditions": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "expertItemToDocx1": {
+                    "type": "item",
+                    "caption": "Договор (Жилой, Линейный)",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx1",
+                    "options": {
+                      "conditions": [
+                        {
+                          "property": null,
+                          "operation": 0,
+                          "value": null,
+                          "nestedConditions": [
+                            {
+                              "property": "expObject.typeObjexp",
+                              "operation": 0,
+                              "value": [
+                                "line"
+                              ],
+                              "nestedConditions": []
+                            },
+                            {
+                              "property": "petitionExpert.typeObj",
+                              "operation": 0,
+                              "value": [
+                                "live"
+                              ],
+                              "nestedConditions": []
+                            },
+                            {
+                              "property": "petitionExpert",
+                              "operation": 3,
+                              "value": null,
+                              "nestedConditions": []
+                            },
+                            {
+                              "property": "petitionExpert.primacy",
+                              "operation": 0,
+                              "value": [
+                                "first"
+                              ],
+                              "nestedConditions": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "expertItemToDocx2": {
+                    "type": "item",
+                    "caption": "Договор (Нежилой, Линейный)",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx2",
+                    "options": {
+                      "conditions": [
+                        {
+                          "property": null,
+                          "operation": 0,
+                          "value": null,
+                          "nestedConditions": [
+                            {
+                              "property": "expObject.typeObjexp",
+                              "operation": 0,
+                              "value": [
+                                "line"
+                              ],
+                              "nestedConditions": []
+                            },
+                            {
+                              "property": "petitionExpert.typeObj",
+                              "operation": 0,
+                              "value": [
+                                "notLive"
+                              ],
+                              "nestedConditions": []
+                            },
+                            {
+                              "property": "petitionExpert",
+                              "operation": 3,
+                              "value": null,
+                              "nestedConditions": []
+                            },
+                            {
+                              "property": "petitionExpert.primacy",
+                              "operation": 0,
+                              "value": [
+                                "first"
+                              ],
+                              "nestedConditions": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                },
+                "expertItemToDocx3": {
+                  "type": "item",
+                  "caption": "Договор (СМ + ПД)",
+                  "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                  "extension": "docx",
+                  "preprocessor": "ion://expertItemToDocx3",
+                  "options": {
+                    "conditions": [
+                      {
+                        "property": null,
+                        "operation": 0,
+                        "value": null,
+                        "nestedConditions": [
+                          {
+                            "property": "petitionEstimated.targetFirst",
+                            "operation": 0,
+                            "value": [
+                              "stroyRekEst"
+                            ],
+                            "nestedConditions": []
+                          },
+                          {
+                            "property": "petitionEstimated.primacy",
+                            "operation": 0,
+                            "value": [
+                              "first"
+                            ],
+                            "nestedConditions": []
+                          },
+                          {
+                            "property": "petitionEstimated",
+                            "operation": 3,
+                            "value": null,
+                            "nestedConditions": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "inspectionEstimate@khv-gosekspertiza": {
+                  "expertListToExcel1": {
+                    "type": "list",
+                    "caption": "Таблица для сметчиков",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "extension": "xlsx",
+                    "preprocessor": "ion://expertListToExcel1",
+                    "isBackground": true
+                  }
+                },
+                "result@khv-gosekspertiza": {
+                  "expertItemToDocx": {
+                    "type": "item",
+                    "caption": "Выписка",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx",
+                    "options": {
+                      "conditions": [
+                        {
+                          "property": "petitionExpert",
+                          "operation": 3,
+                          "value": null,
+                          "nestedConditions": []
+                        }
+                      ]
+                    }
+                  },
+                  "expertItemToDocx1": {
+                    "type": "item",
+                    "caption": "Экспертное заключение",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "extension": "docx",
+                    "preprocessor": "ion://expertItemToDocx1"
+                  }
+                }
+              }
+            }
+          },
+          "dataRepo": {
+            "module": "core/impl/datarepository/ionDataRepository",
+            "options": {
+              "dataSource": "ion://Db",
+              "metaRepository": "ion://metaRepo",
+              "fileStorage": "ion://fileStorage",
+              "imageStorage": "ion://imageStorage",
+              "log": "ion://sysLog",
+              "keyProvider": {
+                "name": "keyProvider",
+                "module": "core/impl/meta/keyProvider",
+                "options": {
+                  "metaRepo": "ion://metaRepo"
+                }
+              },
+              "maxEagerDepth": 0
+            }
+          },
+          "digestData": {
+            "module": "applications/khv-gosekspertiza/lib/digest/digestData",
+            "options": {
+              "log": "ion://sysLog"
+            }
+          },
+          "signSaver": {
+            "module": "applications/khv-gosekspertiza/lib/digest/signSaver",
+            "options": {
+              "metaRepo": "ion://metaRepo",
+              "dataRepo": "ion://dataRepo"
+            }
+          },
+          "signManager": {
+            "options": {
+              "Preprocessor": "ion://digestData",
+              "signaturePreprocessor": "ion://signSaver"
+            }
+          },
+          "actionMock": {
+            "module": "applications/khv-gosekspertiza/lib/actions/NullAction",
+            "options": {}
+          },
+          "actions": {
+            "options": {
+              "actions": [
+                {
+                  "code": "IMPORT_DOCUMENTS",
+                  "handler": "ion://actionMock"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "report": {
+      "globals": {
+        "namespaces": {
+          "khv-gosekspertiza": "Госэкспертиза"
+        },
+        "defaultNav": {
+          "namespace": "khv-gosekspertiza",
+          "mine": "performIndicators",
+          "report": "performIndicatorsReport"
+        },
+        "mineBuilders": {
+          "khv-gosekspertiza": {
+            "performIndicators": {
+              "dataOnStateExaminationSource": "mineBuilder",
+              "performIndicatorsSource": "mineBuilder",
+              "estimatedCostObjectsSource": "mineBuilder"
+            }
+          }
+        },
+        "di": {},
+        "statics": {
+          "common-static": "applications/khv-gosekspertiza/templates/static"
+        },
+        "logo": "common-static/logo.png"
+      },
+      "import": {
+        "src": "applications/khv-gosekspertiza/bi_yaml",
+        "namespace": "khv-gosekspertiza"
+      }
+    },
+    "rest": {
+      "globals": {
+        "authMode": {
+          "cloudProxy": "none",
+          "docsAcceptor": "none",
+          "acceptor": "token",
+          "token": "pwd"
+        },
+        "di": {
+          "cloudProxy": {
+            "module": "applications/khv-gosekspertiza/lib/service/CloudProxy",
+            "options": {
+              "storageRoot": "[[ownCloud.url]]",
+              "login": "[[ownCloud.login]]",
+              "password": "[[ownCloud.pwd]]",
+              "dataRepo": "ion://dataRepo"
+            }
+          },
+          "docsAcceptor": {
+            "module": "applications/khv-gosekspertiza/lib/service/DocsAcceptor",
+            "options": {
+              "dataRepo": "ion://dataRepo"
+            }
+          }
+        }
+      }
+    },
+    "soap": {
+      "globals": {
+        "authMode": {
+          "petitionExperts": "none",
+          "petitionEstimated": "none",
+          "gosEkspContract": "none",
+          "bankAccounts": "none",
+          "resolution": "none",
+          "result": "none"
+        },
+        "di": {
+          "petitionExperts": {
+            "module": "modules/soap/service/crud",
+            "options": {
+              "dataRepo": "ion://dataRepo",
+              "metaRepo": "ion://metaRepo",
+              "keyProvider": "ion://keyProvider",
+              "namespace": "khv-gosekspertiza",
+              "className": "petitionExpert",
+              "types": {
+                "inspectionEstimate@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false
+                },
+                "expertiseResult@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "valueNotAvailable_409954c0-3f57-e711-80cb-00155d01c726": false
+                }
+              }
+            }
+          },
+          "petitionEstimated": {
+            "module": "modules/soap/service/crud",
+            "options": {
+              "dataRepo": "ion://dataRepo",
+              "metaRepo": "ion://metaRepo",
+              "keyProvider": "ion://keyProvider",
+              "namespace": "khv-gosekspertiza",
+              "className": "petitionEstimated",
+              "types": {
+                "inspectionEstimate@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false
+                },
+                "expertiseResult@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "valueNotAvailable_409954c0-3f57-e711-80cb-00155d01c726": false
+                }
+              }
+            }
+          },
+          "gosEkspContract": {
+            "module": "modules/soap/service/crud",
+            "options": {
+              "dataRepo": "ion://dataRepo",
+              "metaRepo": "ion://metaRepo",
+              "keyProvider": "ion://keyProvider",
+              "namespace": "khv-gosekspertiza",
+              "className": "gosEkspContract",
+              "types": {
+                "inspectionEstimate@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false
+                },
+                "expertiseResult@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "valueNotAvailable_409954c0-3f57-e711-80cb-00155d01c726": false
+                }
+              }
+            }
+          },
+          "bankAccounts": {
+            "module": "modules/soap/service/crud",
+            "options": {
+              "dataRepo": "ion://dataRepo",
+              "metaRepo": "ion://metaRepo",
+              "keyProvider": "ion://keyProvider",
+              "namespace": "khv-gosekspertiza",
+              "className": "bankAccount",
+              "types": {
+                "inspectionEstimate@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false
+                },
+                "expertiseResult@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "valueNotAvailable_409954c0-3f57-e711-80cb-00155d01c726": false
+                }
+              }
+            }
+          },
+          "resolution": {
+            "module": "modules/soap/service/crud",
+            "options": {
+              "dataRepo": "ion://dataRepo",
+              "metaRepo": "ion://metaRepo",
+              "keyProvider": "ion://keyProvider",
+              "namespace": "khv-gosekspertiza",
+              "className": "resolution",
+              "types": {
+                "inspectionEstimate@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false
+                },
+                "expertiseResult@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "valueNotAvailable_409954c0-3f57-e711-80cb-00155d01c726": false
+                }
+              }
+            }
+          },
+          "result": {
+            "module": "modules/soap/service/crud",
+            "options": {
+              "dataRepo": "ion://dataRepo",
+              "metaRepo": "ion://metaRepo",
+              "keyProvider": "ion://keyProvider",
+              "namespace": "khv-gosekspertiza",
+              "className": "result",
+              "types": {
+                "inspectionEstimate@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false
+                },
+                "expertiseResult@khv-gosekspertiza": {
+                  "409954c0-3f57-e711-80cb-00155d01c726": false,
+                  "0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_55288c67-ab7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_0fc2a78b-aa7d-e711-80dc-00155d01c726": false,
+                  "valueNotAvailable_71e292cd-3f57-e711-80cb-00155d01c726": false,
+                  "valueNotAvailable_409954c0-3f57-e711-80cb-00155d01c726": false
+                }
+              }
+            }
+          },
+          "ownCloud": {
+            "module": "core/impl/resource/OwnCloudStorage",
+            "options": {
+              "url": "[[ownCloud.url]]",
+              "login": "[[ownCloud.login]]",
+              "password": "[[ownCloud.pwd]]",
+              "users": [
+                {
+                  "name": "user",
+                  "permissions": {
+                    "share": true,
+                    "create": false,
+                    "edit": true,
+                    "delete": false
+                  }
+                }
+              ]
+            }
+          },
+          "epguGosExpSoapClient": {
+            "module": "modules/soap/client",
+            "initMethod": "init",
+            "options": {
+              "log": "ion://sysLog",
+              "timeout": "[[soap.timeout]]",
+              "interval": "[[soap.interval]]",
+              "attempts": "[[soap.attempts]]",
+              "services": {
+                "epguGosContract": {
+                  "wsdl": "[[soap.gosEkspWsdl]]",
+                  "security": {
+                    "username": "lksoap",
+                    "password": "WBFzrjOgvQcIDEJBaa94v9AfH/eQU8y6ylGlOoMi1TRcxFzFHGEkFZEpVoOdSaHn77x7DNBQwT92a5Yi9J+6MGhsgbTA/Os/nH8psnJS80Ozvk6Cimx2C0uQ5oqDwBx2OZj2llx6agCrWmK7pyxNNIkaTystluX2nzc6mUBDKVE="
+                  }
+                },
+                "petitionExpert": {
+                  "wsdl": "[[soap.khvGosEksp]]",
+                  "security": {
+                    "username": "lksoap",
+                    "password": "WBFzrjOgvQcIDEJBaa94v9AfH/eQU8y6ylGlOoMi1TRcxFzFHGEkFZEpVoOdSaHn77x7DNBQwT92a5Yi9J+6MGhsgbTA/Os/nH8psnJS80Ozvk6Cimx2C0uQ5oqDwBx2OZj2llx6agCrWmK7pyxNNIkaTystluX2nzc6mUBDKVE="
+                  }
+                },
+                "petitionEstimated": {
+                  "wsdl": "[[soap.khvGosEstimated]]",
+                  "security": {
+                    "username": "lksoap",
+                    "password": "WBFzrjOgvQcIDEJBaa94v9AfH/eQU8y6ylGlOoMi1TRcxFzFHGEkFZEpVoOdSaHn77x7DNBQwT92a5Yi9J+6MGhsgbTA/Os/nH8psnJS80Ozvk6Cimx2C0uQ5oqDwBx2OZj2llx6agCrWmK7pyxNNIkaTystluX2nzc6mUBDKVE="
+                  }
+                }
+              }
+            }
+          },
+          "docx2pdf": {
+            "module": "applications/khv-gosekspertiza/converter/docx2pdf",
+            "options": {
+              "jrePath": "/var/www/plugins/pdf-converter/jre/bin/java",
+              "jarPath": "/var/www/plugins/pdf-converter/converter.jar"
+            }
+          },
+          "dirHelper": {
+            "module": "applications/khv-gosekspertiza/lib/cloudDirHelper",
+            "options": {
+              "dirTemplate": "/${YYYY}/${MM}/${item.guid}/",
+              "dataRepo": "ion://dataRepo",
+              "ownCloud": "ion://ownCloud"
+            }
+          },
+          "contract": {
+            "module": "applications/khv-gosekspertiza/lib/contract",
+            "options": {
+              "soap": "ion://epguGosExpSoapClient",
+              "service": "wsGosEksp",
+              "servicePetition": "pmvkgbuexpertkhvGosEksp",
+              "servicePetitionEstimated": "pmvkgbuexpertkhvGosEstimated",
+              "workflows": "ion://workflows",
+              "metaRepo": "ion://metaRepo",
+              "dataRepo": "ion://dataRepo",
+              "ownCloudStorage": "ion://ownCloud",
+              "docx2pdf": "ion://docx2pdf",
+              "log": "ion://sysLog",
+              "dirHelper": "ion://dirHelper"
+            }
+          },
+          "docs": {
+            "module": "applications/khv-gosekspertiza/lib/docs",
+            "options": {
+              "namespace": "khv-gosekspertiza",
+              "dataRepository": "ion://dataRepo",
+              "metaRepository": "ion://metaRepo",
+              "ownCloudStorage": "ion://ownCloud",
+              "soap": "ion://epguGosExpSoapClient",
+              "service": "wsGosEksp",
+              "servicePetition": "pmvkgbuexpertkhvGosEksp",
+              "servicePetitionEstimated": "pmvkgbuexpertkhvGosEstimated",
+              "log": "ion://sysLog",
+              "dirHelper": "ion://dirHelper"
+            }
+          }
+        }
+      }
+    },
+    "ionadmin": {
+      "globals": {
+        "defaultPath": "ionadmin",
+        "securityParams": {
+          "resourceTypes": {
+            "*": {
+              "title": "Общие"
+            },
+            "n:::": {
+              "title": "Навигация"
+            },
+            "c:::": {
+              "title": "Классы"
+            },
+            "ionadmin:::": {
+              "title": "Модуль администрирования"
+            }
+          }
+        }
+      }
+    }
+  }
+}

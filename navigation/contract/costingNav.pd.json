@@ -1,0 +1,66 @@
+{
+  "code": "costingNav.pd",
+  "orderNumber": 9,
+  "type": 1,
+  "title": "",
+  "caption": "ПД",
+  "classname": "costing",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [
+    {
+      "property": null,
+      "operation": 0,
+      "value": null,
+      "nestedConditions": [
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "$since",
+              "operation": 2,
+              "value": [],
+              "nestedConditions": []
+            },
+            {
+              "property": null,
+              "operation": 0,
+              "value": null,
+              "nestedConditions": [
+                {
+                  "property": "petitionExpert.regDateOk",
+                  "operation": 8,
+                  "value": [
+                    "$since"
+                  ],
+                  "nestedConditions": []
+                },
+                {
+                  "property": "petitionExpert.regDateOk",
+                  "operation": 5,
+                  "value": [
+                    "$till"
+                  ],
+                  "nestedConditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sorting": [],
+  "pathChains": [],
+  "metaVersion": "2.0.7"
+}

@@ -1,0 +1,2844 @@
+{
+  "name": "result",
+  "caption": "Экспертное заключение",
+  "wfClass": "result",
+  "startState": "proj",
+  "states": [
+    {
+      "name": "proj",
+      "caption": "Проект",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "formResult",
+      "caption": "Сформировать экспертное заключение",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "needSigExp",
+      "caption": "На подпись экспертов",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "needSigHead",
+      "caption": "На подпись руководителя",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "sigHead",
+      "caption": "Подписано руководителем",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "send",
+      "caption": "Направлено заявителю",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "sendEGRZ",
+      "caption": "Регистрация в ЕГРЗ",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "sendEGRZapp",
+      "caption": "Отправка контейнера ЕГРЗ заявителю",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "techEr",
+      "caption": "Техническая ошибка",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [
+    {
+      "name": "projInForm",
+      "caption": "Сформировать экспертное заключение",
+      "startState": "proj",
+      "finishState": "formResult",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eСформировать экспертное заключение\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "formResult"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "proj"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "date",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEks",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "formSigExp",
+      "caption": "На подпись экспертам",
+      "startState": "formResult",
+      "finishState": "needSigExp",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПеревести на подпись экспертам\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "needSig"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "formResult"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "fileResult",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "date",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEks",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "needSigExp",
+      "caption": "На подпись экспертам",
+      "startState": "proj",
+      "finishState": "needSigExp",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПеревести на подпись экспертам\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "needSig"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "proj"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "files",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "date",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEks",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sigExp",
+      "caption": "Подписано экспертами",
+      "startState": "needSigExp",
+      "finishState": "needSigHead",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "needSigHead"
+        }
+      ],
+      "conditions": [
+        {
+          "property": null,
+          "operation": 2,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "sigExpEmployee",
+              "operation": 10,
+              "value": null,
+              "nestedConditions": [
+                {
+                  "property": "check",
+                  "operation": 1,
+                  "value": [
+                    "true"
+                  ],
+                  "nestedConditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "sigExpEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sigHead",
+      "caption": "Подписать",
+      "startState": "needSigHead",
+      "finishState": "sigHead",
+      "signBefore": true,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "sigHead"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "needSigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sigHead_est",
+      "caption": "Подписать",
+      "startState": "needSigHead",
+      "finishState": "sigHead",
+      "signBefore": true,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "sigHead"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "needSigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "formResultCancel",
+      "caption": "Вернуть к проекту",
+      "startState": "formResult",
+      "finishState": "proj",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eВернуть к проекту\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "proj"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "formResult"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sigCancel",
+      "caption": "Вернуть на доработку",
+      "startState": "needSigHead",
+      "finishState": "proj",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eВернуть на доработку\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "proj"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "needSigHead"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "send",
+      "caption": "Направить заявителю",
+      "startState": "sigHead",
+      "finishState": "send",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "36"
+        },
+        {
+          "key": "petitionExpert.contract.state",
+          "value": "fin"
+        },
+        {
+          "key": "petitionExpert.inspection.state",
+          "value": "prep"
+        },
+        {
+          "key": "dateSend",
+          "value": "now()"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert.inspection.actDocCheck",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "send_est",
+      "caption": "Направить заявителю",
+      "startState": "sigHead",
+      "finishState": "send",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "36"
+        },
+        {
+          "key": "petitionEstimated.contractEstimated.state",
+          "value": "fin"
+        },
+        {
+          "key": "petitionEstimated.inspectionEstimate.state",
+          "value": "prep"
+        },
+        {
+          "key": "dateSend",
+          "value": "now()"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated.inspectionEstimate.actDocCheck",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "send_egzr",
+      "caption": "Направить заявителю(ЕГРЗ)",
+      "startState": "sendEGRZ",
+      "finishState": "sendEGRZapp",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eНаправить заявителю криптоконтейнер ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "43"
+        },
+        {
+          "key": "petitionExpert.contract.state",
+          "value": "fin"
+        },
+        {
+          "key": "petitionExpert.inspection.state",
+          "value": "prep"
+        },
+        {
+          "key": "dateSend",
+          "value": "now()"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert.inspection.actDocCheck",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "expertiseResultFiles",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "send_egzr_est",
+      "caption": "Направить заявителю(ЕГРЗ)",
+      "startState": "sendEGRZ",
+      "finishState": "sendEGRZapp",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eНаправить заявителю криптоконтейнер ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "43"
+        },
+        {
+          "key": "petitionEstimated.contractEstimated.state",
+          "value": "fin"
+        },
+        {
+          "key": "petitionEstimated.inspectionEstimate.status",
+          "value": "prep"
+        },
+        {
+          "key": "dateSend",
+          "value": "now()"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated.inspectionEstimate.actDocCheck",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "expertiseResultFiles",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "send_egrz",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionExpert.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionExpert.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.isValidatedString",
+          "value": "NotPerformed"
+        },
+        {
+          "key": "expertiseResult.climaticRegion",
+          "value": "$climaticRegion"
+        },
+        {
+          "key": "expertiseResult.engGeoCond",
+          "value": "$engGeoCond"
+        },
+        {
+          "key": "expertiseResult.windDistr",
+          "value": "$windDistr"
+        },
+        {
+          "key": "expertiseResult.snowDistr",
+          "value": "$snowDistr"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert.petitionEstimated",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "snowDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "windDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "engGeoCond",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "climaticRegion",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fb4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_Perf",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionExpert.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionExpert.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.validation",
+          "value": "$petitionExpert.petitionEstimated.inspectionEstimate"
+        },
+        {
+          "key": "expertiseResult.isValidatedString",
+          "value": "Performed"
+        },
+        {
+          "key": "expertiseResult.climaticRegion",
+          "value": "$climaticRegion"
+        },
+        {
+          "key": "expertiseResult.engGeoCond",
+          "value": "$engGeoCond"
+        },
+        {
+          "key": "expertiseResult.windDistr",
+          "value": "$windDistr"
+        },
+        {
+          "key": "expertiseResult.snowDistr",
+          "value": "$snowDistr"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.409954c0-3f57-e711-80cb-00155d01c726",
+          "value": "$petitionExpert.petitionEstimated.inspectionEstimate.409954c0-3f57-e711-80cb-00155d01c726"
+        },
+        {
+          "key": "expertiseResult.71e292cd-3f57-e711-80cb-00155d01c726",
+          "value": "$petitionExpert.petitionEstimated.inspectionEstimate.71e292cd-3f57-e711-80cb-00155d01c726"
+        },
+        {
+          "key": "expertiseResult.0fc2a78b-aa7d-e711-80dc-00155d01c726",
+          "value": "$petitionExpert.petitionEstimated.inspectionEstimate.0fc2a78b-aa7d-e711-80dc-00155d01c726"
+        },
+        {
+          "key": "expertiseResult.55288c67-ab7d-e711-80dc-00155d01c726",
+          "value": "$petitionExpert.petitionEstimated.inspectionEstimate.55288c67-ab7d-e711-80dc-00155d01c726"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert.petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "snowDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "windDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "engGeoCond",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "climaticRegion",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fb4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_noData",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionExpert.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionExpert.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.isValidatedString",
+          "value": "NoData"
+        },
+        {
+          "key": "expertiseResult.climaticRegion",
+          "value": "$climaticRegion"
+        },
+        {
+          "key": "expertiseResult.engGeoCond",
+          "value": "$engGeoCond"
+        },
+        {
+          "key": "expertiseResult.windDistr",
+          "value": "$windDistr"
+        },
+        {
+          "key": "expertiseResult.snowDistr",
+          "value": "$snowDistr"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            true
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "snowDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "windDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "engGeoCond",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "climaticRegion",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fb4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "projReturn_needSigExp",
+      "caption": "Вернуть к проекту",
+      "startState": "needSigExp",
+      "finishState": "proj",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eВернуть заключение к статусу Проект\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "proj"
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "name": "projReturn_needSigHead",
+      "caption": "Вернуть к проекту",
+      "startState": "needSigHead",
+      "finishState": "proj",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eВернуть заключение к статусу Проект\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "proj"
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "name": "projReturn_sigHead",
+      "caption": "Вернуть к проекту",
+      "startState": "sigHead",
+      "finishState": "proj",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eВернуть заключение к статусу Проект\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "proj"
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "name": "projReturn_sendEGRZ",
+      "caption": "Вернуть к проекту",
+      "startState": "sendEGRZ",
+      "finishState": "proj",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eВернуть заключение к статусу Проект\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "proj"
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "name": "techEr",
+      "caption": "Техническая ошибка",
+      "startState": "sendEGRZapp",
+      "finishState": "techEr",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать новое заключение\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "techEr"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "34"
+        },
+        {
+          "key": "petitionExpert.contract.state",
+          "value": "work"
+        },
+        {
+          "key": "petitionExpert.inspection.state",
+          "value": "concl"
+        },
+        {
+          "key": "technicalErrorResult.state",
+          "value": "proj"
+        },
+        {
+          "key": "technicalErrorResult.bak_Result",
+          "value": "$guid"
+        },
+        {
+          "key": "technicalErrorResult.petitionExpert",
+          "value": "$petitionExpert"
+        },
+        {
+          "key": "technicalErrorResult.expObject",
+          "value": "$expObject"
+        },
+        {
+          "key": "technicalErrorResult.typeEksResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "technicalErrorResult.typeEks",
+          "value": "$typeEks"
+        },
+        {
+          "key": "technicalErrorResult.climaticRegion",
+          "value": "$climaticRegion"
+        },
+        {
+          "key": "technicalErrorResult.engGeoCond",
+          "value": "$engGeoCond"
+        },
+        {
+          "key": "technicalErrorResult.windDistr",
+          "value": "$windDistr"
+        },
+        {
+          "key": "technicalErrorResult.snowDistr",
+          "value": "$snowDistr"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "fin"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "technicalError",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sendtechEr",
+      "caption": "Техническая ошибка",
+      "startState": "send",
+      "finishState": "techEr",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать новое заключение\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "techEr"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "34"
+        },
+        {
+          "key": "petitionExpert.contract.state",
+          "value": "work"
+        },
+        {
+          "key": "petitionExpert.inspection.state",
+          "value": "concl"
+        },
+        {
+          "key": "technicalErrorResult.state",
+          "value": "proj"
+        },
+        {
+          "key": "technicalErrorResult.bak_Result",
+          "value": "$guid"
+        },
+        {
+          "key": "technicalErrorResult.petitionExpert",
+          "value": "$petitionExpert"
+        },
+        {
+          "key": "technicalErrorResult.expObject",
+          "value": "$expObject"
+        },
+        {
+          "key": "technicalErrorResult.typeEksResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "technicalErrorResult.typeEks",
+          "value": "$typeEks"
+        },
+        {
+          "key": "technicalErrorResult.climaticRegion",
+          "value": "$climaticRegion"
+        },
+        {
+          "key": "technicalErrorResult.engGeoCond",
+          "value": "$engGeoCond"
+        },
+        {
+          "key": "technicalErrorResult.windDistr",
+          "value": "$windDistr"
+        },
+        {
+          "key": "technicalErrorResult.snowDistr",
+          "value": "$snowDistr"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "fin"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "technicalError",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_cancel",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionExpert.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionExpert.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert.petitionEstimated",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fc4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_Perf_cancel",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionExpert.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionExpert.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert.petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fc4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_noData_cancel",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionExpert.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionExpert.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            true
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fc4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "send_egrz",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionExpert.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionExpert.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "documentationType",
+          "operation": 0,
+          "value": [
+            "0fdef354-2457-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_est",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionEstimated.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionEstimated.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.isValidatedString",
+          "value": "NotPerformed"
+        },
+        {
+          "key": "expertiseResult.climaticRegion",
+          "value": "$climaticRegion"
+        },
+        {
+          "key": "expertiseResult.engGeoCond",
+          "value": "$engGeoCond"
+        },
+        {
+          "key": "expertiseResult.windDistr",
+          "value": "$windDistr"
+        },
+        {
+          "key": "expertiseResult.snowDistr",
+          "value": "$snowDistr"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "snowDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "windDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "engGeoCond",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "climaticRegion",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fb4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_Perf_est",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionEstimated.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionEstimated.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.validation",
+          "value": "$petitionEstimated.inspectionEstimate"
+        },
+        {
+          "key": "expertiseResult.isValidatedString",
+          "value": "Performed"
+        },
+        {
+          "key": "expertiseResult.climaticRegion",
+          "value": "$climaticRegion"
+        },
+        {
+          "key": "expertiseResult.engGeoCond",
+          "value": "$engGeoCond"
+        },
+        {
+          "key": "expertiseResult.windDistr",
+          "value": "$windDistr"
+        },
+        {
+          "key": "expertiseResult.snowDistr",
+          "value": "$snowDistr"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.409954c0-3f57-e711-80cb-00155d01c726",
+          "value": "$petitionEstimated.inspectionEstimate.409954c0-3f57-e711-80cb-00155d01c726"
+        },
+        {
+          "key": "expertiseResult.71e292cd-3f57-e711-80cb-00155d01c726",
+          "value": "$petitionEstimated.inspectionEstimate.71e292cd-3f57-e711-80cb-00155d01c726"
+        },
+        {
+          "key": "expertiseResult.0fc2a78b-aa7d-e711-80dc-00155d01c726",
+          "value": "$petitionEstimated.inspectionEstimate.0fc2a78b-aa7d-e711-80dc-00155d01c726"
+        },
+        {
+          "key": "expertiseResult.55288c67-ab7d-e711-80dc-00155d01c726",
+          "value": "$petitionEstimated.inspectionEstimate.55288c67-ab7d-e711-80dc-00155d01c726"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "snowDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "windDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "engGeoCond",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "climaticRegion",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fb4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_noData_est",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionEstimated.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionEstimated.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.isValidatedString",
+          "value": "NoData"
+        },
+        {
+          "key": "expertiseResult.climaticRegion",
+          "value": "$climaticRegion"
+        },
+        {
+          "key": "expertiseResult.engGeoCond",
+          "value": "$engGeoCond"
+        },
+        {
+          "key": "expertiseResult.windDistr",
+          "value": "$windDistr"
+        },
+        {
+          "key": "expertiseResult.snowDistr",
+          "value": "$snowDistr"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            true
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "snowDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "windDistr",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "engGeoCond",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "climaticRegion",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fb4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "techEr_est",
+      "caption": "Техническая ошибка",
+      "startState": "sendEGRZapp",
+      "finishState": "techEr",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать новое заключение\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "techEr"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "34"
+        },
+        {
+          "key": "petitionEstimated.contractEstimated.state",
+          "value": "work"
+        },
+        {
+          "key": "petitionEstimated.inspectionEstimate.state",
+          "value": "concl"
+        },
+        {
+          "key": "technicalErrorResult.state",
+          "value": "proj"
+        },
+        {
+          "key": "technicalErrorResult.bak_Result",
+          "value": "$guid"
+        },
+        {
+          "key": "technicalErrorResult.petitionEstimated",
+          "value": "$petitionEstimated"
+        },
+        {
+          "key": "technicalErrorResult.expObject",
+          "value": "$expObject"
+        },
+        {
+          "key": "technicalErrorResult.typeEksResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "technicalErrorResult.typeEks",
+          "value": "$typeEks"
+        },
+        {
+          "key": "technicalErrorResult.climaticRegion",
+          "value": "$climaticRegion"
+        },
+        {
+          "key": "technicalErrorResult.engGeoCond",
+          "value": "$engGeoCond"
+        },
+        {
+          "key": "technicalErrorResult.windDistr",
+          "value": "$windDistr"
+        },
+        {
+          "key": "technicalErrorResult.snowDistr",
+          "value": "$snowDistr"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "fin"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "technicalError",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sendtechEr_est",
+      "caption": "Техническая ошибка",
+      "startState": "send",
+      "finishState": "techEr",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать новое заключение\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "techEr"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "34"
+        },
+        {
+          "key": "petitionEstimated.contractEstimated.state",
+          "value": "work"
+        },
+        {
+          "key": "petitionEstimated.inspectionEstimate.state",
+          "value": "concl"
+        },
+        {
+          "key": "technicalErrorResult.state",
+          "value": "proj"
+        },
+        {
+          "key": "technicalErrorResult.bak_Result",
+          "value": "$guid"
+        },
+        {
+          "key": "technicalErrorResult.petitionEstimated",
+          "value": "$petitionEstimated"
+        },
+        {
+          "key": "technicalErrorResult.expObject",
+          "value": "$expObject"
+        },
+        {
+          "key": "technicalErrorResult.typeEksResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "technicalErrorResult.typeEks",
+          "value": "$typeEks"
+        },
+        {
+          "key": "technicalErrorResult.climaticRegion",
+          "value": "$climaticRegion"
+        },
+        {
+          "key": "technicalErrorResult.engGeoCond",
+          "value": "$engGeoCond"
+        },
+        {
+          "key": "technicalErrorResult.windDistr",
+          "value": "$windDistr"
+        },
+        {
+          "key": "technicalErrorResult.snowDistr",
+          "value": "$snowDistr"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "fin"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "technicalError",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_cancel_est",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionEstimated.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionEstimated.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fc4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_Perf_cancel_est",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionEstimated.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionEstimated.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fc4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "send_egrz_noData_cancel_est",
+      "caption": "Зарегистрировать в ЕГРЗ",
+      "startState": "sigHead",
+      "finishState": "sendEGRZ",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗарегистрировать в ЕГРЗ\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "petitionEstimated.status",
+          "value": "42"
+        },
+        {
+          "key": "expertiseResult.result",
+          "value": "$guid"
+        },
+        {
+          "key": "expertiseResult.expertiseResult",
+          "value": "$typeEksResult"
+        },
+        {
+          "key": "expertiseResult.documentationType",
+          "value": "$petitionEstimated.documentationType"
+        },
+        {
+          "key": "expertiseResult.documentationName",
+          "value": "$expObject.name"
+        },
+        {
+          "key": "expertiseResult.objectType",
+          "value": "$expObject.objectType"
+        },
+        {
+          "key": "expertiseResult.expertiseConclusionsDate",
+          "value": "$date"
+        },
+        {
+          "key": "expertiseResult.subObjectNotAvailable",
+          "value": "$subObjectNotAvailable"
+        },
+        {
+          "key": "expObject.customFunction",
+          "value": "$customFunction"
+        },
+        {
+          "key": "expObject.customFunctionNotAvailable",
+          "value": "$customFunctionNotAvailable"
+        },
+        {
+          "key": "expertiseResult.typeEks",
+          "value": "$typeEks"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sigHead"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "isValidatedString_NoData",
+          "operation": 0,
+          "value": [
+            true
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "typeEksResult",
+          "operation": 0,
+          "value": [
+            "fc4f6fea-2357-e711-80cb-00155d01c726"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "34fdec7c-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "documentationType",
+              "operation": 0,
+              "value": [
+                "958a7f49-2457-e711-80cb-00155d01c726"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

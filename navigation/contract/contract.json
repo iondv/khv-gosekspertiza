@@ -1,0 +1,16 @@
+{
+  "code": "contract",
+  "orderNumber": 9,
+  "type": 0,
+  "title": "",
+  "caption": "ПД",
+  "classname": null,
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": [],
+  "metaVersion": "2.0.7"
+}

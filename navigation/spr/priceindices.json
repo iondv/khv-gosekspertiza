@@ -1,0 +1,15 @@
+{
+  "code": "priceindices",
+  "orderNumber": 30,
+  "type": 1,
+  "title": "",
+  "caption": "Индексы цен",
+  "classname": "priceindices",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

@@ -1,0 +1,15 @@
+{
+  "code": "notificationEgrz.ret",
+  "orderNumber": 6,
+  "type": 1,
+  "title": "",
+  "caption": "Отправлено на доработку",
+  "classname": "egrzNotification",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

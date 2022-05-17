@@ -1,0 +1,129 @@
+{
+  "isStruct": false,
+  "key": [
+    "guid"
+  ],
+  "semantic": "research",
+  "name": "research",
+  "version": "31",
+  "caption": "Вид изысканий",
+  "ancestor": null,
+  "container": null,
+  "creationTracker": "",
+  "changeTracker": "",
+  "history": 0,
+  "journaling": false,
+  "compositeIndexes": null,
+  "properties": [
+    {
+      "orderNumber": 15,
+      "name": "guid",
+      "caption": "Глобальный идентификатор",
+      "type": 12,
+      "size": 24,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": false,
+      "readonly": true,
+      "indexed": false,
+      "unique": true,
+      "autoassigned": true,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 40,
+      "name": "research",
+      "caption": "Вид изысканий",
+      "type": 0,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": {
+        "type": "SIMPLE",
+        "list": [
+          {
+            "key": "injGeod",
+            "value": "Инженерно-геодезические изыскания"
+          },
+          {
+            "key": "injGeol",
+            "value": "Инженерно-геологические изыскания"
+          },
+          {
+            "key": "injGidr",
+            "value": "Инженерно-гидрометеорологические изыскания"
+          },
+          {
+            "key": "injEko",
+            "value": "Инженерно-экологические изыскания"
+          },
+          {
+            "key": "injGeot",
+            "value": "Инженерно-геотехнические изыскания"
+          },
+          {
+            "key": "geoteh",
+            "value": "Геотехнические исследования"
+          },
+          {
+            "key": "grunt",
+            "value": "Обследования состояния грунтов оснований зданий и сооружений, их строительных конструкций"
+          },
+          {
+            "key": "podzem",
+            "value": "Поиск и разведка подземных вод для целей водоснабжения"
+          },
+          {
+            "key": "localMon",
+            "value": "Локальный мониторинг компонентов окружающей среды"
+          },
+          {
+            "key": "razvGrunt",
+            "value": "Разведка грунтовых строительных материалов"
+          },
+          {
+            "key": "localObs",
+            "value": "Локальные обследования загрязнения грунтов и грунтовых вод"
+          }
+        ],
+        "matrix": [],
+        "parameters": [],
+        "hq": ""
+      },
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

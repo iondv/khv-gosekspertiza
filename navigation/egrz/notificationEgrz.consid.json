@@ -1,0 +1,15 @@
+{
+  "code": "notificationEgrz.consid",
+  "orderNumber": 3,
+  "type": 1,
+  "title": "",
+  "caption": "На рассмотрении",
+  "classname": "egrzNotification",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

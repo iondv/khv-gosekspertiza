@@ -1,0 +1,15 @@
+{
+  "code": "app.pos",
+  "orderNumber": 4,
+  "type": 1,
+  "title": "",
+  "caption": "Положительное решение",
+  "classname": "expertiseResult",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

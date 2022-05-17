@@ -1,0 +1,61 @@
+
+.cloud-tree {
+
+}
+.cloud-item {
+  position: relative;
+}
+.cloud-item-head {
+  position: relative;
+  padding: 8px 0 8px 30px;
+}
+.cloud-item-head > .cloud-item-icon {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.cloud-item-head > .cloud-item-icon {
+  color: #999;
+}
+.cloud-item-head > .cloud-item-icon:before {
+  content: "\e032"
+}
+.signed .cloud-item-head > .cloud-item-icon {
+  font-size: 14px;
+  left: 3px;
+  top: 10px;
+}
+.signed .cloud-item-head > .cloud-item-icon:before {
+  content: "\e033"
+}
+.cloud-folder > .cloud-item-head > .cloud-item-icon {
+  color: #666;
+}
+.cloud-folder > .cloud-item-head > .cloud-item-icon:before {
+  content: "\e118"
+}
+.level-0.cloud-folder > .cloud-item-head > .cloud-item-icon {
+  color: #444;
+  font-size: 20px;
+}
+.level-0.cloud-folder > .cloud-item-head > .cloud-item-icon:before {
+  content: "\e139"
+}
+.empty-folder.cloud-folder > .cloud-item-head > .cloud-item-icon {
+  color:#ccc;
+  cursor: default;
+}
+
+
+.cloud-item-body {
+  display: none;
+  padding: 0 0 0 28px;
+}
+
+.active.cloud-folder > .cloud-item-body {
+  display: block;
+}
+

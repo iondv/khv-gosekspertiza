@@ -1,0 +1,231 @@
+{
+  "name": "expertiseResult",
+  "caption": "Обращение ЕГРЗ",
+  "wfClass": "expertiseResult",
+  "startState": "new",
+  "states": [
+    {
+      "name": "new",
+      "caption": "Новое",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "register",
+      "caption": "Создано в ЕГРЗ",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "edit",
+      "caption": "Формирование заключения",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "save",
+      "caption": "Данные переданы в ЕГРЗ",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "sign",
+      "caption": "Подписано",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "sendToProces",
+      "caption": "Отправлено на обработку",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [
+    {
+      "name": "register",
+      "caption": "Создать в ЕГРЗ",
+      "startState": "new",
+      "finishState": "register",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [],
+      "conditions": [
+        {
+          "property": "register",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "edit",
+      "caption": "Формирование обращения",
+      "startState": "register",
+      "finishState": "edit",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [],
+      "conditions": [
+        {
+          "property": "register",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "saveEGRZ",
+      "caption": "Передать сведения в ЕГРЗ",
+      "startState": "edit",
+      "finishState": "save",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [],
+      "conditions": [
+        {
+          "property": "register",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "checkEGRZ",
+      "caption": "Доработка",
+      "startState": "save",
+      "finishState": "edit",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [],
+      "conditions": [
+        {
+          "property": "register",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "validate",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "signEGRZ",
+      "caption": "Подписать",
+      "startState": "save",
+      "finishState": "sign",
+      "signBefore": true,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "sigCheck",
+          "value": "true"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "register",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "validate",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "printForm",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sendToProces",
+      "caption": "Отправить на обработку",
+      "startState": "sign",
+      "finishState": "sendToProces",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "sendToProces",
+          "value": "true"
+        },
+        {
+          "key": "state",
+          "value": "SentToProcess"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "register",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "validate",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "sigCheck",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

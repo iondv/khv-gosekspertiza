@@ -1,0 +1,264 @@
+{
+  "name": "gosEkspRaccount",
+  "caption": "Счет",
+  "wfClass": "gosEkspRaccount",
+  "startState": "before_pay",
+  "states": [
+    {
+      "name": "sendApplicant",
+      "caption": "Направлен заявителю",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "paidPart",
+      "caption": "Оплачен частично",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "paidFull",
+      "caption": "Оплачен",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "before_pay",
+      "caption": "Формирование счета",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "close",
+      "caption": "Не оплачен",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [
+    {
+      "name": "sendExpense_sndApp",
+      "caption": "Направить счет",
+      "startState": "before_pay",
+      "finishState": "sendApplicant",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗаказчику направлен счет?\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "sendApplicant"
+        },
+        {
+          "key": "data",
+          "value": "now()"
+        },
+        {
+          "key": "cont.state",
+          "value": "pay"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "makeAccount"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "sum",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "file",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "paidPart",
+      "caption": "Оплачен частично",
+      "startState": "sendApplicant",
+      "finishState": "paidPart",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eСчет оплачен частично\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "paidPart"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sendApplicant"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "payment",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "paidFull",
+      "caption": "Оплачен",
+      "startState": "sendApplicant",
+      "finishState": "paidFull",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eСчет оплачен полностью\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "paidFull"
+        },
+        {
+          "key": "pay",
+          "value": "true"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sendApplicant"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "paymentOk",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "payment",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "paidFull_Part",
+      "caption": "Оплачен",
+      "startState": "paidPart",
+      "finishState": "paidFull",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eСчет оплачен полностью\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "paidFull"
+        },
+        {
+          "key": "pay",
+          "value": "true"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "paidPart"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "paymentOk",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "payment",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "close",
+      "caption": "Не оплачен",
+      "startState": "sendApplicant",
+      "finishState": "close",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eСчет не оплачен\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "close"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sendApplicant"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "cont.state",
+          "operation": 0,
+          "value": [
+            "dissolve"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Авторизация прошла успешно</title>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <base id="baseUrl" href="<%= baseUrl %>">
+  <link href="<%= module %>/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= module %>/css/base<%= staticsSuffix %>.css" rel="stylesheet" type="text/css">
+  <link href="<%= module %>/css/common<%=staticsSuffix%>.css?v=<%-(new Date).getTime()%>" rel="stylesheet">
+  <script src="<%= module %>/node_modules/jquery/dist/jquery.min.js"></script>
+  <style type="text/css">
+    #success-message {
+      text-align: center;
+    }
+
+    #close-auth {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body id="imodal" class="imodal">
+<div class="imodal-box">
+  <div class="imodal-box-header">
+    <h3 class="imodal-box-title">
+    </h3>
+  </div>
+  <div class="imodal-body">
+    <div id="message-callout" class="message-callout alert">
+      <h4 class="message-callout-title"></h4>
+      <p class="message-callout-content"></p>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div id="success-message" class="col-md-12">
+            <h2>
+              Авторизация прошла успешно! вы можете закрыть окно.
+            </h2>
+          </div>
+          <div class="col-md-12">
+            <button id="close-auth" class="btn btn-default">Закрыть</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function triggerSuccessEvent() {
+    window.opener && window.opener.$('#egrz_auth').trigger('esia-login-success');
+  }
+
+  $(function(){
+    $('#close-auth').on('click', function() {
+      window.close();
+    });
+
+    $( window ).unload(function() {
+      triggerSuccessEvent();
+    });
+  })
+</script>
+</body>
+</html

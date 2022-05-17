@@ -1,0 +1,169 @@
+{
+  "isStruct": false,
+  "key": [
+    "type"
+  ],
+  "semantic": "type| |name",
+  "name": "docType",
+  "version": "31",
+  "caption": "Код типа документа",
+  "ancestor": null,
+  "container": null,
+  "creationTracker": "",
+  "changeTracker": "",
+  "history": 0,
+  "journaling": false,
+  "compositeIndexes": null,
+  "properties": [
+    {
+      "orderNumber": 20,
+      "name": "codeGroup",
+      "caption": "Код группы",
+      "type": 0,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": {
+        "type": "SIMPLE",
+        "list": [
+          {
+            "key": "01",
+            "value": "01 Документы - основания проведения экспертизы"
+          },
+          {
+            "key": "02",
+            "value": "02 Заключения экспертизы"
+          },
+          {
+            "key": "03",
+            "value": "03 Документы размещения объекта строительства"
+          },
+          {
+            "key": "04",
+            "value": "04 Документы подключения объекта строительства к инженерным сетям"
+          },
+          {
+            "key": "05",
+            "value": "05 Задания и программы"
+          },
+          {
+            "key": "06",
+            "value": "06 Результаты инженерных изысканий"
+          },
+          {
+            "key": "07",
+            "value": "07 Проектная документация"
+          },
+          {
+            "key": "08",
+            "value": "08 Проектная документация. Линейный объект"
+          },
+          {
+            "key": "09",
+            "value": "09 Переписка по вопросам проведения экспертизы"
+          },
+          {
+            "key": "10",
+            "value": "10 Документы о членстве в саморегулируемой организации"
+          },
+          {
+            "key": "11",
+            "value": "11 Документы для проведения проверки достоверности определения сметной стоимости"
+          },
+          {
+            "key": "12",
+            "value": "12 Документы в отношении экономически эффективной проектной документации повторного использования"
+          },
+          {
+            "key": "13",
+            "value": "13 Документы в отношении работ по сносу объектов капитального строительства"
+          },
+          {
+            "key": "99",
+            "value": "99 Группа дополнительных документов"
+          }
+        ],
+        "matrix": [],
+        "parameters": [],
+        "hq": ""
+      },
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 20,
+      "name": "type",
+      "caption": "Код",
+      "type": 0,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    },
+    {
+      "orderNumber": 20,
+      "name": "name",
+      "caption": "Наименование",
+      "type": 0,
+      "size": null,
+      "decimals": 0,
+      "allowedFileTypes": null,
+      "maxFileCount": 0,
+      "nullable": true,
+      "readonly": false,
+      "indexed": true,
+      "unique": false,
+      "autoassigned": false,
+      "hint": null,
+      "defaultValue": null,
+      "refClass": "",
+      "itemsClass": "",
+      "backRef": "",
+      "backColl": "",
+      "binding": "",
+      "semantic": null,
+      "selConditions": [],
+      "selSorting": [],
+      "selectionProvider": null,
+      "indexSearch": false,
+      "eagerLoading": false,
+      "formula": null
+    }
+  ]
+}

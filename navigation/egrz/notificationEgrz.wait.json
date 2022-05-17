@@ -1,0 +1,15 @@
+{
+  "code": "notificationEgrz.wait",
+  "orderNumber": 2,
+  "type": 1,
+  "title": "",
+  "caption": "Ожидает обработки",
+  "classname": "egrzNotification",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

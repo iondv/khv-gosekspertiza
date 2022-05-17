@@ -1,0 +1,10 @@
+{
+  "id": "EDIT",
+  "caption": "Править",
+  "visibilityCondition": null,
+  "enableCondition": null,
+  "needSelectedItem": true,
+  "signBefore": false,
+  "signAfter": false,
+  "isBulk": false
+}

@@ -1,0 +1,15 @@
+{
+  "code": "result",
+  "orderNumber": 100,
+  "type": 0,
+  "title": "",
+  "caption": "Заключение",
+  "classname": null,
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

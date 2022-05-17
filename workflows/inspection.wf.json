@@ -1,0 +1,486 @@
+{
+  "name": "inspection",
+  "caption": "Экспертиза",
+  "wfClass": "inspection",
+  "startState": "consid",
+  "states": [
+    {
+      "name": "consid",
+      "caption": "Рассмотрение ПД и (или) РИИ",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "rem",
+      "caption": "Выдача и отработка замечаний",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "concl",
+      "caption": "Подготовка экспертного заключения",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "prep",
+      "caption": "Заключение подготовлено",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "dissolve",
+      "caption": "Остановлена",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [
+    {
+      "name": "resultTesting",
+      "caption": "Выдача и отработка замечаний",
+      "startState": "consid",
+      "finishState": "rem",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПерейти к выдаче и отработке замечаний\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "rem"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "consid"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 2,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "charge",
+              "operation": 10,
+              "value": null,
+              "nestedConditions": [
+                {
+                  "property": "state",
+                  "operation": 1,
+                  "value": [
+                    "close"
+                  ],
+                  "nestedConditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "prepExpert_consid",
+      "caption": "Подготовка экспертного заключения",
+      "startState": "consid",
+      "finishState": "concl",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПерейти к подготовке экспертного заключения\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "concl"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "34"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "consid"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 2,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "charge",
+              "operation": 10,
+              "value": null,
+              "nestedConditions": [
+                {
+                  "property": "state",
+                  "operation": 1,
+                  "value": [
+                    "close"
+                  ],
+                  "nestedConditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "contract.result",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "prepExpert_rem",
+      "caption": "Подготовка экспертного заключения",
+      "startState": "rem",
+      "finishState": "concl",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПерейти к подготовке экспертного заключения\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "concl"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "34"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "rem"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 2,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "charge",
+              "operation": 10,
+              "value": null,
+              "nestedConditions": [
+                {
+                  "property": "state",
+                  "operation": 1,
+                  "value": [
+                    "close"
+                  ],
+                  "nestedConditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "contract.result",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "prepExpert_considNeRes",
+      "caption": "Подготовка экспертного заключения",
+      "startState": "consid",
+      "finishState": "concl",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПерейти к подготовке экспертного заключения\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "concl"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "34"
+        },
+        {
+          "key": "result.petitionExpert",
+          "value": "$petitionExpert"
+        },
+        {
+          "key": "result.expObject",
+          "value": "$expObject"
+        },
+        {
+          "key": "result.documentationType",
+          "value": "$petitionExpert.documentationType"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "consid"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 2,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "charge",
+              "operation": 10,
+              "value": null,
+              "nestedConditions": [
+                {
+                  "property": "state",
+                  "operation": 1,
+                  "value": [
+                    "close"
+                  ],
+                  "nestedConditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "contract.result",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "prepExpert_remNeRes",
+      "caption": "Подготовка экспертного заключения",
+      "startState": "rem",
+      "finishState": "concl",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПерейти к подготовке экспертного заключения\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "concl"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "34"
+        },
+        {
+          "key": "result.petitionExpert",
+          "value": "$petitionExpert"
+        },
+        {
+          "key": "result.expObject",
+          "value": "$expObject"
+        },
+        {
+          "key": "result.documentationType",
+          "value": "$petitionExpert.documentationType"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "rem"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 2,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "charge",
+              "operation": 10,
+              "value": null,
+              "nestedConditions": [
+                {
+                  "property": "state",
+                  "operation": 1,
+                  "value": [
+                    "close"
+                  ],
+                  "nestedConditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "contract.result",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "conclPrep",
+      "caption": "Заключение подготовлено",
+      "startState": "concl",
+      "finishState": "prep",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗаключение по объекту подготовлено\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "prep"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "40"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "concl"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "result.state",
+              "operation": 0,
+              "value": [
+                "sigHead"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "result.state",
+              "operation": 0,
+              "value": [
+                "fin"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dissolve_consid",
+      "caption": "Остановить",
+      "startState": "consid",
+      "finishState": "dissolve",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eОстановить работу по объекту\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "dissolve"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "contract.state",
+          "operation": 0,
+          "value": [
+            "dissolve"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "dissolve_rem",
+      "caption": "Остановить",
+      "startState": "rem",
+      "finishState": "dissolve",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eОстановить работу по объекту\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "dissolve"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "contract.state",
+          "operation": 0,
+          "value": [
+            "dissolve"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    }
+  ],
+  "metaVersion": "2.0.7"
+}

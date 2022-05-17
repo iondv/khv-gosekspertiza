@@ -1,0 +1,15 @@
+{
+  "code": "result.riiTypes",
+  "orderNumber": 30,
+  "type": 1,
+  "title": "",
+  "caption": "Виды изысканий",
+  "classname": "riiTypes",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

@@ -1,0 +1,2417 @@
+name: performIndicators
+caption: Отчеты
+sources:
+  - name: performIndicatorsSource
+    caption: Показатели работы
+    load:
+      - className: result
+        filter:
+          eq:
+            - $state
+            - fin
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AA4
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionExpert
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AB5
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - eq:
+                - $typeEks
+                - 'true'
+            - nempty:
+                - $petitionExpert
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AC6
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - eq:
+                - $typeEks
+                - 'false'
+            - nempty:
+                - $petitionExpert
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AD7
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AE8
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - eq:
+                - $typeEks
+                - 'true'
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AF9
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - eq:
+                - $typeEks
+                - 'false'
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AG10
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - ПС
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AH11
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - eq:
+                - $typeEks
+                - 'true'
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - ПС
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AI12
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - eq:
+                - $typeEks
+                - 'false'
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - ПС
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AJ13
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - ЭН1
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AK14
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - eq:
+                - $typeEks
+                - 'true'
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - ЭН1
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AL15
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - eq:
+                - $typeEks
+                - 'false'
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - ЭН1
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AM16
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - 'ЭН$'
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AM17
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - eq:
+                - $typeEks
+                - 'true'
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - 'ЭН$'
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AN15
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - eq:
+                - $typeEks
+                - 'false'
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - 'ЭН$'
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AN16
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - КСС
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AN17
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - eq:
+                - $typeEks
+                - 'true'
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - КСС
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AO18
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - nempty:
+                - $petitionEstimated
+            - eq:
+                - $typeEks
+                - 'false'
+            - like:
+                - $petitionEstimated.contractEstimated.num
+                - КСС
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AP19
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: inspectionEstimate
+        filter:
+          and:
+            - or:
+                - eq:
+                    - $status
+                    - concl
+                - eq:
+                    - $status
+                    - prep
+            - like:
+                - $contract.num
+                - КСС
+        results:
+          - field: date
+            expr: $planDate
+          - field: category
+            expr: AQ20
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: inspectionEstimate
+        filter:
+          and:
+            - lt:
+                - $estimatedCost
+                - $estimatedCostAfter
+        results:
+          - field: date
+            expr: $planDate
+          - field: category
+            expr: AR21
+          - field: amount
+            expr:
+              sum:
+                - sub:
+                    - $estimatedCostAfter
+                    - $estimatedCost
+      - className: inspectionEstimate
+        filter:
+          and:
+            - gt:
+                - $estimatedCost
+                - $estimatedCostAfter
+        results:
+          - field: date
+            expr: $planDate
+          - field: category
+            expr: AS22
+          - field: amount
+            expr:
+              sum:
+                - sub:
+                    - $estimatedCost
+                    - $estimatedCostAfter
+      - className: resolution
+        filter:
+          and:
+            - or:
+                - eq:
+                    - $typeRes
+                    - projDoc
+                - eq:
+                    - $typeRes
+                    - duplProjDoc
+            - or:
+                - eq:
+                    - $stateRemPet
+                    - send
+                - eq:
+                    - $stateRemPet
+                    - resp
+                - eq:
+                    - $stateRemPet
+                    - end
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AT23
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: resolution
+        filter:
+          and:
+            - nempty:
+                - $inspection
+            - or:
+                - eq:
+                    - $typeRes
+                    - projDoc
+                - eq:
+                    - $typeRes
+                    - duplProjDoc
+            - or:
+                - eq:
+                    - $stateRemPet
+                    - send
+                - eq:
+                    - $stateRemPet
+                    - resp
+                - eq:
+                    - $stateRemPet
+                    - end
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AU24
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: resolution
+        filter:
+          and:
+            - nempty:
+                - $inspectionEstimate
+            - or:
+                - eq:
+                    - $typeRes
+                    - projDoc
+                - eq:
+                    - $typeRes
+                    - duplProjDoc
+            - or:
+                - eq:
+                    - $stateRemPet
+                    - send
+                - eq:
+                    - $stateRemPet
+                    - resp
+                - eq:
+                    - $stateRemPet
+                    - end
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AV25
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: gosEkspContract
+        filter:
+          and:
+            - ne:
+                - $state
+                - proj
+            - nempty:
+                - $petitionExpert
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AW26
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: gosEkspContract
+        filter:
+          and:
+            - nempty:
+                - $petitionExpert
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AX27
+          - field: amount
+            expr:
+              sum:
+                - $sumEksp
+      - className: gosEkspContract
+        filter:
+          and:
+            - ne:
+                - $state
+                - proj
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AY28
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: gosEkspContract
+        filter:
+          and:
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: AZ29
+          - field: amount
+            expr:
+              sum:
+                - $sumEksp
+      - className: gosEkspContract
+        filter:
+          and:
+            - ne:
+                - $state
+                - proj
+            - like:
+                - $num
+                - ПС
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: BA30
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: gosEkspContract
+        filter:
+          and:
+            - like:
+                - $num
+                - ПС
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: BB31
+          - field: amount
+            expr:
+              sum:
+                - $sumEksp
+      - className: gosEkspContract
+        filter:
+          and:
+            - ne:
+                - $state
+                - proj
+            - like:
+                - $num
+                - ЭН1
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: BC32
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: gosEkspContract
+        filter:
+          and:
+            - like:
+                - $num
+                - ЭН1
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: BD33
+          - field: amount
+            expr:
+              sum:
+                - $sumEksp
+      - className: gosEkspContract
+        filter:
+          and:
+            - ne:
+                - $state
+                - proj
+            - like:
+                - $num
+                - КСС
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: BE34
+          - field: amount
+            expr:
+              sum:
+                - 1
+      - className: gosEkspContract
+        filter:
+          and:
+            - like:
+                - $num
+                - КСС
+            - nempty:
+                - $petitionEstimated
+        results:
+          - field: date
+            expr: $date
+          - field: category
+            expr: BF35
+          - field: amount
+            expr:
+              sum:
+                - $sumEksp
+    index:
+      - id
+  - name: dataOnStateExaminationSource
+    caption: Сведения о проведении государственной экспертизы
+    load:
+      - className: petitionExpert
+        filter:
+          ne:
+            - $status
+            - 23
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--1all'
+          - field: regNum
+            expr: $regNum
+          - field: date
+            expr: $regDate
+          - field: indicator
+            expr: >-
+              Количество представленных заявлений о проведении государственной
+              экспертизы - всего
+          - field: projDoc
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - projDocAft
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $target
+                                - ''
+                            - ifNull:
+                                - $targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $targetSmeta
+                                - ''
+                        - projDocSm
+                    - 1
+                    - if:
+                        - eq:
+                            - concat:
+                                - ifNull:
+                                    - $target
+                                    - ''
+                                - ifNull:
+                                    - $targetNotsmeta
+                                    - ''
+                                - ifNull:
+                                    - $targetSmeta
+                                    - ''
+                            - modern
+                        - 1
+                        - 0
+          - field: resultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - inj
+                - 1
+                - 0
+          - field: projDocAddResultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - projdocinj
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $target
+                                - ''
+                            - ifNull:
+                                - $targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $targetSmeta
+                                - ''
+                        - projDocAftinj
+                    - 1
+                    - 0
+          - field: orderList
+            expr: 1
+          - field: number
+            expr: 1
+      - className: petitionExpert
+        filter:
+          and:
+            - ne:
+                - $status
+                - 23
+            - eq:
+                - $primacy
+                - repeatedly
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--1replay'
+          - field: regNum
+            expr: $regNum
+          - field: date
+            expr: $regDate
+          - field: indicator
+            expr: >-
+              Количество представленных заявлений о проведении государственной
+              экспертизы - повторно
+          - field: projDoc
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - projDocAft
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $target
+                                - ''
+                            - ifNull:
+                                - $targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $targetSmeta
+                                - ''
+                        - projDocSm
+                    - 1
+                    - if:
+                        - eq:
+                            - concat:
+                                - ifNull:
+                                    - $target
+                                    - ''
+                                - ifNull:
+                                    - $targetNotsmeta
+                                    - ''
+                                - ifNull:
+                                    - $targetSmeta
+                                    - ''
+                            - modern
+                        - 1
+                        - 0
+          - field: resultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - inj
+                - 1
+                - 0
+          - field: projDocAddResultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - projdocinj
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $target
+                                - ''
+                            - ifNull:
+                                - $targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $targetSmeta
+                                - ''
+                        - projDocAftinj
+                    - 1
+                    - 0
+          - field: orderList
+            expr: 1
+          - field: number
+            expr: 1
+      - className: petitionExpert
+        filter:
+          in:
+            - $status
+            - - 25
+              - 27
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--2'
+          - field: regNum
+            expr: $regNum
+          - field: date
+            expr: $regDate
+          - field: indicator
+            expr: >-
+              Количество случаев возврата документов, представленных для
+              проведения государственной экспертизы, без рассмотрения
+          - field: projDoc
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - projDocAft
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $target
+                                - ''
+                            - ifNull:
+                                - $targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $targetSmeta
+                                - ''
+                        - projDocSm
+                    - 1
+                    - if:
+                        - eq:
+                            - concat:
+                                - ifNull:
+                                    - $target
+                                    - ''
+                                - ifNull:
+                                    - $targetNotsmeta
+                                    - ''
+                                - ifNull:
+                                    - $targetSmeta
+                                    - ''
+                            - modern
+                        - 1
+                        - 0
+          - field: resultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - inj
+                - 1
+                - 0
+          - field: projDocAddResultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - projdocinj
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $target
+                                - ''
+                            - ifNull:
+                                - $targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $targetSmeta
+                                - ''
+                        - projDocAftinj
+                    - 1
+                    - 0
+          - field: orderList
+            expr: 2
+          - field: number
+            expr: 1
+      - className: petitionExpert
+        filter:
+          eq:
+            - $status
+            - 26
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--3'
+          - field: regNum
+            expr: $regNum
+          - field: date
+            expr: $regDate
+          - field: indicator
+            expr: >-
+              Количество случаев отказа в принятии проектной докуметации и (или)
+              результатов инженерных изысканий, представленных на
+              государственную экспертизу
+          - field: projDoc
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - projDocAft
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $target
+                                - ''
+                            - ifNull:
+                                - $targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $targetSmeta
+                                - ''
+                        - projDocSm
+                    - 1
+                    - if:
+                        - eq:
+                            - concat:
+                                - ifNull:
+                                    - $target
+                                    - ''
+                                - ifNull:
+                                    - $targetNotsmeta
+                                    - ''
+                                - ifNull:
+                                    - $targetSmeta
+                                    - ''
+                            - modern
+                        - 1
+                        - 0
+          - field: resultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - inj
+                - 1
+                - 0
+          - field: projDocAddResultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $target
+                            - ''
+                        - ifNull:
+                            - $targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $targetSmeta
+                            - ''
+                    - projdocinj
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $target
+                                - ''
+                            - ifNull:
+                                - $targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $targetSmeta
+                                - ''
+                        - projDocAftinj
+                    - 1
+                    - 0
+          - field: orderList
+            expr: 3
+          - field: number
+            expr: 1
+      - className: gosEkspContract
+        filter:
+          and:
+            - not:
+                - in:
+                    - $state
+                    - - fin
+                      - cancel
+            - nempty:
+                - $petitionExpert
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--4'
+          - field: indicator
+            expr: Количество открытых дел государственной экспертизы
+          - field: date
+            expr: $date
+          - field: projDoc
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - projDocAft
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $petitionExpert.target
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetSmeta
+                                - ''
+                        - projDocSm
+                    - 1
+                    - if:
+                        - eq:
+                            - concat:
+                                - ifNull:
+                                    - $petitionExpert.target
+                                    - ''
+                                - ifNull:
+                                    - $petitionExpert.targetNotsmeta
+                                    - ''
+                                - ifNull:
+                                    - $petitionExpert.targetSmeta
+                                    - ''
+                            - modern
+                        - 1
+                        - 0
+          - field: resultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - inj
+                - 1
+                - 0
+          - field: projDocAddResultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - projdocinj
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $petitionExpert.target
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetSmeta
+                                - ''
+                        - projDocAftinj
+                    - 1
+                    - 0
+          - field: orderList
+            expr: 4
+          - field: number
+            expr: 1
+      - className: resolution
+        filter:
+          and:
+            - in:
+                - $typeRes
+                - - projDoc
+                  - duplProjDoc
+            - in:
+                - $stateRemPet
+                - - send
+                  - resp
+                  - end
+            - nempty:
+                - $inspection.petitionExpert
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--5'
+          - field: indicator
+            expr: >-
+              Количество случаев направления заявителю уведомлений о выявлении в
+              проектной документации и (или) результатах инженерных изысканий
+              недостатков, которые не позволяют сделать выводы о соответствии
+              или несоотвествии проектной документации требованиям технических
+              регламентов, в том числе санитарно-эпидемиологическим,
+              экологическим требованиям, требованиям государственной охраны
+              объектов культурного наследия, требованиям пожарной, промышленной,
+              ядерной, радиационной и иной безопасности, результатам инженерных
+              изысканий и (или) результатов инженерных изысканий требованиям
+              технических регламентов
+          - field: date
+            expr: $date
+          - field: projDoc
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $inspection.petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $inspection.petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $inspection.petitionExpert.targetSmeta
+                            - ''
+                    - projDocAft
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $inspection.petitionExpert.target
+                                - ''
+                            - ifNull:
+                                - $inspection.petitionExpert.targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $inspection.petitionExpert.targetSmeta
+                                - ''
+                        - projDocSm
+                    - 1
+                    - if:
+                        - eq:
+                            - concat:
+                                - ifNull:
+                                    - $inspection.petitionExpert.target
+                                    - ''
+                                - ifNull:
+                                    - $inspection.petitionExpert.targetNotsmeta
+                                    - ''
+                                - ifNull:
+                                    - $inspection.petitionExpert.targetSmeta
+                                    - ''
+                            - modern
+                        - 1
+                        - 0
+          - field: resultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $inspection.petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $inspection.petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $inspection.petitionExpert.targetSmeta
+                            - ''
+                    - inj
+                - 1
+                - 0
+          - field: projDocAddResultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $inspection.petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $inspection.petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $inspection.petitionExpert.targetSmeta
+                            - ''
+                    - projdocinj
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $inspection.petitionExpert.target
+                                - ''
+                            - ifNull:
+                                - $inspection.petitionExpert.targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $inspection.petitionExpert.targetSmeta
+                                - ''
+                        - projDocAftinj
+                    - 1
+                    - 0
+          - field: orderList
+            expr: 5
+          - field: number
+            expr: 1
+      - className: gosEkspContract
+        filter:
+          and:
+            - eq:
+                - $state
+                - cancel
+            - nempty:
+                - $petitionExpert
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--6'
+          - field: indicator
+            expr: >-
+              Количество случаев расторжения договора о проведении
+              государственной экспертизы в случае выявления в проектной
+              документации и (или) результатах инженерных изысканий недостаткой,
+              которые не позволяют сделать выводы о соотвествии или
+              несоотвествии проектной документации требованиям технических
+              регламентов, результатам инженерных изысканий и (или) результатов
+              инженерных изысканий требованиям технических регламентов
+          - field: date
+            expr: $date
+          - field: projDoc
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - projDocAft
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $petitionExpert.target
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetSmeta
+                                - ''
+                        - projDocSm
+                    - 1
+                    - if:
+                        - eq:
+                            - concat:
+                                - ifNull:
+                                    - $petitionExpert.target
+                                    - ''
+                                - ifNull:
+                                    - $petitionExpert.targetNotsmeta
+                                    - ''
+                                - ifNull:
+                                    - $petitionExpert.targetSmeta
+                                    - ''
+                            - modern
+                        - 1
+                        - 0
+          - field: resultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - inj
+                - 1
+                - 0
+          - field: projDocAddResultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - projdocinj
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $petitionExpert.target
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetSmeta
+                                - ''
+                        - projDocAftinj
+                    - 1
+                    - 0
+          - field: orderList
+            expr: 6
+          - field: number
+            expr: 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - eq:
+                - $typeEks
+                - true
+            - nempty:
+                - $petitionExpert
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--7'
+          - field: indicator
+            expr: Количество положительных заключений государственной экспертизы
+          - field: date
+            expr: $date
+          - field: projDoc
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - projDocAft
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $petitionExpert.target
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetSmeta
+                                - ''
+                        - projDocSm
+                    - 1
+                    - if:
+                        - eq:
+                            - concat:
+                                - ifNull:
+                                    - $petitionExpert.target
+                                    - ''
+                                - ifNull:
+                                    - $petitionExpert.targetNotsmeta
+                                    - ''
+                                - ifNull:
+                                    - $petitionExpert.targetSmeta
+                                    - ''
+                            - modern
+                        - 1
+                        - 0
+          - field: resultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - inj
+                - 1
+                - 0
+          - field: projDocAddResultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - projdocinj
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $petitionExpert.target
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetSmeta
+                                - ''
+                        - projDocAftinj
+                    - 1
+                    - 0
+          - field: orderList
+            expr: 7
+          - field: number
+            expr: 1
+      - className: result
+        filter:
+          and:
+            - eq:
+                - $state
+                - fin
+            - eq:
+                - $typeEks
+                - false
+            - nempty:
+                - $petitionExpert
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--8'
+          - field: indicator
+            expr: Количество отрицательных заключений государственной экспертизы
+          - field: date
+            expr: $date
+          - field: projDoc
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - projDocAft
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $petitionExpert.target
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetSmeta
+                                - ''
+                        - projDocSm
+                    - 1
+                    - if:
+                        - eq:
+                            - concat:
+                                - ifNull:
+                                    - $petitionExpert.target
+                                    - ''
+                                - ifNull:
+                                    - $petitionExpert.targetNotsmeta
+                                    - ''
+                                - ifNull:
+                                    - $petitionExpert.targetSmeta
+                                    - ''
+                            - modern
+                        - 1
+                        - 0
+          - field: resultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - inj
+                - 1
+                - 0
+          - field: projDocAddResultEngin
+            expr:
+              if:
+                - eq:
+                    - concat:
+                        - ifNull:
+                            - $petitionExpert.target
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetNotsmeta
+                            - ''
+                        - ifNull:
+                            - $petitionExpert.targetSmeta
+                            - ''
+                    - projdocinj
+                - 1
+                - if:
+                    - eq:
+                        - concat:
+                            - ifNull:
+                                - $petitionExpert.target
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetNotsmeta
+                                - ''
+                            - ifNull:
+                                - $petitionExpert.targetSmeta
+                                - ''
+                        - projDocAftinj
+                    - 1
+                    - 0
+          - field: orderList
+            expr: 8
+          - field: number
+            expr: 1
+    index:
+      - id
+  - name: estimatedCostObjectsSource
+    caption: Сведения о сметной стоимости объектов капитального строительства
+    load:
+      - className: inspectionEstimate
+        filter:
+          like:
+            - $contract.num
+            - КСС
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--1'
+          - field: indicator
+            expr: >-
+              Сметная стоимость объектов капитального строительства согласно
+              проектной документации, представленной для проведения
+              государственной экспертизы - Всего
+          - field: orderList
+            expr: 1
+          - field: date
+            expr: $planDate
+          - field: base_level
+            expr:
+              ifNull:
+                - $estimatedCostBazis
+                - 0
+          - field: now_level
+            expr:
+              ifNull:
+                - $estimatedCostReal
+                - 0
+      - className: inspectionEstimate
+        filter:
+          like:
+            - $contract.num
+            - КСС
+        results:
+          - field: id
+            expr:
+              concat:
+                - $guid
+                - '--3'
+          - field: indicator
+            expr: >-
+              Сметная стоимость объектов капитального строительства после
+              проведения проверки достоверности определения сметной стоимости -
+              Всего
+          - field: date
+            expr: $planDate
+          - field: orderList
+            expr: 3
+          - field: base_level
+            expr:
+              ifNull:
+                - $estimatedCostAfterBazis
+                - 0
+          - field: now_level
+            expr:
+              ifNull:
+                - $estimatedCostAfterReal
+                - 0
+    index:
+      - id
+reports:
+  - name: performIndicatorsReport
+    caption: Показатели работы
+    sheets:
+      - name: performIndicatorsReportTable
+        caption: Показатели работы
+        type: aggregation
+        source: performIndicatorsSource
+        fetch:
+          category: $category
+          title:
+            case:
+              - eq:
+                  - $category
+                  - AA4
+              - 'Выдано заключений, всего в т.ч.:'
+              - eq:
+                  - $category
+                  - AB5
+              - '1. Государственная экспертиза, всего в т.ч.:'
+              - eq:
+                  - $category
+                  - AC6
+              - '- положительных'
+              - eq:
+                  - $category
+                  - AD7
+              - '- отрицательных'
+              - eq:
+                  - $category
+                  - AE8
+              - '2. Всего по сметам, в т.ч.:'
+              - eq:
+                  - $category
+                  - AF9
+              - '- положительных'
+              - eq:
+                  - $category
+                  - AG10
+              - '- отрицательных'
+              - eq:
+                  - $category
+                  - AH11
+              - ~ капитальный ремонт (ПС)
+              - eq:
+                  - $category
+                  - AI12
+              - '- положительных'
+              - eq:
+                  - $category
+                  - AJ13
+              - '- отрицательных'
+              - eq:
+                  - $category
+                  - AK14
+              - '- капитальный ремонт с проектом (ЭН1)'
+              - eq:
+                  - $category
+                  - AL15
+              - '- положительных'
+              - eq:
+                  - $category
+                  - AM16
+              - '- отрицательных'
+              - eq:
+                  - $category
+                  - AM17
+              - '- смета без экспертизы (ЭН)'
+              - eq:
+                  - $category
+                  - AN15
+              - '- положительных'
+              - eq:
+                  - $category
+                  - AN16
+              - '- отрицательных'
+              - eq:
+                  - $category
+                  - AN17
+              - '- экспертиза со сметой (КСС)'
+              - eq:
+                  - $category
+                  - AO18
+              - '- положительных'
+              - eq:
+                  - $category
+                  - AP19
+              - '- отрицательных'
+              - eq:
+                  - $category
+                  - AQ20
+              - 'Откорректировано бюджетных смет:'
+              - eq:
+                  - $category
+                  - AR21
+              - '- с повышением стоимости'
+              - eq:
+                  - $category
+                  - AS22
+              - '- с понижением стоимости'
+              - eq:
+                  - $category
+                  - AT23
+              - 'Направлено писем с замечаниями, всего в т.ч.:'
+              - eq:
+                  - $category
+                  - AU24
+              - '- по гос.экспертизе'
+              - eq:
+                  - $category
+                  - AV25
+              - '- по сметам'
+              - eq:
+                  - $category
+                  - AW26
+              - Заключено договоров на экспертизу
+              - eq:
+                  - $category
+                  - AX27
+              - '- на сумму'
+              - eq:
+                  - $category
+                  - AY28
+              - 'Заключено договоров по сметам, всего в т.ч.:'
+              - eq:
+                  - $category
+                  - AZ29
+              - '- на сумму'
+              - eq:
+                  - $category
+                  - BA30
+              - ~ капитальный ремонт (ПС)
+              - eq:
+                  - $category
+                  - BB31
+              - '- на сумму'
+              - eq:
+                  - $category
+                  - BC32
+              - '- капитальный ремонт с проектом (ЭН1)'
+              - eq:
+                  - $category
+                  - BD33
+              - '- на сумму'
+              - eq:
+                  - $category
+                  - BE34
+              - '- экспертиза со сметой (КСС)'
+              - eq:
+                  - $category
+                  - BF35
+              - '- на сумму'
+          dimension:
+            case:
+              - eq:
+                  - $category
+                  - AA4
+              - штук
+              - eq:
+                  - $category
+                  - AB5
+              - штук
+              - eq:
+                  - $category
+                  - AC6
+              - штук
+              - eq:
+                  - $category
+                  - AD7
+              - штук
+              - eq:
+                  - $category
+                  - AE8
+              - штук
+              - eq:
+                  - $category
+                  - AF9
+              - штук
+              - eq:
+                  - $category
+                  - AG10
+              - штук
+              - eq:
+                  - $category
+                  - AH11
+              - штук
+              - eq:
+                  - $category
+                  - AI12
+              - штук
+              - eq:
+                  - $category
+                  - AJ13
+              - штук
+              - eq:
+                  - $category
+                  - AK14
+              - штук
+              - eq:
+                  - $category
+                  - AL15
+              - штук
+              - eq:
+                  - $category
+                  - AM16
+              - штук
+              - eq:
+                  - $category
+                  - AM17
+              - штук
+              - eq:
+                  - $category
+                  - AN15
+              - штук
+              - eq:
+                  - $category
+                  - AN16
+              - штук
+              - eq:
+                  - $category
+                  - AN17
+              - штук
+              - eq:
+                  - $category
+                  - AO18
+              - штук
+              - eq:
+                  - $category
+                  - AP19
+              - штук
+              - eq:
+                  - $category
+                  - AQ20
+              - штук
+              - eq:
+                  - $category
+                  - AR21
+              - млн.руб.
+              - eq:
+                  - $category
+                  - AS22
+              - млн.руб.
+              - eq:
+                  - $category
+                  - AT23
+              - штук
+              - eq:
+                  - $category
+                  - AU24
+              - штук
+              - eq:
+                  - $category
+                  - AV25
+              - штук
+              - eq:
+                  - $category
+                  - AW26
+              - штук
+              - eq:
+                  - $category
+                  - AX27
+              - млн.руб.
+              - eq:
+                  - $category
+                  - AY28
+              - штук
+              - eq:
+                  - $category
+                  - AZ29
+              - млн.руб.
+              - eq:
+                  - $category
+                  - BA30
+              - штук
+              - eq:
+                  - $category
+                  - BB31
+              - млн.руб.
+              - eq:
+                  - $category
+                  - BC32
+              - штук
+              - eq:
+                  - $category
+                  - BD33
+              - млн.руб.
+              - eq:
+                  - $category
+                  - BE34
+              - штук
+              - eq:
+                  - $category
+                  - BF35
+              - млн.руб.
+          byPeriod:
+            sum:
+              - if:
+                  - and:
+                      - gte:
+                          - $date
+                          - ':since'
+                      - lte:
+                          - $date
+                          - ':till'
+                  - $amount
+                  - 0
+          byMonth:
+            sum:
+              - if:
+                  - and:
+                      - eq:
+                          - month: 
+                              - dateAdd:
+                                  - $date
+                                  - 10
+                                  - h
+                          - ':month'
+                      - eq:
+                          - year: 
+                              - dateAdd:
+                                  - $date
+                                  - 10
+                                  - h
+                          - ':year'
+                  - $amount
+                  - 0
+          byYear:
+            sum:
+              - if:
+                  - eq:
+                      - year: 
+                          - dateAdd:
+                              - $date
+                              - 10
+                              - h
+                      - ':year'
+                  - $amount
+                  - 0
+        sort:
+          category: asc
+        params:
+          year:
+            caption: Год
+            format: int
+          month:
+            caption: Месяц
+            format: int
+            select:
+              '1': январь
+              '2': февраль
+              '3': март
+              '4': апрель
+              '5': май
+              '6': июнь
+              '7': июль
+              '8': август
+              '9': сентябрь
+              '10': октябрь
+              '11': ноябрь
+              '12': декабрь
+          since:
+            caption: с
+            format: date
+          till:
+            caption: по
+            format: date
+        styles:
+          category:
+            AA4: level0
+            AB5: level1
+            AC6: level2
+            AD7: level2
+            AE8: level1
+            AF9: level2
+            AG10: level2
+            AH11: level1
+            AI12: level2
+            AJ13: level2
+            AK14: level1
+            AL15: level2
+            AM16: level2
+            AM17: level1
+            AN15: level2
+            AN16: level2
+            AN17: level1
+            AO18: level2
+            AP19: level2
+            AQ20: level0
+            AR21: level1
+            AS22: level1
+            AT23: level0
+            AU24: level1
+            AV25: level1
+            AW26: level0
+            AX27: level1
+            AY28: level0
+            AZ29: level1
+            BA30: level1
+            BB31: level2
+            BC32: level1
+            BD33: level2
+            BE34: level1
+            BF35: level2
+        columns:
+          - field: title
+            caption: Показатель
+          - field: dimension
+            align: center
+            caption: Единица измерения
+          - caption: '{$year}'
+            align: center
+            columns:
+              - field: byPeriod
+                caption: 'c {$since} по {$till}'
+                align: center
+                format: number
+              - field: byMonth
+                caption: 'За {$month}'
+                align: center
+                format: number
+              - field: byYear
+                caption: За год
+                align: center
+                format: number
+  - name: dataOnStateExaminationReport
+    caption: Сведения о проведении государственной экспертизы
+    sheets:
+      - name: dataOnStateExaminationReportTable
+        caption: Сведения о проведении государственной экспертизы
+        type: aggregation
+        source: dataOnStateExaminationSource
+        fetch:
+          orderList: $orderList
+          indicator: $indicator
+          projDoc:
+            sum:
+              - if:
+                  - eq:
+                      - year: 
+                          - dateAdd:
+                              - $date
+                              - 10
+                              - h
+                      - ':year'
+                  - $projDoc
+                  - 0
+          resultEngin:
+            sum:
+              - if:
+                  - eq:
+                      - year: 
+                          - dateAdd:
+                              - $date
+                              - 10
+                              - h
+                      - ':year'
+                  - $resultEngin
+                  - 0
+          projDocAddResultEngin:
+            sum:
+              - if:
+                  - eq:
+                      - year: 
+                          - dateAdd:
+                              - $date
+                              - 10
+                              - h
+                      - ':year'
+                  - $projDocAddResultEngin
+                  - 0
+        sort:
+          orderList: asc
+          indicator: asc
+        params:
+          year:
+            caption: Год
+            format: int
+        columns:
+          - field: orderList
+            caption: № п/п
+          - field: indicator
+            caption: Наименование показателей
+          - field: projDoc
+            caption: Проектная документация
+            format: number
+          - field: resultEngin
+            caption: Результаты инженерных изысканий
+            format: number
+          - field: projDocAddResultEngin
+            caption: Проектная документация и результаты инженерных изысканий
+            format: number
+        groups:
+          fields:
+            - indicator
+          totals: {}
+        process: {}
+  - name: estimatedCostObjectsReport
+    caption: Сведения о сметной стоимости объектов капитального строительства
+    sheets:
+      - name: estimatedCostObjectsReportTable
+        caption: Сведения о сметной стоимости объектов капитального строительства
+        type: aggregation
+        source: estimatedCostObjectsSource
+        fetch:
+          indicator: $indicator
+          orderList: $orderList
+          base_level:
+            sum:
+              - if:
+                  - eq:
+                      - year: 
+                          - dateAdd:
+                              - $date
+                              - 10
+                              - h
+                      - ':year'
+                  - $base_level
+                  - 0
+          now_level:
+            sum:
+              - if:
+                  - eq:
+                      - year: 
+                          - dateAdd:
+                              - $date
+                              - 10
+                              - h
+                      - ':year'
+                  - $now_level
+                  - 0
+        sort:
+          orderList: asc
+        params:
+          year:
+            caption: Год
+            format: int
+        columns:
+          - field: indicator
+            caption: Наименование показателей
+          - field: base_level
+            caption: Базисный уровень цен (млн.руб.)
+            format: number
+          - field: now_level
+            caption: Текущий уровень цен (млн.руб.)
+            format: number
+        groups:
+          fields:
+            - indicator
+          totals: {}
+        process: {}
+

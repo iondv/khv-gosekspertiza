@@ -1,0 +1,24 @@
+{
+  "code": "app.wait",
+  "orderNumber": 2,
+  "type": 1,
+  "title": "",
+  "caption": "Ожидает обработки",
+  "classname": "expertiseResult",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [
+    {
+      "property": "state",
+      "operation": 0,
+      "value": [
+        "SentToProcess"
+      ],
+      "nestedConditions": []
+    }
+  ],
+  "sorting": [],
+  "pathChains": []
+}

@@ -1,0 +1,15 @@
+{
+  "code": "egrz.egrzSprNaturalCond",
+  "orderNumber": 30,
+  "type": 1,
+  "title": "",
+  "caption": "Справочник природных и иных условий (ЕГРЗ)",
+  "classname": "egrzSprNaturalCond",
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

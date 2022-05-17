@@ -1,0 +1,89 @@
+{
+  "columns": [
+    {
+      "property": "name",
+      "caption": "Имя файла",
+      "type": 1,
+      "orderNumber": 20,
+      "hint": "",
+      "size": null,
+      "maskName": "",
+      "mask": "",
+      "mode": 0,
+      "commands": null,
+      "required": false,
+      "readonly": false,
+      "sorted": false,
+      "selectionPaginated": false,
+      "visibility": "",
+      "enablement": "",
+      "obligation": "",
+      "historyDisplayMode": 0,
+      "tags": ""
+    },
+    {
+      "property": "format",
+      "caption": "Формат файла",
+      "type": 1,
+      "orderNumber": 30,
+      "hint": "",
+      "size": null,
+      "maskName": "",
+      "mask": "",
+      "mode": 0,
+      "commands": null,
+      "required": false,
+      "readonly": false,
+      "sorted": false,
+      "selectionPaginated": false,
+      "visibility": "",
+      "enablement": "",
+      "obligation": "",
+      "historyDisplayMode": 0,
+      "tags": ""
+    },
+    {
+      "property": "checksum",
+      "caption": "Контрольная сумма CRC32 файла",
+      "type": 1,
+      "orderNumber": 40,
+      "hint": "",
+      "size": null,
+      "maskName": "",
+      "mask": "",
+      "mode": 0,
+      "commands": null,
+      "required": false,
+      "readonly": false,
+      "sorted": false,
+      "selectionPaginated": false,
+      "visibility": "",
+      "enablement": "",
+      "obligation": "",
+      "historyDisplayMode": 0,
+      "tags": ""
+    }
+  ],
+  "commands": [
+    {
+      "id": "CREATE",
+      "caption": "Создать",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": false,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    },
+    {
+      "id": "EDIT",
+      "caption": "Править",
+      "visibilityCondition": null,
+      "enableCondition": null,
+      "needSelectedItem": true,
+      "signBefore": false,
+      "signAfter": false,
+      "isBulk": false
+    }
+  ]
+}

@@ -1,0 +1,2445 @@
+{
+  "name": "gosEkspContract",
+  "caption": "Договор",
+  "wfClass": "gosEkspContract",
+  "startState": "proj",
+  "states": [
+    {
+      "name": "proj",
+      "caption": "Подготовка проекта договора",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "sndApp",
+      "caption": "Отправлен",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "agrm",
+      "caption": "На согласовании",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "agrmOk",
+      "caption": "Согласован",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "sight",
+      "caption": "Подписан",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "cancel",
+      "caption": "Не подписан",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "pay",
+      "caption": "В работе",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "work",
+      "caption": "В работе",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "work_est",
+      "caption": "В работе",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "fin",
+      "caption": "Исполнен",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "signing",
+      "caption": "Подписание договора",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "extWork",
+      "caption": "Продлен, в работе",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "extWork_est",
+      "caption": "Продлен, в работе",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "before_pay",
+      "caption": "Формирование счета",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "dissolve",
+      "caption": "Расторгнут",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "cost",
+      "caption": "Расчет стоимости",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "refusal",
+      "caption": "Отказ подписи",
+      "maxPeriod": null,
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    }
+  ],
+  "transitions": [
+    {
+      "name": "signSend",
+      "caption": "Подписать и отправить",
+      "startState": "proj",
+      "finishState": "sndApp",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "sndApp"
+        },
+        {
+          "key": "dataSend",
+          "value": "now()"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "proj"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "contFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "prefsendExpense_sight",
+      "caption": "Формирование счета",
+      "startState": "sight",
+      "finishState": "before_pay",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eСформировать счет\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "bankAccount.state",
+          "value": "makeAccount"
+        },
+        {
+          "key": "bankAccount.cont",
+          "value": "$guid"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sight"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "bankAccount",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sightinWork",
+      "caption": "В работу",
+      "startState": "sight",
+      "finishState": "work",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПеревести объект в работу\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "work"
+        },
+        {
+          "key": "success",
+          "value": "true"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "32"
+        },
+        {
+          "key": "result.petitionExpert",
+          "value": "$petitionExpert"
+        },
+        {
+          "key": "result.expObject",
+          "value": "$expObject"
+        },
+        {
+          "key": "result.documentationType",
+          "value": "$petitionExpert.documentationType"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sight"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "date",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sightinWork_est",
+      "caption": "В работу",
+      "startState": "sight",
+      "finishState": "work_est",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПеревести объект в работу\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "work"
+        },
+        {
+          "key": "success",
+          "value": "true"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "32"
+        },
+        {
+          "key": "result.petitionEstimated",
+          "value": "$petitionEstimated"
+        },
+        {
+          "key": "result.expObject",
+          "value": "$expObject"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sight"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "date",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "inWork",
+      "caption": "В работу",
+      "startState": "before_pay",
+      "finishState": "work",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПеревести объект в работу\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "work"
+        },
+        {
+          "key": "success",
+          "value": "true"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "32"
+        },
+        {
+          "key": "result.petitionExpert",
+          "value": "$petitionExpert"
+        },
+        {
+          "key": "result.expObject",
+          "value": "$expObject"
+        },
+        {
+          "key": "result.documentationType",
+          "value": "$petitionExpert.documentationType"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "pay"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "date",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "bankAccount",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "inspect",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "bankAccount.state",
+          "operation": 0,
+          "value": [
+            "paidFull"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "inWork_est",
+      "caption": "В работу",
+      "startState": "before_pay",
+      "finishState": "work_est",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПеревести объект в работу\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "work"
+        },
+        {
+          "key": "success",
+          "value": "true"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "32"
+        },
+        {
+          "key": "result.petitionEstimated",
+          "value": "$petitionEstimated"
+        },
+        {
+          "key": "result.expObject",
+          "value": "$expObject"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "pay"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "date",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "bankAccount",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "inspectEst",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "bankAccount.state",
+              "operation": 0,
+              "value": [
+                "paidFull"
+              ],
+              "nestedConditions": []
+            },
+            {
+              "property": "bankAccount.state",
+              "operation": 0,
+              "value": [
+                "paidPart"
+              ],
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "prefsendExpense_work",
+      "caption": "Формирование счета",
+      "startState": "work",
+      "finishState": "before_pay",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eСформировать счет\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "bankAccount.state",
+          "value": "makeAccount"
+        },
+        {
+          "key": "bankAccount.cont",
+          "value": "$guid"
+        },
+        {
+          "key": "state",
+          "value": "pay"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "work"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "bankAccount",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "prefsendEst_work",
+      "caption": "Формирование счета",
+      "startState": "work_est",
+      "finishState": "before_pay",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eСформировать счет\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "bankAccount.state",
+          "value": "makeAccount"
+        },
+        {
+          "key": "bankAccount.cont",
+          "value": "$guid"
+        },
+        {
+          "key": "state",
+          "value": "pay"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "work"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "bankAccount",
+          "operation": 2,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "executed",
+      "caption": "Исполнен",
+      "startState": "work",
+      "finishState": "fin",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как исполненный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "work"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "inspect.state",
+          "operation": 0,
+          "value": [
+            "prep"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "executed_est",
+      "caption": "Исполнен",
+      "startState": "work_est",
+      "finishState": "fin",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как исполненный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "work"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "inspectEst.status",
+          "operation": 0,
+          "value": [
+            "prep"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "bankAccount.state",
+          "operation": 0,
+          "value": [
+            "paidFull"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "payExecuted",
+      "caption": "Исполнен",
+      "startState": "before_pay",
+      "finishState": "fin",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как исполненный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "pay"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "inspect.state",
+          "operation": 0,
+          "value": [
+            "prep"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "bankAccount.state",
+          "operation": 0,
+          "value": [
+            "paidFull"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "payExecuted_est",
+      "caption": "Исполнен",
+      "startState": "before_pay",
+      "finishState": "fin",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как исполненный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "pay"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "inspectEst.status",
+          "operation": 0,
+          "value": [
+            "prep"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "bankAccount.state",
+          "operation": 0,
+          "value": [
+            "paidFull"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "executedExt",
+      "caption": "Исполнен",
+      "startState": "extWork",
+      "finishState": "fin",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как исполненный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "extWork"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "inspect.state",
+          "operation": 0,
+          "value": [
+            "prep"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "executedExt_est",
+      "caption": "Исполнен",
+      "startState": "extWork_est",
+      "finishState": "fin",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как исполненный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "fin"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "extWork"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "inspectEst.status",
+          "operation": 0,
+          "value": [
+            "prep"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "bankAccount.state",
+          "operation": 0,
+          "value": [
+            "paidFull"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sendAccept_sndApp",
+      "caption": "Отправить на согласование",
+      "startState": "sndApp",
+      "finishState": "agrm",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "agrm"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "docsCont",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sendAccept_agrm",
+      "caption": "Отправить на согласование",
+      "startState": "agrm",
+      "finishState": "agrm",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "agrm"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "docsCont",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "acceptSign_sndApp",
+      "caption": "Согласован и подписан",
+      "startState": "sndApp",
+      "finishState": "sight",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "sight"
+        },
+        {
+          "key": "agrmOk",
+          "value": "true"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "31"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "agrm"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "acceptSign_sndApp_est",
+      "caption": "Согласован и подписан",
+      "startState": "sndApp",
+      "finishState": "sight",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "sight"
+        },
+        {
+          "key": "agrmOk",
+          "value": "true"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "31"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "agrm"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "acceptSign_agrm",
+      "caption": "Согласован и подписан",
+      "startState": "agrm",
+      "finishState": "sight",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "sight"
+        },
+        {
+          "key": "agrmOk",
+          "value": "true"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "31"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "agrm"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "acceptSign_agrm_est",
+      "caption": "Согласован и подписан",
+      "startState": "agrm",
+      "finishState": "sight",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "assignments": [
+        {
+          "key": "state",
+          "value": "sight"
+        },
+        {
+          "key": "agrmOk",
+          "value": "true"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "31"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "agrm"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "notSign_agrm",
+      "caption": "Не подписан",
+      "startState": "agrm",
+      "finishState": "cancel",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как неподписанный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "cancel"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "agrm"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "notSign_agrm_est",
+      "caption": "Не подписан",
+      "startState": "agrm",
+      "finishState": "cancel",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как неподписанный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "cancel"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "agrm"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "notSign_sndApp",
+      "caption": "Не подписан",
+      "startState": "sndApp",
+      "finishState": "cancel",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как неподписанный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "cancel"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sndApp"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "notSign_sndApp_est",
+      "caption": "Не подписан",
+      "startState": "sndApp",
+      "finishState": "cancel",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как неподписанный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "cancel"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sndApp"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "paperAgree",
+      "caption": "Согласование договора",
+      "startState": "proj",
+      "finishState": "signing",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПеревести Договор на согласование\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "signing"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "30"
+        },
+        {
+          "key": "dataSend",
+          "value": "now()"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "proj"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "sumEksp",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "paperAgree_est",
+      "caption": "Согласование договора",
+      "startState": "proj",
+      "finishState": "signing",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПеревести Договор на согласование\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "signing"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "30"
+        },
+        {
+          "key": "dataSend",
+          "value": "now()"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "proj"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "sumEksp",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "addAgree",
+      "caption": "Продлить по доп. соглашению",
+      "startState": "work",
+      "finishState": "extWork",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПродлить Договор\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "extWork"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "38"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "work"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "agreementNew",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "addAgree_est",
+      "caption": "Продлить по доп. соглашению",
+      "startState": "work_est",
+      "finishState": "extWork_est",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПродлить Договор\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "extWork"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "38"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "work"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "agreementNew",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "payAddAgree",
+      "caption": "Продлить по доп. соглашению",
+      "startState": "before_pay",
+      "finishState": "extWork",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПродлить Договор\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "extWork"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "38"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "pay"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "agreementNew",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "payAddAgree_est",
+      "caption": "Продлить по доп. соглашению",
+      "startState": "before_pay",
+      "finishState": "extWork_est",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eПродлить Договор\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "extWork"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "38"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "pay"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "agreementNew",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sightCont",
+      "caption": "Подписан",
+      "startState": "signing",
+      "finishState": "sight",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eДоговор подписан?\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "sight"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "31"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "contFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "signing"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "agrmOk",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "sightCont_est",
+      "caption": "Подписан",
+      "startState": "signing",
+      "finishState": "sight",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eДоговор подписан?\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "sight"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "31"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "contFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "signing"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "agrmOk",
+          "operation": 0,
+          "value": [
+            "true"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "notSightCont",
+      "caption": "Не подписан",
+      "startState": "signing",
+      "finishState": "cancel",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как неподписанный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "cancel"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "contFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "signing"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "agrmOk",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "notSightCont_est",
+      "caption": "Не подписан",
+      "startState": "signing",
+      "finishState": "cancel",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗакрыть Договор как неподписанный\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "cancel"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "contFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "num",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "expEmployee",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "signing"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "agrmOk",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "dissolve",
+      "caption": "Расторгнуть по доп. соглашению",
+      "startState": "work",
+      "finishState": "dissolve",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eРасторгнуть по доп. соглашению\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "dissolve"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "39"
+        },
+        {
+          "key": "inspect.state",
+          "value": "dissolve"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "work"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "docsCont",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            },
+            {
+              "property": "agreementNew",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dissolve_est",
+      "caption": "Расторгнуть по доп. соглашению",
+      "startState": "work_est",
+      "finishState": "dissolve",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eРасторгнуть по доп. соглашению\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "dissolve"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "39"
+        },
+        {
+          "key": "inspectionEstimate.status",
+          "value": "dissolve"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "work"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "docsCont",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            },
+            {
+              "property": "agreementNew",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "extWorkDissolveExp",
+      "caption": "Расторгнуть по доп. соглашению",
+      "startState": "extWork",
+      "finishState": "dissolve",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eРасторгнуть по доп. соглашению\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "dissolve"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "39"
+        },
+        {
+          "key": "inspect.state",
+          "value": "dissolve"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "extWork"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "docsCont",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            },
+            {
+              "property": "agreementNew",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "extWorkDissolve_est",
+      "caption": "Расторгнуть по доп. соглашению",
+      "startState": "extWork",
+      "finishState": "dissolve",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eРасторгнуть по доп. соглашению\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "dissolve"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "39"
+        },
+        {
+          "key": "inspectionEstimate.status",
+          "value": "dissolve"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "extWork"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "docsCont",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            },
+            {
+              "property": "agreementNew",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dissolve_pay",
+      "caption": "Расторгнуть по доп. соглашению",
+      "startState": "before_pay",
+      "finishState": "dissolve",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eРасторгнуть по доп. соглашению\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "dissolve"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "39"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "pay"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "docsCont",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            },
+            {
+              "property": "agreementNew",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dissolve_pay_est",
+      "caption": "Расторгнуть по доп. соглашению",
+      "startState": "before_pay",
+      "finishState": "dissolve",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eРасторгнуть по доп. соглашению\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "dissolve"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "39"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "pay"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "docsCont",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            },
+            {
+              "property": "agreementNew",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dissolve_sight",
+      "caption": "Расторгнуть по доп. соглашению",
+      "startState": "before_pay",
+      "finishState": "dissolve",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eРасторгнуть по доп. соглашению\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "dissolve"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "39"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sight"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "docsCont",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            },
+            {
+              "property": "agreementNew",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dissolve_est_sight",
+      "caption": "Расторгнуть по доп. соглашению",
+      "startState": "before_pay",
+      "finishState": "dissolve",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eРасторгнуть по доп. соглашению\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "dissolve"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "39"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "sight"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": null,
+          "operation": 1,
+          "value": null,
+          "nestedConditions": [
+            {
+              "property": "docsCont",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            },
+            {
+              "property": "agreementNew",
+              "operation": 3,
+              "value": null,
+              "nestedConditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "paperAgree_ref",
+      "caption": "Отказ подписывать договор",
+      "startState": "proj",
+      "finishState": "refusal",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗаявление об отказе подписывать договор согласовано\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "cancel"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "proj"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "cancelFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "agrmOk",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "paperAgree_ref_est",
+      "caption": "Отказ подписывать договор",
+      "startState": "proj",
+      "finishState": "refusal",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗаявление об отказе подписывать договор согласовано\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "cancel"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "proj"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "cancelFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "agrmOk",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "paperAgree_sign_ref",
+      "caption": "Отказ подписывать договор",
+      "startState": "signing",
+      "finishState": "refusal",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗаявление об отказе подписывать договор согласовано\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "cancel"
+        },
+        {
+          "key": "petitionExpert.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "petitionExpert",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "signing"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "cancelFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "agrmOk",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    },
+    {
+      "name": "paperAgree_sign_est_ref",
+      "caption": "Отказ подписывать договор",
+      "startState": "signing",
+      "finishState": "refusal",
+      "signBefore": false,
+      "signAfter": false,
+      "roles": [],
+      "confirm": true,
+      "confirmMessage": "\u003ch2\u003eЗаявление об отказе подписывать договор согласовано\u003c/h2\u003e",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "cancel"
+        },
+        {
+          "key": "petitionEstimated.status",
+          "value": "27"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "petitionEstimated",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "signing"
+          ],
+          "nestedConditions": []
+        },
+        {
+          "property": "cancelFile",
+          "operation": 3,
+          "value": null,
+          "nestedConditions": []
+        },
+        {
+          "property": "agrmOk",
+          "operation": 0,
+          "value": [
+            "false"
+          ],
+          "nestedConditions": []
+        }
+      ]
+    }
+  ],
+  "metaVersion": "2.0.61"
+}

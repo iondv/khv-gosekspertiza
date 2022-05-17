@@ -1,0 +1,15 @@
+{
+  "code": "notificationEgrz",
+  "orderNumber": 3,
+  "type": 0,
+  "title": "",
+  "caption": "Уведомления",
+  "classname": null,
+  "container": null,
+  "collection": null,
+  "url": null,
+  "hint": null,
+  "conditions": [],
+  "sorting": [],
+  "pathChains": []
+}

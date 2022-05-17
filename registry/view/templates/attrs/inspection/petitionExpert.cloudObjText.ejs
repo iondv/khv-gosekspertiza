@@ -1,0 +1,118 @@
+<!-- templates\attrs\inspection\petitionExpert.cloudObjText -->
+<%
+let value = prop.getValue();
+%>
+
+<% stylesheet(`${module}/goseksp/css/cloud-data.css`) -%>
+<% script(`${module}/goseksp/js/cloud-data.js`) -%>
+
+<div class="form-group <%= cssFromTags(field) %>">
+  <label class="col-md-2 col-sm-3 control-label">
+    <% if (item.getItemId()) { %>
+    <p style="display: inline-block;">
+      <button type="button" class="btn btn-primary dir-refresh">
+      <span class="glyphicon glyphicon-refresh" title="Обновить"></span>
+      </button>
+    </p>
+    <% } %>
+    <%= field.caption %>
+  </label>
+  <div class="col-md-10 col-sm-9 cloud-dir-container">
+    <div class="refresh-loader" style="display:none;">
+      <span>Список обновляется...</span>
+    </div>
+    <div id="<%- id %>"
+      class="cloud-tree"
+      data-value="<%= value %>"
+      data-refresh-url="/goseksp/cloud-dir-struct/<%= prop.item.getClassName() %>/<%= item.getItemId() %>/">
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function () {
+
+    function getBranch (data, level) {
+      var content = '';
+      if (data && data.dirs instanceof Array) {
+        for (var i = 0; i < data.dirs.length; ++i) {
+          content += getDir(data.dirs[i], level);
+        }
+      }
+      if (data && data.files instanceof Array) {
+        for (var i = 0; i < data.files.length; ++i) {
+          content += getFile(data.files[i], level);
+        }
+      }
+      return content;
+    }
+
+    function getDir (data, level) {
+      if (!data) {
+        return '';
+      }
+      var head = '<div class="cloud-item-head"><span class="cloud-item-icon glyphicon"></span>'
+        + '<div class="cloud-item-title">' + data.name +'</div></div>';
+      var body = getBranch(data, level + 1);
+      var empty = ' empty-folder';
+      if (body) {
+        body = '<div class="cloud-item-body">'+ body + '</div>';
+        empty = '';
+      }
+      return '<div class="cloud-folder cloud-item level-'+ level + empty +'">'+ head + body + '</div>';
+    }
+
+    function getFile (data, level) {
+      if (!data) {
+        return '';
+      }
+      var signed = data.name.split('.').pop();
+      signed = signed === 'sig' || signed === 'sign' ? ' signed' : '';
+      var head = '<div class="cloud-item-head"><span class="cloud-item-icon glyphicon"></span>'
+        + '<div class="cloud-item-title"><a href="'+ data.link +'" target="_blank">'
+        + data.name +'</a></div></div>';
+      return '<div class="cloud-file cloud-item level-'
+        + level + signed + '">'+ head +'</div>';
+    }
+
+    $(document.getElementById('<%- id %>')).each(function () {
+      var $tree = $(this),
+        refreshUrl = $tree.data('refresh-url'),
+        loader = $tree.closest('.cloud-dir-container').find('.refresh-loader');
+
+      $tree.on('cloudObj:refresh', function(e, data) {
+        var content = getBranch(data, 0);
+        $tree.empty();
+        $tree.html(content);
+      });
+
+      $tree.on('click', '.cloud-folder > .cloud-item-head .cloud-item-icon', function () {
+        var $item = $(this).closest('.cloud-folder');
+        if ($item.hasClass('active')) {
+          $item.find('.active').removeClass('active');
+        }
+        $item.toggleClass('active');
+      });
+
+      $tree.closest('.form-group').find('.dir-refresh').on('click', function() {
+        loader.show();
+        $.ajax({
+            url: refreshUrl,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+              loader.hide();
+              $tree.trigger('cloudObj:refresh', [data]);
+            },
+            error: function (xhreq, status, error) {
+              loader.hide();
+              console.log(status, error);
+            }
+        });
+      });
+
+      $tree.trigger('cloudObj:refresh', [$tree.data('value')]);
+      
+    });
+  });
+</script>
